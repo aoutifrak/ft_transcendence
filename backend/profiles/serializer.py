@@ -111,6 +111,7 @@ class SocialAuthontication(serializers.Serializer):
             if created:
                 userinfo = requests.get('https://api.github.com/user',headers=headers, timeout=10000)
                 userinfo.raise_for_status()
+                userinfo['password'] = random.randint(10000000,99999999)
                 user = User_Register(data=userinfo.json())
                 user.is_valid(raise_exception=True)
                 return user.data['email']
@@ -159,5 +160,5 @@ class FriendSerializer(serializers.ModelSerializer):
         'username',
         'first_name',
         'last_name',
-        'is_online',
+        'is_online'
         ]
