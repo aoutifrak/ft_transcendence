@@ -1,0 +1,88 @@
+# # GET  http://localhost:8000/api/activate/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MX0.sU30l9m_tmqh_HzL9lvvy7nv7g-9Q18sxtRwMMslpQA
+# # Content-Type: application/json
+# # {}
+
+POST  http://127.0.0.1:8000/api/refresh_token
+Content-Type: application/json
+Cookie: refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTczMjkxMDkxNSwiaWF0IjoxNzMyODI0NTE1LCJqdGkiOiIxYjI3ZGEwMmY4Njk0YzdkOWY3MTU3M2EzZTAyYmZhOCIsInVzZXJfaWQiOjR9._yriYDs8t9OkwUz0YjS-WUF3Cx3a9TpMp2h0dI0gL9s; HttpOnly; Path=/ 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyODMwMzQ4LCJpYXQiOjE3MzI4MjczNDgsImp0aSI6IjMwYTU4ZDBiYjI5NzRhZmQ4Y2E5MDFlZWYwMjMxOTNmIiwidXNlcl9pZCI6NH0.eMEcl3nOjvD4q03UZ5FyKiu4q9HMR3AHnu41XDqBnS0
+
+{
+
+}
+
+#######
+PUT http://127.0.0.1:8000/api/user_info
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzMDYxNDU2LCJpYXQiOjE3MzMwNjExNTYsImp0aSI6IjZhYTMxM2MxOTk5YzQ3MTk4MDBkNjkyZWQ1YzZhMzcwIiwidXNlcl9pZCI6MX0.XmzBxxgfKjP3q6HoOVvl0I7Raz9c7JM89MiUDsuS7gM
+Content-Type: application/json
+
+{
+  "email":"mio@gmail.com",
+  "username":"mido",
+  "password":"123"
+}
+
+##############
+##############
+
+
+POST http://127.0.0.1:8000/api/login
+Content-Type: application/json
+
+{
+  "email": "testp@example.com",
+  "password": "orllld123"
+}
+
+##############
+##############
+
+GET http://127.0.0.1:8000/api/messages
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMwMjAxMjk5LCJpYXQiOjE3MzAyMDA5OTksImp0aSI6ImU3ZjNkOTk3OWE1YTRmMWFiYzBmZmE3MmRiZDIzYTYwIiwidXNlcl9pZCI6MX0.BgwFvzLKLvOHTcBCvezXLMFUx5SChD2yJQp__ccOYzc
+
+{
+	"chat_id": 4
+}
+
+##############
+##############
+
+POST  http://127.0.0.1:8000/api/login
+Content-Type: application/json
+
+{
+  "email": "testp@example.com",
+  "password": "orllld123"
+}
+
+##############
+##############
+
+POST http://127.0.0.1:8000/api/signup
+Content-Type: application/json
+
+{
+  "email": "testp@example.com",
+  "first_name": "Test",
+  "last_name": "User",
+  "username": "tepstuser",
+  "password": "orllld123"
+}
+
+
+
+
+##############
+##############
+
+POST http://127.0.0.1:8000/api/oauth
+Content-Type: application/json
+# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzMDYwNzkyLCJpYXQiOjE3MzMwNjA0OTIsImp0aSI6ImE0NGIxZDU0NWRkYjRiZjQ4MmUzNDBkOGFiODJlZTBiIiwidXNlcl9pZCI6MX0.rwijGEMI5sPTN7X4T66vViYIWXB_YWzsgqhEB7kykvM
+
+{
+  "platform":"42"
+}
+
+##################
+#######################
