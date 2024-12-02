@@ -10,7 +10,6 @@ from django.core.exceptions import ValidationError
 class User_Register(serializers.ModelSerializer):
     email = serializers.EmailField(max_length=55, min_length=8, allow_blank=False)
     password = serializers.CharField(max_length=68,min_length=6,write_only=True)
-    avatar = serializers.ImageField(allow_empty_file=True, required=False) 
 
     class Meta:
         model = User
@@ -28,21 +27,22 @@ class User_Register(serializers.ModelSerializer):
         if not username or username == '' or User.objects.filter(username=username).exists():
             if User.objects.filter(username=validated_data['email'].split('@')[0]).exists():
                 while User.objects.filter(username=validated_data['username']).exists():
-                    validated_data['username'] = validated_data['email'].split('@')[0] + str(random.randint(100,999))
+                    validated_data['username'] = validated_data['email'].split('@')[0] + str(random.randint(0,999))
             else:
                 validated_data['username'] = validated_data['email'].split('@')[0]
             
         user = User.objects.create_user(**validated_data)
         user.set_password(password)
-        user.avatar = validated_data.get('avatar')
         user.save()
         return user
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
+    avatar = serializers.ImageField(allow_empty_file=True, required=False) 
     class Meta:
         model = User
-        fields = ['email',
+        fields = [
+                  'email',
                   'first_name',
                   'last_name',
                   'username',
@@ -111,6 +111,7 @@ class SocialAuthontication(serializers.Serializer):
             if created:
                 userinfo = requests.get('https://api.github.com/user',headers=headers, timeout=10000)
                 userinfo.raise_for_status()
+                userinfo['password'] = random.randint(10000000,99999999)
                 user = User_Register(data=userinfo.json())
                 user.is_valid(raise_exception=True)
                 return user.data['email']
@@ -127,7 +128,6 @@ class SocialAuthontication(serializers.Serializer):
                 res['password'] = random.randint(10000000,99999999)
                 user = User_Register(data=res)
                 user.is_valid(raise_exception=True)
-                # user.save()
                 return user.data['email']
             return user.email
             if email is None:
@@ -142,7 +142,6 @@ class SocialAuthontication(serializers.Serializer):
                 res['password'] = random.randint(10000000,99999999)
                 user = User_Register(data=res)
                 user.is_valid(raise_exception=True)
-                # user.save()
                 return user.data['email']
             return user.email
         raise serializers.ValidationError('Failed to login with given credentials')
@@ -155,9 +154,10 @@ class FriendRequestSerializer(serializers.ModelSerializer):
 class FriendSerializer(serializers.ModelSerializer):
     class Meta:
         model = User
-        fields = ['id',
+        fields = [
+        'id',
         'username',
         'first_name',
         'last_name',
-        'is_online',
+        'is_online'
         ]

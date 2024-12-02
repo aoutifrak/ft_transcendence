@@ -12,6 +12,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 }
 
 #######
+
 PUT http://127.0.0.1:8000/api/user_info
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzMDYxNDU2LCJpYXQiOjE3MzMwNjExNTYsImp0aSI6IjZhYTMxM2MxOTk5YzQ3MTk4MDBkNjkyZWQ1YzZhMzcwIiwidXNlcl9pZCI6MX0.XmzBxxgfKjP3q6HoOVvl0I7Raz9c7JM89MiUDsuS7gM
 Content-Type: application/json
@@ -70,9 +71,6 @@ Content-Type: application/json
   "password": "orllld123"
 }
 
-
-
-
 ##############
 ##############
 
@@ -81,8 +79,8 @@ Content-Type: application/json
 # Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzMDYwNzkyLCJpYXQiOjE3MzMwNjA0OTIsImp0aSI6ImE0NGIxZDU0NWRkYjRiZjQ4MmUzNDBkOGFiODJlZTBiIiwidXNlcl9pZCI6MX0.rwijGEMI5sPTN7X4T66vViYIWXB_YWzsgqhEB7kykvM
 
 {
-  "platform":"42"
+  "platform":"gmail"
 }
 
 ##################
-#######################
+##################

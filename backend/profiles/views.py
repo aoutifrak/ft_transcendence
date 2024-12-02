@@ -13,7 +13,6 @@ from rest_framework.permissions import IsAuthenticated ,AllowAny
 from rest_framework_simplejwt.exceptions import TokenError
 from rest_framework_simplejwt.tokens import RefreshToken
 import pyotp
-from django.shortcuts import redirect
 from django.db.models import Q
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
@@ -76,7 +75,6 @@ class Sign_upView(APIView):
                 raise AuthenticationFailed('Email already exists')
             if User.objects.filter(username=username).exists():
                 user =  User.objects.get(username=username)
-                print(user)
                 raise AuthenticationFailed('Username already exists')
             serialaizer = User_Register(data=request.data)
             if serialaizer.is_valid(raise_exception=True):
@@ -213,7 +211,7 @@ class SocialAuth(APIView):
                 client_id = settings.CLIENT_ID
                 redirect_uri = settings.INTRA_REDIRECT_URI
                 url = f'https://api.intra.42.fr/oauth/authorize?client_id={client_id}&redirect_uri={redirect_uri}&response_type=code'
-            return redirect(url)
+            return Response({'url':url},status=200)
         except requests.exceptions.RequestException as e:
             return Response({'info':'error'},status=400)
 
@@ -235,7 +233,7 @@ class SocialAuthverify(APIView):
                     'client_id': settings.GITHUB_CLIENT_ID,
                     'client_secret': settings.GITHUB_CLIENT_SECRET,
                     'code': code,
-                    'redirect_uri': settings.GITHUB_REDIRECT_URI
+                    '{'Response_url':uri}': settings.GITHUB_REDIRECT_URI
                     }
                 elif platform == 'gmail':
                     url = 'https://oauth2.googleapis.com/token'
@@ -429,5 +427,3 @@ class SearchUser(APIView):
             return response
         except Exception as e:
             return Response({'error': str(e)})
-
-# class UploadAvatar(APIView):

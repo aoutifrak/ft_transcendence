@@ -95,6 +95,7 @@ CORS_ALLOWED_ORIGINS = [
     "http://127.0.0.1",
     "https://localhost",
     "https://127.0.0.1",
+    "http://10.12.9.3:5174",
 ]
 
 # Database
