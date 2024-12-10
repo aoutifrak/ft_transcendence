@@ -53,7 +53,6 @@ class UserSerializer(serializers.ModelSerializer):
                   'is_active',
                   'is_staff',
                   'is_superuser',
-                  'pyotp_secret',
                   'created_at',
                   'last_login',
                   'wins',

@@ -147,7 +147,6 @@ class Control2Fa(APIView):
             if user:
                 user.pyotp_secret = pyotp.random_base32()
                 otp = pyotp.TOTP(user.pyotp_secret).provisioning_uri(user.email, issuer_name="2fa")
-                print(user)
                 user.is2fa = True
                 user.save()
                 return Response({'otp':otp,},status=200)
@@ -418,9 +417,8 @@ class SearchUser(APIView):
     serializer_class = UserSerializer
     def post(self, request):
         try:
-            username = request.data['username']
-            user = User.objects.get(username=username)
-            user_data = self.serializer_class(user)
+            all_users = User.objects.all()
+            user_data = self.serializer_class(all_users,many=True)
             response = Response(
                 {'user':user_data.data},status=200
             )
