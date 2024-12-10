@@ -47,9 +47,6 @@ class User(AbstractBaseUser, PermissionsMixin):
     password = models.CharField(max_length=255)
     avatar = models.ImageField(upload_to='avatars/', validators=[validate_image],default='avatars/default.png')
     bio = models.CharField(max_length=300, default="write somthing nice here")
-    is_valid = models.BooleanField(default=False)
-    is_active = models.BooleanField(default=True)
-    is_staff = models.BooleanField(default=False)
     is_superuser = models.BooleanField(default=False)
     pyotp_secret = models.CharField(max_length=255, default='')
     
