@@ -301,7 +301,7 @@ class FriendRequestView(APIView):
     def post(self,request):
         try:
             user = request.user
-            friend = request.data['friend']
+            friend = request.data['username']
             friend = User.objects.get(username=friend)
             if friend == user:
                 return Response({'info':'you can not send request to yourself'},status=400)
@@ -342,7 +342,7 @@ class FriendRequestView(APIView):
     def put(self,request):
         try:
             user = request.user
-            friend = request.data['friend']
+            friend = request.data['username']
             friend = User.objects.get(username=friend)
             if friend:
                 friend_request = FriendRequest.objects.get(Q(from_user=friend) & Q(to_user=user) & Q(status=0))
@@ -358,7 +358,7 @@ class FriendRequestView(APIView):
     def delete(self,request):
         try:
             user = request.user
-            friend = request.data['friend']
+            friend = request.data['username']
             friend = User.objects.get(username=friend)
             if friend:
                 friend_request = FriendRequest.objects.get(Q(from_user=friend) & Q(to_user=user) & Q(status=0) | \
@@ -374,7 +374,7 @@ class BlockUser(APIView):
     def post(self,request):
         try:
             user = request.user
-            friend = request.data['friend']
+            friend = request.data['username']
             
             if friend == user.username:
                 return Response({'info':'you can not block yourself'},status=400)
@@ -395,7 +395,7 @@ class BlockUser(APIView):
     def delete(self,request):
         try:
             user = request.user
-            friend = request.data['friend']
+            friend = request.data['username']
             if user.blocked.filter(username=friend).exists():
                 b_friend = user.blocked.get(username=friend)
                 user.blocked.remove(b_friend)
