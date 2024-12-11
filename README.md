@@ -1,52 +1,324 @@
-# Api documentation
+# Matches API Documentation
 
-## Login 
-- to login you have to provide email and password 
-- example 
-```
-    POST http://127.0.0.1:8000/api/login
-    Content-Type: application/json
+This documentation provides details about the Matches API, including endpoint purposes, request formats, and response structures. This API enables users to create, retrieve, accept, and delete matches, as well as view recent matches.
 
+## General Information
+- **Base URL**: `/api/` (example, adjust as needed)
+- **Authentication**: All endpoints require the user to be authenticated. Use a token or session-based authentication.
+
+---
+
+### 1. POST - Create a Match
+**Purpose**: Create a new match request from the authenticated user to another user.
+
+#### Request
+- **URL**: `/api/matches/`
+- **Method**: `POST`
+- **Headers**:
+  ```json
+  {
+    "Authorization": "Token <user_token>"
+  }
+  ```
+- **Body**:
+  ```json
+  {
+    "username": "friend_username"
+  }
+  ```
+
+#### Response
+- **Success**:
+  ```json
+  {
+    "info": "Match created and request sent",
+    "match_id": 123
+  }
+  ```
+- **Error Cases**:
+  - `Cannot match with yourself` (400)
+  - `Friend user not found` (404)
+  - Any other error:
+    ```json
     {
-        "email":"dijad7190@esterace.com",
-        "password":"aoutifra1"
+      "info": "<error_message>"
     }
-```
+    ```
 
-## Sign up 
-- manual signup 
-- example 
-```
-    POST http://127.0.0.1:8000/api/signup
-    Content-Type: application/json
+---
 
+### 2. GET - Fetch All Pending Matches
+**Purpose**: Retrieve all pending match requests for the authenticated user.
+
+#### Request
+- **URL**: `/api/matches/`
+- **Method**: `GET`
+- **Headers**:
+  ```json
+  {
+    "Authorization": "Token <user_token>"
+  }
+  ```
+
+#### Response
+- **Success**:
+  ```json
+  {
+    "matches": [
+      {
+        "id": 123,
+        "userone": "current_user_username",
+        "usertow": "friend_username",
+        "created_at": "2024-12-11T10:00:00Z",
+        "status": 0
+      },
+      {
+        "id": 124,
+        "userone": "friend_username",
+        "usertow": "current_user_username",
+        "created_at": "2024-12-11T12:00:00Z",
+        "status": 0
+      }
+    ]
+  }
+  ```
+- **Error Cases**:
+  ```json
+  {
+    "info": "<error_message>"
+  }
+  ```
+
+---
+
+### 3. PUT - Accept a Match
+**Purpose**: Accept a pending match request.
+
+#### Request
+- **URL**: `/api/matches/`
+- **Method**: `PUT`
+- **Headers**:
+  ```json
+  {
+    "Authorization": "Token <user_token>"
+  }
+  ```
+- **Body**:
+  ```json
+  {
+    "username": "friend_username"
+  }
+  ```
+
+#### Response
+- **Success**:
+  ```json
+  {
+    "info": "Match accepted"
+  }
+  ```
+- **Error Cases**:
+  - `No pending match found` (404)
+  - Any other error:
+    ```json
     {
-        "first_name":"flirsts_name",
-        "last_name":"firsmt_sname",
-        "email":"email0@email.com",
-        "password":"password",
-        "password1":"password1"
+      "info": "<error_message>"
     }
-```
+    ```
 
-## Oauth Sign up 
-- intra link = https://api.intra.42.fr/oauth/authorize?client_id=u-s4t2ud-b7a07e95a71b24423b13ff59e31449be4182b63b7aaf9bc87dcd54d2be5e83ec&redirect_uri=http%3A%2F%2F127.0.0.1%3A8000%2Fapi%2Fcallback&response_type=code
+---
 
-- callback link = 'http://127.0.0.1:8000/api/callback'
+### 4. DELETE - Delete a Match
+**Purpose**: Cancel or delete a pending match request.
 
+#### Request
+- **URL**: `/api/matches/`
+- **Method**: `DELETE`
+- **Headers**:
+  ```json
+  {
+    "Authorization": "Token <user_token>"
+  }
+  ```
+- **Body**:
+  ```json
+  {
+    "username": "friend_username"
+  }
+  ```
 
-## Get User Info 
-- 
-```
-    GET http://127.0.0.1:8000/api/user_info
-    Content-Type: application/json
-    Authorization: Bearer TOKEN
-    
+#### Response
+- **Success**:
+  ```json
+  {
+    "info": "Match deleted successfully"
+  }
+  ```
+- **Error Cases**:
+  - `No match found to delete` (404)
+  - Any other error:
+    ```json
     {
-        "email":"email0@email.com"
+      "info": "<error_message>"
     }
-```
+    ```
 
+---
 
+### 5. GET - Fetch Recent Matches
+**Purpose**: Retrieve recent matches that have been accepted by both users.
 
- 
+#### Request
+- **URL**: `/api/recent`
+- **Method**: `GET`
+- **Headers**:
+  ```json
+  {
+    "Authorization": "Token <user_token>"
+  }
+  ```
+- **Body**:
+  ```json
+  {
+    "username": "friend_username"
+  }
+  ```
+
+#### Response
+- **Success**:
+  ```json
+  {
+    "matches": [
+      {
+        "id": 125,
+        "userone": "current_user_username",
+        "usertow": "friend_username",
+        "created_at": "2024-12-11T10:00:00Z",
+        "status": 1
+      }
+    ]
+  }
+  ```
+- **Error Cases**:
+  ```json
+  {
+    "info": "<error_message>"
+  }
+  ```
+
+---
+
+## Important Notes
+1. **Error Handling**:
+   - Display the `info` field from error responses to users for better feedback.
+
+2. **Authorization**:
+   - Ensure the user is logged in and their token is attached to each request in the `Authorization` header.
+
+3. **Match Status**:
+   - `status` values in responses:
+     - `0`: Pending.
+     - `1`: Accepted.
+
+4. **Real-Time Notifications**:
+   - WebSocket channel triggered upon match creation. Front-end should listen to the channel `notification_<user_id>` to handle incoming notifications.
+
+5. **Validation**:
+   - Validate `username` before sending it in requests to avoid unnecessary API errors.
+
+6. **Data Caching**:
+   - For repeated GET calls, consider caching match data to reduce API hits and improve performance.
+
+# API Documentation: /api/leaderboard
+
+## Endpoint Overview
+
+**URL**: `/api/leaderboard`  
+**Method**: `GET`  
+**Authentication**: Required (User must be authenticated)  
+**Permission**: `IsAuthenticated`
+
+## Description
+
+This endpoint retrieves the most recent 6 matches from the leaderboard. It provides detailed information about each match, which can be used by the front-end to display the leaderboard data.
+
+## Request
+
+### Headers:
+- **Authorization**: Bearer token (Required for authentication)
+
+### Example Request:
+```bash
+GET /api/leaderboard
+Authorization: Bearer <JWT_TOKEN>
+Response
+Success (200 OK):
+The response contains an array of the most recent 6 matches.
+Example Response:
+json
+Copy code
+{
+  "matches": [
+    {
+      "id": 1,
+      "team_1": "Team A",
+      "team_2": "Team B",
+      "score_1": 3,
+      "score_2": 2,
+      "date": "2024-12-10T14:00:00Z"
+    },
+    {
+      "id": 2,
+      "team_1": "Team C",
+      "team_2": "Team D",
+      "score_1": 4,
+      "score_2": 1,
+      "date": "2024-12-09T16:00:00Z"
+    },
+    ...
+  ]
+}
+
+Error (400 Bad Request):
+If there is any issue with the request, an error message will be returned.
+Example Error Response:
+json
+Copy code
+{
+  "info": "An error occurred while fetching the matches."
+}
+
+# WebSocket Chat API Documentation
+
+## Endpoint Overview
+
+**Endpoint URL**: `/ws/chat/`  
+**Method**: WebSocket (`ws://` or `wss://` for secure connection)  
+**Authentication**: JWT token passed as a query parameter  
+**Purpose**: Real-time chat functionality where users can send and receive messages.
+
+## Sending a Message
+
+To send a message, the front-end will send a JSON object containing:
+- **receiver**: The **username** of the recipient (instead of user ID).
+- **message**: The content of the message being sent.
+
+**Message Format**:
+```json
+{
+  "receiver": "username_of_recipient",  // The recipient's username
+  "message": "Your message content"
+}
+
+Receiving a Message
+When the user receives a message, the WebSocket will send a chat.message event containing:
+
+sender: The sender's username.
+message: The content of the received message.
+
+Message Format:
+{
+  "type": "chat.message",
+  "sender": "username_of_sender",  // The sender's username
+  "message": "Received message content"
+}

@@ -32,9 +32,9 @@ def get_chat_room(user1,user2):
             return None
 
 @database_sync_to_async
-def get_user(user_id):
+def get_user(username):
     try:
-        user = User.objects.get(id=user_id)
+        user = User.objects.get(username=username)
         return user
     except User.DoesNotExist:
         return None
@@ -76,7 +76,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             text_data_json = json.loads(text_data)
             receiver = text_data_json['receiver']
             message = text_data_json['message']
-            user = await get_user(int(receiver))
+            user = await get_user(receiver)
             
             if user is None:
                 raise User.DoesNotExist("User not Found")
@@ -84,20 +84,20 @@ class ChatConsumer(AsyncWebsocketConsumer):
             if user == self.scope['user']:
                 raise Exception("You can't send message to yourself")
             
-            if await check_friendship(user,self.scope['user']) == False:
+            if await check_friendship(user, self.scope['user']) == False:
                 raise Exception("You are not friend with this user")
             
             if await check_blocked(self.scope['user'],user) == True:
                 raise Exception("Can't send message to this blocked user")
             
-            if await check_blocked(user ,self.scope['user']) == True:
+            if await check_blocked(user, self.scope['user']) == True:
                 raise Exception("Can't send message this user blocked you")
 
-            chat_room = await get_chat_room(user1=self.scope['user'],user2=user)
+            chat_room = await get_chat_room(user1=self.scope['user'], user2=user)
             if chat_room is None:
                 raise Exception("could not create chat room")
             
-            messages = await get_messages(chat=chat_room,user=self.scope['user'],message=message)
+            messages = await get_messages(chat=chat_room, user=self.scope['user'], message=message)
             if messages is None:
                 raise Exception("could not create chat Message")
             
@@ -111,6 +111,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
                     'message': messages
                 }
             )
+            
         except Exception as e:
             await self.send(text_data=json.dumps({
             'type': 'error',

@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
-from .serializer import UserSerializer , LoginUserSerializer ,User_Register , SocialAuthontication ,FriendRequestSerializer
+from .serializer import UserSerializer , LoginUserSerializer ,User_Register , SocialAuthontication ,FriendRequestSerializer ,Machserializer
 from .models import User , FriendRequest, Matches
 import jwt 
 from django.core.serializers import deserialize
@@ -427,4 +427,82 @@ class SearchUserByusername(APIView):
 
 class Matches(APIView):
     permission_classes = [IsAuthenticated]
-    pass
+    def post(self, request):
+        try:
+            user = request.user
+            friend = request.data['username']
+            friend = User.objects.get(username=friend)
+            match = Matches.objects.create(userone=user,usertow=friend)
+            async_to_sync(channel_layer.group_send)(
+            f'notification_{friend.id}',
+                {
+                    'type': 'game_invite',
+                    'sender': user.username                  
+                }
+            )
+            return Response({'info': 'match created and request sent', 'match_id': match.id}, status=200)
+        except Exception as e:
+            return Response({'info':str(e)},status=400)
+    
+    def get(self, request):
+        try:
+            user = request.user
+            friend = request.data['username']
+            friend = User.objects.get(username=friend)
+            matches = Matches.objects.get((Q(userone=user, usertow=friend) | Q(userone=friend, usertow=user)) & Q(status=0))
+            match_data = Machserializer(matches, many=True)
+            return Response({'matches':match_data.data},status=200)
+        except Exception as e:
+            return Response({'info':str(e)},status=400)
+
+    def put(self, request):
+        try:
+            user = request.user
+            friend = request.data['username']
+            friend = User.objects.get(username=friend)
+            match = Matches.objects.get(Q(userone=user) & Q(usertow=user) & Q(status=0))
+            match.status = 1
+            match.save()
+            return Response({'info': 'Match accepted'}, status=200)
+        except Matches.DoesNotExist:
+            return Response({'info': 'No pending match found'}, status=404)
+        except Exception as e:
+            return Response({'info': str(e)}, status=400)
+            
+    def delete(self, request):
+        try:
+            user = request.user
+            friend = request.data['username']
+            friend = User.objects.get(username=friend)
+            match = Matches.objects.get((Q(userone=user, usertow=friend) | Q(userone=friend, usertow=user)) & Q(status=0))
+            if match.exists():
+                match.first().delete()
+                return Response({'info': 'Match deleted successfully'}, status=200)
+            else:
+                return Response({'info': 'No match found to delete'}, status=404)
+        except Exception as e:
+            return Response({'info': str(e)}, status=400)
+        
+class Recent_Matches(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request):
+        try:
+            user = request.user
+            friend = request.data['username']
+            friend = User.objects.get(username=friend)
+            matches = Matches.objects.get((Q(userone=user, usertow=friend) | Q(userone=friend, usertow=user)) & Q(status=1))
+            match_data = Machserializer(matches, many=True)
+            return Response({'matches':match_data.data},status=200)
+        except Exception as e:
+            return Response({'info':str(e)},status=400)
+
+
+class LeaderBoard(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self, request):
+        try:
+            matches = Matches.objects.all()[:6]
+            match_data = Machserializer(matches, many=True)
+            return Response({'matches':match_data.data},status=200)
+        except Exception as e:
+            return Response({'info':str(e)},status=400)

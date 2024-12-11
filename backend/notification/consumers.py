@@ -23,12 +23,13 @@ class NotificationConsumer(AsyncWebsocketConsumer):
     async def receive(self, text_data):
         self.send(text_data)
     
-    async def notification_message(self, message ,receiver, type):
+    async def game_invite(self, message ,receiver, sender):
         await self.channel_layer.group_send(
             f'notification_{receiver}',
             {
-                'type': type,
-                'message': message
+                'sender': sender,
+                'type': 'game_invite',
+                'message': f'{sender} sent you a Game request'
             }
         )
         

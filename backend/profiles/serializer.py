@@ -1,5 +1,5 @@
 from rest_framework import serializers 
-from .models import User , FriendRequest
+from .models import User , FriendRequest, Matches
 from django.contrib.auth import authenticate
 from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from rest_framework.exceptions import AuthenticationFailed
@@ -126,4 +126,15 @@ class FriendRequestSerializer(serializers.ModelSerializer):
     to_user =  serializers.CharField(source='to_user.username', read_only=True)
     class Meta:
         model = FriendRequest
+        fields = '__all__'
+
+
+
+
+class Machserializer(serializers.ModelSerializer):
+    userone =  serializers.CharField(source='userone.username', read_only=True)
+    usertow =  serializers.CharField(source='usertow.username', read_only=True)
+    winner =  serializers.CharField(source='winner.username', read_only=True)
+    class Meta:
+        model = Matches
         fields = '__all__'
