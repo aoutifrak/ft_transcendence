@@ -8,7 +8,6 @@ import jwt
 from django.core.serializers import deserialize
 from django.conf import settings
 import json
-from django.core.mail import send_mail 
 from rest_framework.permissions import IsAuthenticated ,AllowAny
 from rest_framework_simplejwt.exceptions import TokenError
 from rest_framework_simplejwt.tokens import RefreshToken ,AccessToken
