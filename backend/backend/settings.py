@@ -21,7 +21,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # General settings
-SECRET_KEY = os.environ.get('SECRET_KEY')
+SECRET_KEY = os.environ.get('SECRET_KEY','foo')
 DEBUG = os.environ.get('DEBUG','false').lower()
 ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
 

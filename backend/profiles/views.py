@@ -232,7 +232,7 @@ class SocialAuthverify(APIView):
                     'client_id': settings.GITHUB_CLIENT_ID,
                     'client_secret': settings.GITHUB_CLIENT_SECRET,
                     'code': code,
-                    '{'Response_url':uri}': settings.GITHUB_REDIRECT_URI
+                    'redirect_uri': settings.GITHUB_REDIRECT_URI
                     }
                 elif platform == 'gmail':
                     url = 'https://oauth2.googleapis.com/token'
