@@ -10,6 +10,7 @@ from django.core.exceptions import ValidationError
 class User_Register(serializers.ModelSerializer):
     email = serializers.EmailField(max_length=55, min_length=8, allow_blank=False)
     password = serializers.CharField(max_length=68,min_length=6,write_only=True)
+    username = serializers.CharField(max_length=20, min_length=4, allow_blank=False)
 
     class Meta:
         model = User
@@ -17,20 +18,12 @@ class User_Register(serializers.ModelSerializer):
 
     def create(self, validated_data):
         password = validated_data.get('password', None)
-        username = validated_data.get('username`', None)
 
         if len(password) < 8:
             raise ValidationError("Password must be at least 8 characters long.")
-        if len(password) > 50:
+        if len(password) > 68:
             raise ValidationError("Password cannot exceed 50 characters.")
 
-        if not username or username == '' or User.objects.filter(username=username).exists():
-            if User.objects.filter(username=validated_data['email'].split('@')[0]).exists():
-                while User.objects.filter(username=validated_data['username']).exists():
-                    validated_data['username'] = validated_data['email'].split('@')[0] + str(random.randint(0,999))
-            else:
-                validated_data['username'] = validated_data['email'].split('@')[0]
-            
         user = User.objects.create_user(**validated_data)
         user.set_password(password)
         user.save()
@@ -48,7 +41,6 @@ class UserSerializer(serializers.ModelSerializer):
                   'username',
                   'password',
                   'avatar',
-                  'bio',
                   'created_at',
                   'last_login',
                   'wins',
@@ -56,6 +48,8 @@ class UserSerializer(serializers.ModelSerializer):
                   'draws',
                   'matches_played',
                   'is2fa',
+                  'is_online',
+                  'rank',
                   ]
     
     def update(self, instance, validated_data):
@@ -111,20 +105,6 @@ class SocialAuthontication(serializers.Serializer):
                 user.is_valid(raise_exception=True)
                 return user.data['email']
             return user.email
-        elif platform == "gmail":
-            response = requests.get('https://www.googleapis.com/oauth2/v3/userinfo',headers=headers, timeout=10000)
-            response.raise_for_status()
-            res = response.json()
-            email = res['email']
-            user , created = User.objects.get_or_create(email=email)
-            if created:
-                res['first_name']= res['given_name']
-                res['last_name']= res['given_name']
-                res['password'] = random.randint(10000000,99999999)
-                user = User_Register(data=res)
-                user.is_valid(raise_exception=True)
-                return user.data['email']
-            return user.email
             if email is None:
                 raise serializers.ValidationError('email is required')
         elif platform == "42":
@@ -142,17 +122,8 @@ class SocialAuthontication(serializers.Serializer):
         raise serializers.ValidationError('Failed to login with given credentials')
 
 class FriendRequestSerializer(serializers.ModelSerializer):
+    from_user =  serializers.CharField(source='from_user.username', read_only=True)
+    to_user =  serializers.CharField(source='to_user.username', read_only=True)
     class Meta:
         model = FriendRequest
         fields = '__all__'
-
-class FriendSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = User
-        fields = [
-        'id',
-        'username',
-        'first_name',
-        'last_name',
-        'is_online'
-        ]

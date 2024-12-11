@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
 from .serializer import UserSerializer , LoginUserSerializer ,User_Register , SocialAuthontication ,FriendRequestSerializer
-from .models import User , FriendRequest ,BlacklistedToken
+from .models import User , FriendRequest, Matches
 import jwt 
 from django.core.serializers import deserialize
 from django.conf import settings
@@ -11,34 +11,36 @@ import json
 from django.core.mail import send_mail 
 from rest_framework.permissions import IsAuthenticated ,AllowAny
 from rest_framework_simplejwt.exceptions import TokenError
-from rest_framework_simplejwt.tokens import RefreshToken
+from rest_framework_simplejwt.tokens import RefreshToken ,AccessToken
 import pyotp
 from django.db.models import Q
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
-from notification.consumers import NotificationConsumer
 import os , requests
-
-def is_token_blacklisted(token):
-    return BlacklistedToken.objects.filter(token=token).exists()
 
 class RefreshTokenView(APIView):
     permission_classes = [AllowAny]
-
     def post(self,request):
         try:
             refresh_token = request.COOKIES.get('refresh_token')
             if not refresh_token:
                 return Response({"error": "Refresh token not provided"}, status=400)
-            
-            if is_token_blacklisted(refresh_token):
-                return Response({"error": "Refresh token has been blacklisted"}, status=401)
-
+    
             refresh_token = RefreshToken(refresh_token)
             
             return Response({'access_token':str(refresh_token.access_token)}, status=200)
         except Exception as e:
             return Response({'info':str(e)},status=400)
+
+class verifyToken(APIView):
+    permission_classes = [AllowAny]
+    def post(self,request):
+        try:
+            token = request.data.get('token')
+            AccessToken(token)
+            return Response({'valid':True},status=200)
+        except:
+            return Response({'valid':False},status=200)
 
 class LoginView(APIView):
     permission_classes = [AllowAny]
@@ -105,13 +107,6 @@ class Get_user_info(APIView):
         try:
             infos = request.data
             user = request.user
-
-            if infos["email"] and infos["email"] != user.email:
-                if User.objects.filter(email=infos["email"]).exists():
-                    raise AuthenticationFailed('Email already exists')
-            if infos["username"] and infos["username"] != user.username:
-                if User.objects.filter(username=infos["username"]).exists():
-                    raise AuthenticationFailed('Username already exists')
             if infos['avatar']:
                 max_size_mb = 2
                 avatar = infos['avatar']
@@ -132,9 +127,10 @@ class LogoutView(APIView):
     def post(self, request):
         try:
             refresh = request.COOKIES.get('refresh_token')
-            BlacklistedToken.objects.create(token=refresh)
-            response = Response({"detail": "Successfully logged out."}, status=status.HTTP_200_OK)
+            token = RefreshToken(refresh)
+            token.blacklist()
             response.delete_cookie('refresh_token')
+            response = Response({"detail": "Successfully logged out."}, status=status.HTTP_200_OK)
             return response
         except TokenError:
             return Response({"detail": "Invalid token."}, status=status.HTTP_400_BAD_REQUEST)
@@ -202,10 +198,6 @@ class SocialAuth(APIView):
                 client_id = settings.GITHUB_CLIENT_ID
                 redirect_uri = settings.GITHUB_REDIRECT_URI
                 url = f'https://github.com/login/oauth/authorize?client_id={client_id}&redirect_uri={redirect_uri}&scope=user:email'
-            elif platform == 'gmail':
-                client_id = settings.G_CLIENT_ID
-                redirect_uri = settings.G_REDIRECT_URI
-                url = f'https://accounts.google.com/o/oauth2/auth?client_id={client_id}&redirect_uri={redirect_uri}&response_type=code&scope=openid email profile'
             elif platform == "42":
                 client_id = settings.CLIENT_ID
                 redirect_uri = settings.INTRA_REDIRECT_URI
@@ -233,15 +225,6 @@ class SocialAuthverify(APIView):
                     'client_secret': settings.GITHUB_CLIENT_SECRET,
                     'code': code,
                     'redirect_uri': settings.GITHUB_REDIRECT_URI
-                    }
-                elif platform == 'gmail':
-                    url = 'https://oauth2.googleapis.com/token'
-                    data = {
-                        'client_id': settings.G_CLIENT_ID,
-                        'client_secret': settings.G_CLIENT_SECRET,
-                        'code': code,
-                        'redirect_uri': settings.G_REDIRECT_URI,
-                        'grant_type': 'authorization_code'
                     }
             else:
                 url = 'https://api.intra.42.fr/oauth/token'
@@ -311,19 +294,18 @@ class FriendRequestView(APIView):
                         return Response({'info':'you are already friends'},status=400)
                     return Response({'info':'friend request already sent'},status=400)
                 else:
-                    if firend.friends.count() > 100:
+                    if friend.friends.count() > 100:
                         return Response({'info':'user can no longer add friends'},status=400)
                     friend_request = FriendRequest.objects.create(from_user=user,to_user=friend)
                     friend_request.save()
-                    NotificationConsumer().notification_message(f'{user.username} sent you a friend request',friend.id,'friend_request')
-                    # channel_layer = get_channel_layer()
-                    # async_to_sync(channel_layer.group_send)(
-                    #     f'notification_{friend.id}',
-                    #     {
-                    #         'type': 'friend_request',
-                    #         'sender': user.username                  
-                    #     }
-                    # )
+                    channel_layer = get_channel_layer()
+                    async_to_sync(channel_layer.group_send)(
+                        f'notification_{friend.id}',
+                        {
+                            'type': 'friend_request',
+                            'sender': user.username                  
+                        }
+                    )
                 return Response({'info':'friend request sent'},status=200)
             return Response({'info':'user not found'},status=400)
         except Exception as e:
@@ -370,6 +352,7 @@ class FriendRequestView(APIView):
            
 class BlockUser(APIView):
     permission_classes = [IsAuthenticated]
+
     def post(self,request):
         try:
             user = request.user
@@ -415,6 +398,7 @@ class BlockUser(APIView):
 class SearchUser(APIView):
     permission_classes = [IsAuthenticated]
     serializer_class = UserSerializer
+
     def post(self, request):
         try:
             all_users = User.objects.all()
@@ -425,3 +409,23 @@ class SearchUser(APIView):
             return response
         except Exception as e:
             return Response({'error': str(e)})
+
+class SearchUserByusername(APIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = UserSerializer
+
+    def post(self, request):
+        try:
+            username = request.data['username']
+            user = User.objects.get(username=username)
+            user_data = self.serializer_class(user)
+            response = Response(
+                {'user':user_data.data},status=200
+            )
+            return response
+        except Exception as e:
+            return Response({'error': str(e)})
+
+class Matches(APIView):
+    permission_classes = [IsAuthenticated]
+    pass

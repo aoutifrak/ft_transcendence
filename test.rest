@@ -2,10 +2,10 @@
 # # Content-Type: application/json
 # # {}
 
-POST  http://127.0.0.1:8000/api/refresh_token
+POST  http://127.0.0.1:8000/api/logout
 Content-Type: application/json
-Cookie: refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTczMjkxMDkxNSwiaWF0IjoxNzMyODI0NTE1LCJqdGkiOiIxYjI3ZGEwMmY4Njk0YzdkOWY3MTU3M2EzZTAyYmZhOCIsInVzZXJfaWQiOjR9._yriYDs8t9OkwUz0YjS-WUF3Cx3a9TpMp2h0dI0gL9s; HttpOnly; Path=/ 
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMyODMwMzQ4LCJpYXQiOjE3MzI4MjczNDgsImp0aSI6IjMwYTU4ZDBiYjI5NzRhZmQ4Y2E5MDFlZWYwMjMxOTNmIiwidXNlcl9pZCI6NH0.eMEcl3nOjvD4q03UZ5FyKiu4q9HMR3AHnu41XDqBnS0
+Cookie: refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTczNDU0NjY1MiwiaWF0IjoxNzMzOTQxODUyLCJqdGkiOiIwZjc3N2U4YjMwMTI0NjU4YmU2MzFlODViNzA3NDAwNCIsInVzZXJfaWQiOjF9.TPGK1cBIYZE1x_i0tl0JNz79IUmmwzBAiw8Tmoq64OI; HttpOnly; Path=/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzOTQyMTM0LCJpYXQiOjE3MzM5NDE4MzQsImp0aSI6ImQ1NjM1YzlhOWI3NTQ2MmJhZGNmNWY1OGY2NTg1NzkyIiwidXNlcl9pZCI6MX0.JWuoMmcdp24iLbllgiV0X4HH7TcxhRjltkigfkf5FI8
 
 {
 
@@ -25,7 +25,6 @@ Content-Type: application/json
 
 ##############
 ##############
-
 
 POST http://127.0.0.1:8000/api/login
 Content-Type: application/json
@@ -49,11 +48,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ##############
 ##############
 
+
 POST  http://127.0.0.1:8000/api/login
 Content-Type: application/json
 
 {
-  "email": "testp@example.com",
+  "email": "aljlo@example.com",
   "password": "orllld123"
 }
 
@@ -64,22 +64,22 @@ POST http://127.0.0.1:8000/api/signup
 Content-Type: application/json
 
 {
-  "email": "testp@example.com",
+  "username": "ussjaa",
+  "email": "alsjlo@example.com",
   "first_name": "Test",
   "last_name": "User",
-  "username": "tepstuser",
   "password": "orllld123"
 }
 
 ##############
 ##############
 
-POST http://127.0.0.1:8000/api/friend_req
+DELETE  http://127.0.0.1:8000/api/friend_req
 Content-Type: application/json
-# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzMDYwNzkyLCJpYXQiOjE3MzMwNjA0OTIsImp0aSI6ImE0NGIxZDU0NWRkYjRiZjQ4MmUzNDBkOGFiODJlZTBiIiwidXNlcl9pZCI6MX0.rwijGEMI5sPTN7X4T66vViYIWXB_YWzsgqhEB7kykvM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzOTQ3OTYyLCJpYXQiOjE3MzM5NDc2NjIsImp0aSI6ImE1NTkwMzE2N2Q2NTQxYmQ5NmU0ZmEzZmE2NzZjMTQ5IiwidXNlcl9pZCI6MX0.CZD2hJFdOgI8wMZm_t1wLaueo0OuOlaEn3j7m5prjMQ
 
 {
-  "username":"username"
+  "username":"usssjaa"
 }
 
 ##################
@@ -87,8 +87,8 @@ Content-Type: application/json
 
 POST http://127.0.0.1:8000/api/block_user
 Content-Type: application/json
-# Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzMDYwNzkyLCJpYXQiOjE3MzMwNjA0OTIsImp0aSI6ImE0NGIxZDU0NWRkYjRiZjQ4MmUzNDBkOGFiODJlZTBiIiwidXNlcl9pZCI6MX0.rwijGEMI5sPTN7X4T66vViYIWXB_YWzsgqhEB7kykvM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzOTIwNTIyLCJpYXQiOjE3MzM5MjAyMjIsImp0aSI6IjFmNDc2MDZkZjI2YjQ0YzJiMDQzOTk1ZmUzNzk2N2QzIiwidXNlcl9pZCI6M30.JHoFRPOfad-i7jTaL3Fw8alj_AYHQUmqbNEm_sK6rpo
 
 {
-  "username":"username"
+  "username":"tepdstuser"
 }

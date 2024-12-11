@@ -17,4 +17,6 @@ urlpatterns = [
     path('enable2fa', Control2Fa.as_view()),
     path('signin2fa', Signin2fa.as_view()),
     path('search_user', SearchUser.as_view()),
+    path('search_username', SearchUserByusername.as_view()),
+    path('Verify_token', verifyToken.as_view()),
 ]

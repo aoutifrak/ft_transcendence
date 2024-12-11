@@ -23,7 +23,6 @@ class NotificationConsumer(AsyncWebsocketConsumer):
     async def receive(self, text_data):
         self.send(text_data)
     
-    
     async def notification_message(self, message ,receiver, type):
         await self.channel_layer.group_send(
             f'notification_{receiver}',

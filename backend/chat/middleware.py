@@ -14,7 +14,6 @@ def get_user(token):
 
 class TokenAuthMiddleware:
     def __init__(self, app):
-        # Store the ASGI application we were passed
         self.app = app
     
     async def __call__(self, scope, receive, send):
@@ -27,7 +26,6 @@ class TokenAuthMiddleware:
         except Exception as e:
             await send({
                 "type": "websocket.close",
-                "code": 4001,
             })
             return None
         return await self.app(scope, receive, send)
