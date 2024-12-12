@@ -506,3 +506,23 @@ class LeaderBoard(APIView):
             return Response({'matches':match_data.data},status=200)
         except Exception as e:
             return Response({'info':str(e)},status=400)
+
+class Password_Change(APIView):
+    permission_classes = [IsAuthenticated]
+    def post(self,request):
+        try:
+            user = request.user
+            old_password = request.data.get('old_password')
+            password = request.data.get('password')
+            password1 = request.data.get('password1')
+            if password != password1:
+                return Response({'error': 'New passwords do not match.'}, status=HTTP_400_BAD_REQUEST)
+
+            if not user.check_password(old_password):
+                return Response({'error': 'Incorrect old password.'}, status=HTTP_400_BAD_REQUEST)
+
+            user.ser_password(password)
+            user.save()
+            return Response({'success': 'Password changed successfully.'}, status=HTTP_200_OK)
+        except Exception as e:
+            return Response({'error': str(e)}, status=HTTP_400_BAD_REQUEST)

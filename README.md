@@ -1,3 +1,42 @@
+## **Password Change API Endpoint**
+
+### **Endpoint:**
+`/api/pass`
+
+### **HTTP Method:**
+POST
+
+### **Authentication:**
+Required (IsAuthenticated permission class)
+
+### **Request Body:**
+```json
+{
+    "old_password": "your_old_password",
+    "password": "your_new_password",
+    "password1":"your_new_password_confirmation"
+}
+Response:
+Success (HTTP 200 OK):
+
+JSON
+
+{
+    "success": "Password changed successfully."
+}
+Error (HTTP 400 Bad Request):
+
+JSON
+
+{
+    "error": "Error message"  // Specific error message will be provided
+}
+Possible Error Messages:
+
+New passwords do not match.
+Incorrect old password.
+Generic error message (if an unexpected exception occurs)
+
 # Matches API Documentation
 
 This documentation provides details about the Matches API, including endpoint purposes, request formats, and response structures. This API enables users to create, retrieve, accept, and delete matches, as well as view recent matches.
