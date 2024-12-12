@@ -20,6 +20,6 @@ urlpatterns = [
     path('search_username', SearchUserByusername.as_view()),
     path('Verify_token', verifyToken.as_view()),
     path('recent', Recent_Matches.as_view()),
-    path('matches', Matches.as_view()),
+    path('matches', Match.as_view()),
     path('leaderboard', LeaderBoard.as_view()),
 ]

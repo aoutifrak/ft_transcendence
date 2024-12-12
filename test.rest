@@ -53,7 +53,7 @@ POST  http://127.0.0.1:8000/api/login
 Content-Type: application/json
 
 {
-  "email": "aljlo@example.com",
+  "email": "alsjlo@example.com",
   "password": "orllld123"
 }
 
@@ -76,7 +76,7 @@ Content-Type: application/json
 
 DELETE  http://127.0.0.1:8000/api/friend_req
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzOTQ3OTYyLCJpYXQiOjE3MzM5NDc2NjIsImp0aSI6ImE1NTkwMzE2N2Q2NTQxYmQ5NmU0ZmEzZmE2NzZjMTQ5IiwidXNlcl9pZCI6MX0.CZD2hJFdOgI8wMZm_t1wLaueo0OuOlaEn3j7m5prjMQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzOTYyMTY0LCJpYXQiOjE3MzM5NjE4NjQsImp0aSI6ImE1MjAzYzg0YTZlZDQ0ODZiOTcyNGI4NDQ5YzY2ZmNlIiwidXNlcl9pZCI6MX0.O0k0OM0LY1ISo3Ax0TIDmWqh0nCamWdkhk_E4Mrr3A0
 
 {
   "username":"usssjaa"
@@ -85,9 +85,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ##################
 ##################
 
-POST http://127.0.0.1:8000/api/block_user
+GET http://127.0.0.1:8000/api/matches
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzOTIwNTIyLCJpYXQiOjE3MzM5MjAyMjIsImp0aSI6IjFmNDc2MDZkZjI2YjQ0YzJiMDQzOTk1ZmUzNzk2N2QzIiwidXNlcl9pZCI6M30.JHoFRPOfad-i7jTaL3Fw8alj_AYHQUmqbNEm_sK6rpo
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzOTYyNDkzLCJpYXQiOjE3MzM5NjIxOTMsImp0aSI6IjQ2YjM4ZDYxYmQ4MjQ2MTBhNTVkMTQ2ZjZlOTZmNTRiIiwidXNlcl9pZCI6MX0.ppZP6DDL3Sobkg_B-n9EcMD2cdxr0qe0tlBY2BRTCsg
 
 {
   "username":"tepdstuser"

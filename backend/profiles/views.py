@@ -3,7 +3,7 @@ from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
 from .serializer import UserSerializer , LoginUserSerializer ,User_Register , SocialAuthontication ,FriendRequestSerializer ,Machserializer
-from .models import User , FriendRequest, Matches
+from .models import User , FriendRequest, Matches 
 import jwt 
 from django.core.serializers import deserialize
 from django.conf import settings
@@ -39,7 +39,7 @@ class verifyToken(APIView):
             AccessToken(token)
             return Response({'valid':True},status=200)
         except:
-            return Response({'valid':False},status=200)
+            return Response({'valid':False},status=400)
 
 class LoginView(APIView):
     permission_classes = [AllowAny]
@@ -121,7 +121,6 @@ class Get_user_info(APIView):
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
             
 class LogoutView(APIView):
-    # here we just get the refresh token directly from the header
     permission_classes = [IsAuthenticated]
     def post(self, request):
         try:
@@ -425,7 +424,7 @@ class SearchUserByusername(APIView):
         except Exception as e:
             return Response({'error': str(e)})
 
-class Matches(APIView):
+class Match(APIView):
     permission_classes = [IsAuthenticated]
     def post(self, request):
         try:
@@ -452,8 +451,10 @@ class Matches(APIView):
             matches = Matches.objects.get((Q(userone=user, usertow=friend) | Q(userone=friend, usertow=user)) & Q(status=0))
             match_data = Machserializer(matches, many=True)
             return Response({'matches':match_data.data},status=200)
+        except Matches.DoesNotExist:
+            return Response({'info': 'No match found'}, status=404)
         except Exception as e:
-            return Response({'info':str(e)},status=400)
+            return Response({'info': str(e)}, status=400)
 
     def put(self, request):
         try:
@@ -495,7 +496,6 @@ class Recent_Matches(APIView):
             return Response({'matches':match_data.data},status=200)
         except Exception as e:
             return Response({'info':str(e)},status=400)
-
 
 class LeaderBoard(APIView):
     permission_classes = [IsAuthenticated]
