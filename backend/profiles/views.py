@@ -516,13 +516,13 @@ class Password_Change(APIView):
             password = request.data.get('password')
             password1 = request.data.get('password1')
             if password != password1:
-                return Response({'error': 'New passwords do not match.'}, status=HTTP_400_BAD_REQUEST)
+                return Response({'error': 'New passwords do not match.'}, status=status.HTTP_400_BAD_REQUEST)
 
             if not user.check_password(old_password):
-                return Response({'error': 'Incorrect old password.'}, status=HTTP_400_BAD_REQUEST)
+                return Response({'error': 'Incorrect old password.'}, status=status.HTTP_400_BAD_REQUEST)
 
-            user.ser_password(password)
+            user.set_password(password)
             user.save()
-            return Response({'success': 'Password changed successfully.'}, status=HTTP_200_OK)
+            return Response({'success': 'Password changed successfully.'}, status=status.HTTP_200_OK)
         except Exception as e:
-            return Response({'error': str(e)}, status=HTTP_400_BAD_REQUEST)
+            return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)

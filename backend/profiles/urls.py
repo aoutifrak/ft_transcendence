@@ -22,4 +22,5 @@ urlpatterns = [
     path('recent', Recent_Matches.as_view()),
     path('matches', Match.as_view()),
     path('leaderboard', LeaderBoard.as_view()),
+    path('pass', Password_Change.as_view()),
 ]

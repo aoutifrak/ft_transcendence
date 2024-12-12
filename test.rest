@@ -60,6 +60,7 @@ Content-Type: application/json
 ##############
 ##############
 
+
 POST http://127.0.0.1:8000/api/signup
 Content-Type: application/json
 
@@ -74,12 +75,14 @@ Content-Type: application/json
 ##############
 ##############
 
-DELETE  http://127.0.0.1:8000/api/friend_req
+POST   http://127.0.0.1:8000/api/pass
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzOTYyMTY0LCJpYXQiOjE3MzM5NjE4NjQsImp0aSI6ImE1MjAzYzg0YTZlZDQ0ODZiOTcyNGI4NDQ5YzY2ZmNlIiwidXNlcl9pZCI6MX0.O0k0OM0LY1ISo3Ax0TIDmWqh0nCamWdkhk_E4Mrr3A0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzOTYzMzk5LCJpYXQiOjE3MzM5NjMwOTksImp0aSI6ImYzZThkYjMxN2M3NDQwNTFhMDY3ZGZlNGNiODFlNTIwIiwidXNlcl9pZCI6MX0._cjacTt4E4gmXxHzjdEfhJj9wd-JjCQxLRwEF_-MJG0
 
 {
-  "username":"usssjaa"
+  "old_password": "orllld123",
+  "password": "orllld1234",
+  "password1": "orllld1234"
 }
 
 ##################
