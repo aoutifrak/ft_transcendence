@@ -8,9 +8,9 @@ def validate_image(image):
         raise ValidationError("Only .png, .jpg, or .jpeg files are allowed.")
 
 class User(AbstractBaseUser, PermissionsMixin):
-    first_name = models.CharField(max_length=25)
-    last_name = models.CharField(max_length=25)
-    username = models.CharField(max_length=20,unique=True,null=True,blank=True)
+    first_name = models.CharField(max_length=25,null=True,blank=True)
+    last_name = models.CharField(max_length=25,null=True,blank=True)
+    username = models.CharField(max_length=20,unique=True)
     email = models.EmailField(max_length=255,unique=True)
     password = models.CharField(max_length=255)
     avatar = models.ImageField(upload_to='avatars/', validators=[validate_image],default='avatars/default.jpeg')
