@@ -312,7 +312,11 @@ class FriendRequestView(APIView):
     def get(self,request):
         try:
             user = request.user
-            friend_requests = FriendRequest.objects.filter(Q(to_user=user) & Q(status=0))
+            type = request.data['type']
+            if type == 'send':
+                friend_requests = FriendRequest.objects.filter(Q(from_user=user) & Q(status=0))
+            else:
+                friend_requests = FriendRequest.objects.filter(Q(to_user=user) & Q(status=0))
             serializer = FriendRequestSerializer(friend_requests, many=True)
             return Response({'friend_requests':serializer.data},status=200)
         except Exception as e:
