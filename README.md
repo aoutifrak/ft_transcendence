@@ -363,60 +363,11 @@ Message Format:
 }
 
 '''
+
 # Endpoint Documentation: Friend Request Management
 
 ### Endpoint
-**`GET /api/friend-requests`**
-
-### Description
-This endpoint retrieves friend requests for the authenticated user. Depending on the `type` parameter in the request body, it fetches either sent or received friend requests that are pending (status = 0).
-
----
-
-### Request Format
-
-#### Headers
-- **Authorization**: Bearer `<JWT Token>` (required)
-
-#### Body Parameters
-| Parameter | Type   | Required | Description                     |
-|-----------|--------|----------|---------------------------------|
-| `type`    | string | Yes      | Type of friend requests to fetch. Possible values: `send` or `receive`. |
-
----
-
-### Response Format
-
-#### Success (200 OK)
-Returns a list of friend requests matching the specified type.
-
-```json
-{
-    "friend_requests": [
-        {
-            "id": 1,
-            "from_user": "user1",
-            "to_user": "user2",
-            "status": 0,
-            "created_at": "2024-12-13T10:00:00Z"
-        },
-        {
-            "id": 2,
-            "from_user": "user3",
-            "to_user": "user4",
-            "status": 0,
-            "created_at": "2024-12-12T15:30:00Z"
-        }
-    ]
-}
-
-
-markdown
-Copy code
-# Endpoint Documentation: Friend Request Management
-
-### Endpoint
-**`GET /api/friend-requests`**
+**`GET /api/friend_req`**
 
 ### Description
 This endpoint retrieves friend requests for the authenticated user. Depending on the `type` parameter in the request body, it fetches either sent or received friend requests that are pending (status = 0).
@@ -474,7 +425,7 @@ Request
 
 http
 Copy code
-GET /api/friend-requests HTTP/1.1
+GET /api/friend_req HTTP/1.1
 Authorization: Bearer <JWT Token>
 Content-Type: application/json
 
@@ -501,7 +452,7 @@ Request
 
 http
 Copy code
-GET /api/friend-requests HTTP/1.1
+GET /api/friend_req HTTP/1.1
 Authorization: Bearer <JWT Token>
 Content-Type: application/json
 
