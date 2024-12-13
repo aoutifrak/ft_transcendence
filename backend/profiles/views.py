@@ -56,7 +56,6 @@ class LoginView(APIView):
                     'email':user.email
                     })
                 token = user.token()
-                print("WAAA")
                 response = Response({
                     'access': str(token.access_token)
                 },status=status.HTTP_200_OK)
@@ -127,12 +126,15 @@ class LogoutView(APIView):
     permission_classes = [IsAuthenticated]
     def post(self, request):
         try:
-            refresh = request.COOKIES.get('refresh_token')
-            token = RefreshToken(refresh)
-            token.blacklist()
-            if refresh:
+            refresh = request.COOKIES.get('refresh_token',None)
+            if refresh is not None:
+                print(refresh)
+                token = RefreshToken(refresh)
+                token.blacklist()
+                response = Response({"detail": "Successfully logged out."}, status=status.HTTP_200_OK)
                 response.delete_cookie('refresh_token')
-            response = Response({"detail": "Successfully logged out."}, status=status.HTTP_200_OK)
+                return response
+            response = Response({"detail": "Not logedin yet."}, status=status.HTTP_400_BAD_REQUEST)
             return response
         except TokenError:
             return Response({"detail": "Invalid token."}, status=status.HTTP_400_BAD_REQUEST)
