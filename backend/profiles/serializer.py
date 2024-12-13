@@ -45,7 +45,7 @@ class UserSerializer(serializers.ModelSerializer):
                   'last_login',
                   'wins',
                   'losses',
-                  'draws',
+                  'level',
                   'matches_played',
                   'is2fa',
                   'is_online',
