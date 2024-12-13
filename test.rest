@@ -57,6 +57,10 @@ Content-Type: application/json
   "password": "orllld123"
 }
 
+
+
+
+
 ##############
 ##############
 
@@ -67,8 +71,8 @@ Content-Type: application/json
 {
   "username": "ussjaa",
   "email": "alsjlo@example.com",
-  "first_name": "Test",
-  "last_name": "User",
+  # "first_name": "Test",
+  # "last_name": "User",
   "password": "orllld123"
 }
 

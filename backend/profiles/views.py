@@ -50,10 +50,13 @@ class LoginView(APIView):
             if data.is_valid(raise_exception=True):
                 user = data.validated_data
                 if user.is2fa:
-                    return Response({'2fa':True,
+                    return Response(
+                    {
+                    '2fa':True,
                     'email':user.email
                     })
                 token = user.token()
+                print("WAAA")
                 response = Response({
                     'access': str(token.access_token)
                 },status=status.HTTP_200_OK)
