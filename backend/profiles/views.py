@@ -127,7 +127,8 @@ class LogoutView(APIView):
             refresh = request.COOKIES.get('refresh_token')
             token = RefreshToken(refresh)
             token.blacklist()
-            response.delete_cookie('refresh_token')
+            if refresh:
+                response.delete_cookie('refresh_token')
             response = Response({"detail": "Successfully logged out."}, status=status.HTTP_200_OK)
             return response
         except TokenError:
