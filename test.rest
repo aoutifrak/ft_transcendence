@@ -13,9 +13,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 #######
 
-PUT http://127.0.0.1:8000/api/user_info
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzMDYxNDU2LCJpYXQiOjE3MzMwNjExNTYsImp0aSI6IjZhYTMxM2MxOTk5YzQ3MTk4MDBkNjkyZWQ1YzZhMzcwIiwidXNlcl9pZCI6MX0.XmzBxxgfKjP3q6HoOVvl0I7Raz9c7JM89MiUDsuS7gM
+GET http://127.0.0.1:8000/api/user_info
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MTcyMDU0LCJpYXQiOjE3MzQxNzE3NTQsImp0aSI6IjFiNmM1NDZjMzQyMTQzYTM5OGZlYmQxNTlmNWVkMjBiIiwidXNlcl9pZCI6NX0.V4EQ92i6KARExd3vhHAt4v9Gen2pKW2U6rTPmp5C7G0
 
 {
   "email":"mio@gmail.com",

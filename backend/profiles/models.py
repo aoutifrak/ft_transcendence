@@ -20,6 +20,7 @@ class User(AbstractBaseUser, PermissionsMixin):
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     is2fa = models.BooleanField(default=False)
     wins = models.IntegerField(default=0)
+    losses = models.IntegerField(default=0)
     level = models.IntegerField(default=0)
     matches_played = models.IntegerField(default=0)
     is_online = models.BooleanField(default=False)
