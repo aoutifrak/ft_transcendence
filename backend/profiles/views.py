@@ -108,9 +108,13 @@ class Get_user_info(APIView):
         try:
             infos = request.data
             user = request.user
-            if infos['avatar']:
+            avatar = infos.get('avatar',None)
+            username =infos.get('username',None)
+            email = infos.get('email',None)
+            if email is not None or username is not None:
+                raise Exception("username or email can't be changed")
+            if avatar is not None:
                 max_size_mb = 2
-                avatar = infos['avatar']
                 if avatar.size > max_size_mb * 1024 * 1024:
                     return Response({"error": f"File size exceeds {max_size_mb}MB limit"}, status=400)
                 avatar_extension = os.path.splitext(avatar.name)[1]

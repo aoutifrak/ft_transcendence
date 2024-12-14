@@ -1,7 +1,6 @@
 from rest_framework import serializers 
 from .models import User , FriendRequest, Matches
 from django.contrib.auth import authenticate
-from django.contrib.auth.tokens import PasswordResetTokenGenerator
 from rest_framework.exceptions import AuthenticationFailed
 import requests ,random
 from django.core.exceptions import ValidationError
@@ -18,12 +17,6 @@ class User_Register(serializers.ModelSerializer):
 
     def create(self, validated_data):
         password = validated_data.get('password', None)
-
-        if len(password) < 8:
-            raise ValidationError("Password must be at least 8 characters long.")
-        if len(password) > 68:
-            raise ValidationError("Password cannot exceed 50 characters.")
-
         user = User.objects.create_user(**validated_data)
         user.set_password(password)
         user.save()
@@ -31,7 +24,7 @@ class User_Register(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
-    avatar = serializers.ImageField(allow_empty_file=True, required=False) 
+    avatar = serializers.ImageField(allow_empty_file=True, required=False)
     class Meta:
         model = User
         fields = [
