@@ -77,7 +77,6 @@ class Sign_upView(APIView):
             if User.objects.filter(email=email).exists():
                 raise AuthenticationFailed('Email already exists')
             if User.objects.filter(username=username).exists():
-                user =  User.objects.get(username=username)
                 raise AuthenticationFailed('Username already exists')
             serialaizer = User_Register(data=request.data)
             if serialaizer.is_valid(raise_exception=True):
