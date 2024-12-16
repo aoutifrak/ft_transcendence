@@ -290,11 +290,12 @@ class FriendsView(APIView):
             user = request.user
             friend = request.data['username']
             friend = User.objects.get(username=friend)
-            print(dir(user.friends))
-            if friend:
+            if friend in user.friends.all():
                 user.friends.remove(friend)
+            if friend in user.blocked.all():
+                user.blocked.remove(friend)
                 return Response({'info':'friend deleted'},status=200)
-            return Response({'info':'user not found'},status=400)
+            return Response({'info':'user not found or not a friend'},status=400)
         except Exception as e:
             return Response({'info':str(e)},status=400)
 

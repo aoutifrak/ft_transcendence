@@ -590,3 +590,65 @@ Example Paginated Response:
       }
     ]
 }
+
+
+# Friends API Documentation
+
+## Overview
+The **Friends API** allows authenticated users to view their friends and remove a friend from their friend list. This API includes two main endpoints: one for retrieving the user's friends and another for deleting a friend.
+
+## Endpoints
+
+### 1. **GET /api/friends
+
+#### Description:
+This endpoint retrieves the list of friends for the authenticated user.
+
+#### Permissions:
+- **IsAuthenticated**: Only authenticated users can access this endpoint.
+
+#### Response:
+- **200 OK**: Returns the list of friends for the authenticated user.
+- **400 Bad Request**: If there is an error in retrieving the friends list.
+
+#### Example Request:
+```http
+GET /api/friends
+Authorization: Bearer <your_token>
+Example Response:
+{
+  "friends": [
+    {
+      "id": 1,
+      "username": "friend1",
+      "email": "friend1@example.com",
+      "first_name": "Friend",
+      "last_name": "One"
+    },
+    {
+      "id": 2,
+      "username": "friend2",
+      "email": "friend2@example.com",
+      "first_name": "Friend",
+      "last_name": "Two"
+    }
+  ]
+}
+
+DELETE /api/friends/
+Authorization: Bearer <your_token>
+Content-Type: application/json
+
+{
+  "username": "friend2"
+}
+
+Example Response:
+
+{
+  "info": "friend deleted"
+}
+Error Response Example:
+{
+  "info": "user not found or not a friend"
+}

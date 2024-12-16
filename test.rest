@@ -52,7 +52,7 @@ POST  http://127.0.0.1:8000/api/login
 Content-Type: application/json
 
 {
-  "email": "ussjaa@example.com",
+  "email": "test@example.com",
   "password": "orllld123"
 }
 
@@ -68,8 +68,8 @@ POST http://127.0.0.1:8000/api/signup
 Content-Type: application/json
 
 {
-  "username": "ussjaa",
-  "email": "ussjaa@example.com",
+  "username": "test",
+  "email": "test@example.com",
   "password": "orllld123"
 }
 
@@ -105,7 +105,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 POST  http://127.0.0.1:8000/api/search_user
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MzYyMjM1LCJpYXQiOjE3MzQzNjE5MzUsImp0aSI6ImFjOTk1MzQzODRmMjQ5MGE5M2E5ZDMzNDhlY2Y5NDU3IiwidXNlcl9pZCI6Mn0.HDR-nyOGC__elF2SXtqYGgEXRyaG12peSZca74_7NIc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MzY2NTE3LCJpYXQiOjE3MzQzNjYyMTcsImp0aSI6ImVhYjk2NTkyYmNkMzQ1NTA5YTA5MjI2NWZjYmZhODZkIiwidXNlcl9pZCI6Mn0.eQk5LBf73bd4_o66lYPweOECj3eWP5l_60nRtsv4zPs
 
 {
   "username":"ussjaa"
@@ -113,15 +113,32 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 
 ##########
-##########
-##########
-
-DELETE   http://127.0.0.1:8000/api/friends
+PUT   http://127.0.0.1:8000/api/friend_req
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MzYyMjM1LCJpYXQiOjE3MzQzNjE5MzUsImp0aSI6ImFjOTk1MzQzODRmMjQ5MGE5M2E5ZDMzNDhlY2Y5NDU3IiwidXNlcl9pZCI6Mn0.HDR-nyOGC__elF2SXtqYGgEXRyaG12peSZca74_7NIc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MzY2MTIxLCJpYXQiOjE3MzQzNjU4MjEsImp0aSI6Ijg4OWFiZDg3NTIwZjQ4N2Y5ZTYwYWVmY2JiZTU1NTE2IiwidXNlcl9pZCI6Mn0.hhwmHlJqlMH9hKE9KiY_H8eiu5stNkixQbKibn1dkDg
 
 {
   "type":"sd",
-  "username":"uassxjaa"
+  "username":"ussjaa"
+}
+##########
+##########
+POST  http://127.0.0.1:8000/api/friend_req
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MzY2MDkyLCJpYXQiOjE3MzQzNjU3OTIsImp0aSI6IjZhNzEyYzUyY2Y1MjQ3MjM5OWQ1YWY5ZGYyMzk3NDI0IiwidXNlcl9pZCI6MX0.wmzoiaVPoBGwzKvVUN4OgPII3D4WYDv0YMUTV5tmkFg
+
+{
+  "username":"test"
+}
+##########
+
+
+GET   http://127.0.0.1:8000/api/friends
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MzY2NTE3LCJpYXQiOjE3MzQzNjYyMTcsImp0aSI6ImVhYjk2NTkyYmNkMzQ1NTA5YTA5MjI2NWZjYmZhODZkIiwidXNlcl9pZCI6Mn0.eQk5LBf73bd4_o66lYPweOECj3eWP5l_60nRtsv4zPs
+
+{
+  "type":"sd",
+  "username":"ussjaa"
 
 }
