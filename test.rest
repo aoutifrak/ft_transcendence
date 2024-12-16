@@ -14,12 +14,14 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 #######
 
 PUT http://127.0.0.1:8000/api/user_info
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MjkxMDExLCJpYXQiOjE3MzQyOTA3MTEsImp0aSI6IjVmYTdiYjdmZWE4ZDRjOWZhNzA2MDIwYjcyZDRiNDc0IiwidXNlcl9pZCI6N30.ieSq7Ix2YEAGzBhCOaSk1JtFEJkb3884PetCSbLUrB0
+Content-Type: multipart/form-data 
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0Mzc4OTkwLCJpYXQiOjE3MzQzNzg2OTAsImp0aSI6IjUyNjU0YTliNzFjNzRhYTA5N2ZmYTcyMmJmMDJiNzA5IiwidXNlcl9pZCI6MX0.aEyFn6JbM2vxjq_yWqhatbNdixGgkhRix5iXUEudU1k
 
 {
   # "email":"mio@gmail.com",
-  "username":"mido"
+  "username":"mido",
+  "avatar":"'/Users/aoutifra/ft_trancendense/backend/media/avatars/defa
+ult.jpeg'"
 }
 
 ##############

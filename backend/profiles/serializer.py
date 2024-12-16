@@ -24,7 +24,7 @@ class User_Register(serializers.ModelSerializer):
 
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
-    avatar = serializers.ImageField(allow_empty_file=True, required=False)
+    avatar = serializers.ImageField(required=False)
     class Meta:
         model = User
         fields = [

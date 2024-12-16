@@ -3,6 +3,16 @@
       "name": "API Collection",
       "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
     },
+    "auth": {
+        "type": "bearer",
+        "bearer": [
+          {
+            "key": "token",
+            "value": "{{access_token}}",
+            "type": "string"
+          }
+        ]
+    },
     "item": [
       {
         "name": "Activate User",
@@ -191,7 +201,43 @@
             ]
           }
         }
+      },
+      {
+        "name": "user_info",
+        "request": {
+            
+          "method": "PUT",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "multipart/form-data"
+            }
+          ],
+          "body": {
+            "mode": "formdata",
+            "formdata": [
+              {
+                "key": "avatar",
+                "value": "/Users/aoutifra/ft_trancendense/backend/media/avatars/default.jpeg",
+                "type": "file"
+              }
+            ]
+          },
+          "url": {
+            "raw": "http://127.0.0.1:8000/api/user_info",
+            "protocol": "http",
+            "host": [
+              "127.0.0.1"
+            ],
+            "port": "8000",
+            "path": [
+              "api",
+              "user_info"
+            ]
+          }
+        }
       }
+      
     ]
   }
   
