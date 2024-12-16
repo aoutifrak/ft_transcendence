@@ -68,8 +68,8 @@ POST http://127.0.0.1:8000/api/signup
 Content-Type: application/json
 
 {
-  "username": "ussjaa",
-  "email": "ussjaa@example.com",
+  "username": "test",
+  "email": "test@example.com",
   "password": "orllld123"
 }
 
@@ -124,9 +124,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ##########
 ##########
 
-POST http://127.0.0.1:8000/api/friend_req
+POST   http://127.0.0.1:8000/api/friend_req
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MzY3NDY5LCJpYXQiOjE3MzQzNjcxNjksImp0aSI6IjY1MjAxYjVhOGE1ODQ2YWNiNGU5YWZmNmZiMjI4ZDllIiwidXNlcl9pZCI6Mn0.NEnnSttSR0bYMsUpDfBTcGHNexGaGn_powwp1ED85tw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0Mzc2MTQ0LCJpYXQiOjE3MzQzNzU4NDQsImp0aSI6IjViMWQxMjE5NjY1MzQwZDQ4NGJkMjAyZTlmNWU5MjM2IiwidXNlcl9pZCI6MX0.NgJW-AdsyMrqyAmFt6YpQtVdwxhRB2NRMAMELRgGkrE
 
 {
   "type":"sd",
@@ -138,10 +138,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 DELETE  http://127.0.0.1:8000/api/friends
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MzY3NDY5LCJpYXQiOjE3MzQzNjcxNjksImp0aSI6IjY1MjAxYjVhOGE1ODQ2YWNiNGU5YWZmNmZiMjI4ZDllIiwidXNlcl9pZCI6Mn0.NEnnSttSR0bYMsUpDfBTcGHNexGaGn_powwp1ED85tw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0Mzc2MTQ0LCJpYXQiOjE3MzQzNzU4NDQsImp0aSI6IjViMWQxMjE5NjY1MzQwZDQ4NGJkMjAyZTlmNWU5MjM2IiwidXNlcl9pZCI6MX0.NgJW-AdsyMrqyAmFt6YpQtVdwxhRB2NRMAMELRgGkrE
 
 {
   "type":"sd",
-  "username":"ussjaa"
+  "username":"test"
 
 }

@@ -1,0 +1,197 @@
+{
+    "info": {
+      "name": "API Collection",
+      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+    },
+    "item": [
+      {
+        "name": "Activate User",
+        "request": {
+          "method": "GET",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" }
+          ],
+          "url": {
+            "raw": "http://localhost:8000/api/activate/?token={{activation_token}}",
+            "host": ["localhost:8000"],
+            "path": ["api", "activate"],
+            "query": [
+              {
+                "key": "token",
+                "value": "{{activation_token}}"
+              }
+            ]
+          }
+        }
+      },
+      {
+        "name": "Logout",
+        "request": {
+          "method": "POST",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" },
+            { "key": "Cookie", "value": "refresh_token={{refresh_token}}" },
+            { "key": "Authorization", "value": "Bearer {{access_token}}" }
+          ],
+          "url": {
+            "raw": "http://127.0.0.1:8000/api/logout",
+            "host": ["127.0.0.1:8000"],
+            "path": ["api", "logout"]
+          }
+        }
+      },
+      {
+        "name": "Update User Info",
+        "request": {
+          "method": "PUT",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" },
+            { "key": "Authorization", "value": "Bearer {{access_token}}" }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"username\": \"mido\"\n}"
+          },
+          "url": {
+            "raw": "http://127.0.0.1:8000/api/user_info",
+            "host": ["127.0.0.1:8000"],
+            "path": ["api", "user_info"]
+          }
+        }
+      },
+      {
+        "name": "Get User Info",
+        "request": {
+          "method": "GET",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" },
+            { "key": "Authorization", "value": "Bearer {{access_token}}" }
+          ],
+          "url": {
+            "raw": "http://127.0.0.1:8000/api/user_info",
+            "host": ["127.0.0.1:8000"],
+            "path": ["api", "user_info"]
+          }
+        }
+      },
+      {
+        "name": "Update Password",
+        "request": {
+          "method": "PUT",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" },
+            { "key": "Authorization", "value": "Bearer {{access_token}}" }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"password\": \"password\"\n}"
+          },
+          "url": {
+            "raw": "http://127.0.0.1:8000/api/update_password",
+            "host": ["127.0.0.1:8000"],
+            "path": ["api", "update_password"]
+          }
+        }
+      },
+      {
+        "name": "Delete Account",
+        "request": {
+          "method": "DELETE",
+          "header": [
+            { "key": "Content-Type", "value": "application/json" },
+            { "key": "Authorization", "value": "Bearer {{access_token}}" }
+          ],
+          "url": {
+            "raw": "http://127.0.0.1:8000/api/delete_account",
+            "host": ["127.0.0.1:8000"],
+            "path": ["api", "delete_account"]
+          }
+        }
+      },
+      {
+        "name": "Login",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"email\": \"testp@example.com\",\n  \"password\": \"orllld123\"\n}"
+          },
+          "url": {
+            "raw": "http://127.0.0.1:8000/api/login",
+            "protocol": "http",
+            "host": [
+              "127.0.0.1"
+            ],
+            "port": "8000",
+            "path": [
+              "api",
+              "login"
+            ]
+          }
+        }
+      },
+      {
+        "name": "Signup",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"username\": \"test\",\n  \"email\": \"test@example.com\",\n  \"password\": \"orllld123\"\n}"
+          },
+          "url": {
+            "raw": "http://127.0.0.1:8000/api/signup",
+            "protocol": "http",
+            "host": [
+              "127.0.0.1"
+            ],
+            "port": "8000",
+            "path": [
+              "api",
+              "signup"
+            ]
+          }
+        }
+      },
+      {
+        "name": "Search user",
+        "request": {
+          "method": "POST",
+          "header": [
+            {
+              "key": "Content-Type",
+              "value": "application/json"
+            }
+          ],
+          "body": {
+            "mode": "raw",
+            "raw": "{\n  \"username\": \"test\",\n}"
+          },
+          "url": {
+            "raw": "http://127.0.0.1:8000/api/search_user",
+            "protocol": "http",
+            "host": [
+              "127.0.0.1"
+            ],
+            "port": "8000",
+            "path": [
+              "api",
+              "search_user"
+            ]
+          }
+        }
+      }
+    ]
+  }
+  

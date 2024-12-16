@@ -25,8 +25,6 @@ class User_Register(serializers.ModelSerializer):
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
     avatar = serializers.ImageField(allow_empty_file=True, required=False)
-    is_friend = serializers.SerializerMethodField()
-    is_blocked = serializers.SerializerMethodField()
     class Meta:
         model = User
         fields = [
@@ -44,8 +42,6 @@ class UserSerializer(serializers.ModelSerializer):
                   'matches_played',
                   'is2fa',
                   'is_online',
-                  'is_blocked',
-                  'is_friend',
                   'rank',
                   ]
     
@@ -57,13 +53,7 @@ class UserSerializer(serializers.ModelSerializer):
             user.save()
         return user
 
-    def get_is_friend(self,obj):
-        request_user = self.context['request'].user
-        return request_user.friends.filter(id=obj.id).exists()
 
-    def get_is_blocked(self,obj):
-        request_user = self.context['request'].user
-        return request_user.blocked.filter(id=obj.id).exists()
 
 class LoginUserSerializer(serializers.Serializer):
     email = serializers.EmailField(max_length=55, min_length=8, allow_blank=False,required=True)
@@ -140,3 +130,27 @@ class Machserializer(serializers.ModelSerializer):
     class Meta:
         model = Matches
         fields = '__all__'
+
+class FriendSerializer(serializers.ModelSerializer):
+    is_friend = serializers.SerializerMethodField()
+    is_blocked = serializers.SerializerMethodField()
+    class Meta:
+        model = User
+        fields = [
+                  'first_name',
+                  'last_name',
+                  'username',
+                  'is_online',
+                  'is_blocked',
+                  'is_friend',
+                  ]
+    
+
+    def get_is_friend(self,obj):
+        request_user = self.context['request'].user
+        return request_user.friends.filter(id=obj.id).exists()
+
+    def get_is_blocked(self,obj):
+        request_user = self.context['request'].user
+        return request_user.blocked.filter(id=obj.id).exists()
+
