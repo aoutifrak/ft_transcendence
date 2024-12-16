@@ -50,7 +50,9 @@ class LoginView(APIView):
             if data.is_valid(raise_exception=True):
                 user = data.validated_data
                 if user.is2fa:
-                    return Response({'2fa':True,
+                    return Response(
+                    {
+                    '2fa':True,
                     'email':user.email
                     })
                 token = user.token()
@@ -75,7 +77,6 @@ class Sign_upView(APIView):
             if User.objects.filter(email=email).exists():
                 raise AuthenticationFailed('Email already exists')
             if User.objects.filter(username=username).exists():
-                user =  User.objects.get(username=username)
                 raise AuthenticationFailed('Username already exists')
             serialaizer = User_Register(data=request.data)
             if serialaizer.is_valid(raise_exception=True):
@@ -106,9 +107,13 @@ class Get_user_info(APIView):
         try:
             infos = request.data
             user = request.user
-            if infos['avatar']:
+            avatar = infos.get('avatar',None)
+            username =infos.get('username',None)
+            email = infos.get('email',None)
+            if email is not None or username is not None:
+                raise Exception("username or email can't be changed")
+            if avatar is not None:
                 max_size_mb = 2
-                avatar = infos['avatar']
                 if avatar.size > max_size_mb * 1024 * 1024:
                     return Response({"error": f"File size exceeds {max_size_mb}MB limit"}, status=400)
                 avatar_extension = os.path.splitext(avatar.name)[1]
@@ -124,11 +129,15 @@ class LogoutView(APIView):
     permission_classes = [IsAuthenticated]
     def post(self, request):
         try:
-            refresh = request.COOKIES.get('refresh_token')
-            token = RefreshToken(refresh)
-            token.blacklist()
-            response.delete_cookie('refresh_token')
-            response = Response({"detail": "Successfully logged out."}, status=status.HTTP_200_OK)
+            refresh = request.COOKIES.get('refresh_token',None)
+            if refresh is not None:
+                print(refresh)
+                token = RefreshToken(refresh)
+                token.blacklist()
+                response = Response({"detail": "Successfully logged out."}, status=status.HTTP_200_OK)
+                response.delete_cookie('refresh_token')
+                return response
+            response = Response({"detail": "Not logedin yet."}, status=status.HTTP_400_BAD_REQUEST)
             return response
         except TokenError:
             return Response({"detail": "Invalid token."}, status=status.HTTP_400_BAD_REQUEST)
@@ -312,7 +321,11 @@ class FriendRequestView(APIView):
     def get(self,request):
         try:
             user = request.user
-            friend_requests = FriendRequest.objects.filter(Q(to_user=user) & Q(status=0))
+            type = request.data['type']
+            if type == 'send':
+                friend_requests = FriendRequest.objects.filter(Q(from_user=user) & Q(status=0))
+            else:
+                friend_requests = FriendRequest.objects.filter(Q(to_user=user) & Q(status=0))
             serializer = FriendRequestSerializer(friend_requests, many=True)
             return Response({'friend_requests':serializer.data},status=200)
         except Exception as e:

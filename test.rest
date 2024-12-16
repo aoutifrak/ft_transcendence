@@ -14,13 +14,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 #######
 
 PUT http://127.0.0.1:8000/api/user_info
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzMDYxNDU2LCJpYXQiOjE3MzMwNjExNTYsImp0aSI6IjZhYTMxM2MxOTk5YzQ3MTk4MDBkNjkyZWQ1YzZhMzcwIiwidXNlcl9pZCI6MX0.XmzBxxgfKjP3q6HoOVvl0I7Raz9c7JM89MiUDsuS7gM
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MjkxMDExLCJpYXQiOjE3MzQyOTA3MTEsImp0aSI6IjVmYTdiYjdmZWE4ZDRjOWZhNzA2MDIwYjcyZDRiNDc0IiwidXNlcl9pZCI6N30.ieSq7Ix2YEAGzBhCOaSk1JtFEJkb3884PetCSbLUrB0
 
 {
-  "email":"mio@gmail.com",
-  "username":"mido",
-  "password":"123"
+  # "email":"mio@gmail.com",
+  "username":"mido"
 }
 
 ##############
@@ -54,8 +53,13 @@ Content-Type: application/json
 
 {
   "email": "alsjloa@example.com",
+  "email": "test@example.com",
   "password": "orllld123"
 }
+
+
+
+
 
 ##############
 ##############
@@ -69,6 +73,8 @@ Content-Type: application/json
   "email": "alsjloa@example.com",
   "first_name": "Test",
   "last_name": "User",
+  "username": "uassxjaa",
+  "email": "test@example.com",
   "password": "orllld123"
 }
 
@@ -110,4 +116,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 {
   "username":"ussjaa"
+POST  http://127.0.0.1:8000/api/logout
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MTI2MTcyLCJpYXQiOjE3MzQxMjU4NzIsImp0aSI6IjBjNDU3NmM1ZWUwMzQyY2FhMWU0ZTQwZDY1NmRlZjc3IiwidXNlcl9pZCI6NH0.5Cpb4bjYGDu0RQoPHJ7EZ4r5jPJA-LCm0JDwMNY_j6o
+
+{
+
 }

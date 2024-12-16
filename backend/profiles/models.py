@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import AbstractBaseUser, PermissionsMixin
+from django.contrib.auth.models import AbstractBaseUser
 from rest_framework_simplejwt.tokens import RefreshToken
 from .manager import UserManager
 
@@ -7,21 +7,20 @@ def validate_image(image):
     if not image.name.endswith(('.png', '.jpg')):
         raise ValidationError("Only .png, .jpg, or .jpeg files are allowed.")
 
-class User(AbstractBaseUser, PermissionsMixin):
-    first_name = models.CharField(max_length=25)
-    last_name = models.CharField(max_length=25)
-    username = models.CharField(max_length=20,unique=True,null=True,blank=True)
+class User(AbstractBaseUser):
+    first_name = models.CharField(max_length=25,blank=True)
+    last_name = models.CharField(max_length=25,blank=True)
+    username = models.CharField(max_length=20,unique=True)
     email = models.EmailField(max_length=255,unique=True)
     password = models.CharField(max_length=255)
-    avatar = models.ImageField(upload_to='avatars/', validators=[validate_image],default='avatars/default.jpeg')
-    is_superuser = models.BooleanField(default=False)
+    avatar = models.ImageField(upload_to='avatars/', validators=[validate_image],default='avatars/default.jpeg',blank=True)
     pyotp_secret = models.CharField(max_length=255, default='')
     
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     is2fa = models.BooleanField(default=False)
     wins = models.IntegerField(default=0)
     losses = models.IntegerField(default=0)
-    draws = models.IntegerField(default=0)
+    level = models.IntegerField(default=0)
     matches_played = models.IntegerField(default=0)
     is_online = models.BooleanField(default=False)
     rank = models.IntegerField(default=0)

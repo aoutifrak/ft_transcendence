@@ -357,6 +357,125 @@ Message Format:
   "message": "Received message content"
 }
 
+'''
+
+# Endpoint Documentation: Friend Request Management
+
+### Endpoint
+**`GET /api/friend_req`**
+
+### Description
+This endpoint retrieves friend requests for the authenticated user. Depending on the `type` parameter in the request body, it fetches either sent or received friend requests that are pending (status = 0).
+
+---
+
+### Request Format
+
+#### Headers
+- **Authorization**: Bearer `<JWT Token>` (required)
+
+#### Body Parameters
+| Parameter | Type   | Required | Description                     |
+|-----------|--------|----------|---------------------------------|
+| `type`    | string | Yes      | Type of friend requests to fetch. Possible values: `send` or `receive`. |
+
+---
+
+### Response Format
+
+#### Success (200 OK)
+Returns a list of friend requests matching the specified type.
+
+```json
+{
+    "friend_requests": [
+        {
+            "id": 1,
+            "from_user": "user1",
+            "to_user": "user2",
+            "status": 0,
+            "created_at": "2024-12-13T10:00:00Z"
+        },
+        {
+            "id": 2,
+            "from_user": "user3",
+            "to_user": "user4",
+            "status": 0,
+            "created_at": "2024-12-12T15:30:00Z"
+        }
+    ]
+}
+
+Returns an error message if an issue occurs.
+
+json
+Copy code
+{
+    "info": "Error message describing the issue."
+}
+
+xamples
+Fetch Sent Friend Requests
+Request
+
+http
+Copy code
+GET /api/friend_req HTTP/1.1
+Authorization: Bearer <JWT Token>
+Content-Type: application/json
+
+{
+    "type": "send"
+}
+Response
+
+json
+Copy code
+{
+    "friend_requests": [
+        {
+            "id": 1,
+            "from_user": "user1",
+            "to_user": "user2",
+            "status": 0,
+            "created_at": "2024-12-13T10:00:00Z"
+        }
+    ]
+}
+Fetch Received Friend Requests
+Request
+
+http
+Copy code
+GET /api/friend_req HTTP/1.1
+Authorization: Bearer <JWT Token>
+Content-Type: application/json
+
+{
+    "type": "receive"
+}
+Response
+
+json
+Copy code
+{
+    "friend_requests": [
+        {
+            "id": 2,
+            "from_user": "user3",
+            "to_user": "user4",
+            "status": 0,
+            "created_at": "2024-12-12T15:30:00Z"
+        }
+    ]
+}
+Copy code
+
+
+
+
+
+
 
 ## Chat Room API
 
