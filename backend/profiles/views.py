@@ -284,6 +284,19 @@ class FriendsView(APIView):
             return Response({'friends':serializer.data},status=200)
         except Exception as e:
             return Response({'info':str(e)},status=400)
+    
+    def delete(self,request):
+        try:
+            user = request.user
+            friend = request.data['username']
+            friend = User.objects.get(username=friend)
+            print(dir(user.friends))
+            if friend:
+                user.friends.remove(friend)
+                return Response({'info':'friend deleted'},status=200)
+            return Response({'info':'user not found'},status=400)
+        except Exception as e:
+            return Response({'info':str(e)},status=400)
 
 class FriendRequestView(APIView):
     permission_classes = [IsAuthenticated]

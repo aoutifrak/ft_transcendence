@@ -44,6 +44,8 @@ class UserSerializer(serializers.ModelSerializer):
                   'matches_played',
                   'is2fa',
                   'is_online',
+                  'is_blocked',
+                  'is_friend',
                   'rank',
                   ]
     

@@ -52,8 +52,7 @@ POST  http://127.0.0.1:8000/api/login
 Content-Type: application/json
 
 {
-  "email": "alsjloa@example.com",
-  "email": "test@example.com",
+  "email": "ussjaa@example.com",
   "password": "orllld123"
 }
 
@@ -69,12 +68,8 @@ POST http://127.0.0.1:8000/api/signup
 Content-Type: application/json
 
 {
-  "username": "ussjaaa",
-  "email": "alsjloa@example.com",
-  "first_name": "Test",
-  "last_name": "User",
-  "username": "uassxjaa",
-  "email": "test@example.com",
+  "username": "ussjaa",
+  "email": "ussjaa@example.com",
   "password": "orllld123"
 }
 
@@ -103,23 +98,30 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 }
 
 
-
-
 ############
 ############
 ############
 
 
-GET http://127.0.0.1:8000/api/friend_req
+POST  http://127.0.0.1:8000/api/search_user
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MzU3NDkzLCJpYXQiOjE3MzQzNTcxOTMsImp0aSI6ImI0YmVjMWE5NmIzYTQ3ZWZhNmZjMWI1MzZiNDk4ZGYwIiwidXNlcl9pZCI6Mn0.iQTr2m-v__3oh0fXAjigQLyjI8ZDAx1O1cPdFnvwdaY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MzYyMjM1LCJpYXQiOjE3MzQzNjE5MzUsImp0aSI6ImFjOTk1MzQzODRmMjQ5MGE5M2E5ZDMzNDhlY2Y5NDU3IiwidXNlcl9pZCI6Mn0.HDR-nyOGC__elF2SXtqYGgEXRyaG12peSZca74_7NIc
 
 {
   "username":"ussjaa"
-POST  http://127.0.0.1:8000/api/logout
+}
+
+
+##########
+##########
+##########
+
+DELETE   http://127.0.0.1:8000/api/friends
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MTI2MTcyLCJpYXQiOjE3MzQxMjU4NzIsImp0aSI6IjBjNDU3NmM1ZWUwMzQyY2FhMWU0ZTQwZDY1NmRlZjc3IiwidXNlcl9pZCI6NH0.5Cpb4bjYGDu0RQoPHJ7EZ4r5jPJA-LCm0JDwMNY_j6o
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MzYyMjM1LCJpYXQiOjE3MzQzNjE5MzUsImp0aSI6ImFjOTk1MzQzODRmMjQ5MGE5M2E5ZDMzNDhlY2Y5NDU3IiwidXNlcl9pZCI6Mn0.HDR-nyOGC__elF2SXtqYGgEXRyaG12peSZca74_7NIc
 
 {
+  "type":"sd",
+  "username":"uassxjaa"
 
 }
