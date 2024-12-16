@@ -352,8 +352,7 @@ class FriendRequestView(APIView):
             friend = User.objects.get(username=friend)
             if friend:
                 friend_request = FriendRequest.objects.get(Q(from_user=friend) & Q(to_user=user) & Q(status=0))
-                friend_request.status = 1
-                friend_request.save()
+                friend_request.delete()
                 user.friends.add(friend)
                 friend.friends.add(user)
                 return Response({'info':'friend request accepted'},status=200)

@@ -52,7 +52,7 @@ POST  http://127.0.0.1:8000/api/login
 Content-Type: application/json
 
 {
-  "email": "test@example.com",
+  "email": "ussjaa@example.com",
   "password": "orllld123"
 }
 
@@ -68,8 +68,8 @@ POST http://127.0.0.1:8000/api/signup
 Content-Type: application/json
 
 {
-  "username": "test",
-  "email": "test@example.com",
+  "username": "ussjaa",
+  "email": "ussjaa@example.com",
   "password": "orllld123"
 }
 
@@ -113,29 +113,32 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 
 ##########
-PUT   http://127.0.0.1:8000/api/friend_req
+GET   http://127.0.0.1:8000/api/friend_req
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MzY2MTIxLCJpYXQiOjE3MzQzNjU4MjEsImp0aSI6Ijg4OWFiZDg3NTIwZjQ4N2Y5ZTYwYWVmY2JiZTU1NTE2IiwidXNlcl9pZCI6Mn0.hhwmHlJqlMH9hKE9KiY_H8eiu5stNkixQbKibn1dkDg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MzY2ODUyLCJpYXQiOjE3MzQzNjY1NTIsImp0aSI6IjBkY2Y5NjkyOTU4ZDQwYTI5ZTkzOGFiMjdhZWZlZDYxIiwidXNlcl9pZCI6Mn0.u_FEsqXYUr6mazMDaatZ-9gBEMvmt1x6VibZj5HZHMA
 
 {
   "type":"sd",
-  "username":"ussjaa"
+  "username":"test"
 }
 ##########
 ##########
-POST  http://127.0.0.1:8000/api/friend_req
+
+POST http://127.0.0.1:8000/api/friend_req
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MzY2MDkyLCJpYXQiOjE3MzQzNjU3OTIsImp0aSI6IjZhNzEyYzUyY2Y1MjQ3MjM5OWQ1YWY5ZGYyMzk3NDI0IiwidXNlcl9pZCI6MX0.wmzoiaVPoBGwzKvVUN4OgPII3D4WYDv0YMUTV5tmkFg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MzY3NDY5LCJpYXQiOjE3MzQzNjcxNjksImp0aSI6IjY1MjAxYjVhOGE1ODQ2YWNiNGU5YWZmNmZiMjI4ZDllIiwidXNlcl9pZCI6Mn0.NEnnSttSR0bYMsUpDfBTcGHNexGaGn_powwp1ED85tw
 
 {
+  "type":"sd",
+
   "username":"test"
 }
 ##########
 
 
-GET   http://127.0.0.1:8000/api/friends
+DELETE  http://127.0.0.1:8000/api/friends
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MzY2NTE3LCJpYXQiOjE3MzQzNjYyMTcsImp0aSI6ImVhYjk2NTkyYmNkMzQ1NTA5YTA5MjI2NWZjYmZhODZkIiwidXNlcl9pZCI6Mn0.eQk5LBf73bd4_o66lYPweOECj3eWP5l_60nRtsv4zPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MzY3NDY5LCJpYXQiOjE3MzQzNjcxNjksImp0aSI6IjY1MjAxYjVhOGE1ODQ2YWNiNGU5YWZmNmZiMjI4ZDllIiwidXNlcl9pZCI6Mn0.NEnnSttSR0bYMsUpDfBTcGHNexGaGn_powwp1ED85tw
 
 {
   "type":"sd",
