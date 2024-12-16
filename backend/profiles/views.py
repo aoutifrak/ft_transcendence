@@ -413,7 +413,7 @@ class SearchUser(APIView):
     def post(self, request):
         try:
             all_users = User.objects.all()
-            user_data = self.serializer_class(all_users,many=True)
+            user_data = self.serializer_class(all_users,many=True,context={'request': request})
             response = Response(
                 {'user':user_data.data},status=200
             )
