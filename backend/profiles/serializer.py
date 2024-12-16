@@ -128,9 +128,6 @@ class FriendRequestSerializer(serializers.ModelSerializer):
         model = FriendRequest
         fields = '__all__'
 
-
-
-
 class Machserializer(serializers.ModelSerializer):
     userone =  serializers.CharField(source='userone.username', read_only=True)
     usertow =  serializers.CharField(source='usertow.username', read_only=True)

@@ -23,7 +23,7 @@ class TokenAuthMiddleware:
             user = await get_user(token)
             if user is not None:
                 scope['user'] = user
-        except Exception as e:
+        except:
             await send({
                 "type": "websocket.close",
             })

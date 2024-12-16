@@ -53,7 +53,7 @@ POST  http://127.0.0.1:8000/api/login
 Content-Type: application/json
 
 {
-  "email": "alsjlo@example.com",
+  "email": "alsjloa@example.com",
   "password": "orllld123"
 }
 
@@ -65,8 +65,8 @@ POST http://127.0.0.1:8000/api/signup
 Content-Type: application/json
 
 {
-  "username": "ussjaa",
-  "email": "alsjlo@example.com",
+  "username": "ussjaaa",
+  "email": "alsjloa@example.com",
   "first_name": "Test",
   "last_name": "User",
   "password": "orllld123"
@@ -88,10 +88,26 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ##################
 ##################
 
-GET http://127.0.0.1:8000/api/matches
+POST  http://127.0.0.1:8000/api/friend_req
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzMzOTYyNDkzLCJpYXQiOjE3MzM5NjIxOTMsImp0aSI6IjQ2YjM4ZDYxYmQ4MjQ2MTBhNTVkMTQ2ZjZlOTZmNTRiIiwidXNlcl9pZCI6MX0.ppZP6DDL3Sobkg_B-n9EcMD2cdxr0qe0tlBY2BRTCsg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MzU3NDY0LCJpYXQiOjE3MzQzNTcxNjQsImp0aSI6IjgzZDhlMTk0ODgwYzQxN2NiOGRjMjNhMjhmOGE2ZjEwIiwidXNlcl9pZCI6MX0.YZFKLbnFVFM5y2j43vOij97xxf9FUF1Neha8pyR4z-4
 
 {
-  "username":"tepdstuser"
+  "username":"ussjaaa"
+}
+
+
+
+
+############
+############
+############
+
+
+GET http://127.0.0.1:8000/api/friend_req
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MzU3NDkzLCJpYXQiOjE3MzQzNTcxOTMsImp0aSI6ImI0YmVjMWE5NmIzYTQ3ZWZhNmZjMWI1MzZiNDk4ZGYwIiwidXNlcl9pZCI6Mn0.iQTr2m-v__3oh0fXAjigQLyjI8ZDAx1O1cPdFnvwdaY
+
+{
+  "username":"ussjaa"
 }

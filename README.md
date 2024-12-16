@@ -293,9 +293,6 @@ Authorization: Bearer <JWT_TOKEN>
 Response
 Success (200 OK):
 The response contains an array of the most recent 6 matches.
-Example Response:
-json
-Copy code
 {
   "matches": [
     {
@@ -319,10 +316,8 @@ Copy code
 }
 
 Error (400 Bad Request):
-If there is any issue with the request, an error message will be returned.
+If there is any issue with the request, an error
 Example Error Response:
-json
-Copy code
 {
   "info": "An error occurred while fetching the matches."
 }
@@ -360,4 +355,119 @@ Message Format:
   "type": "chat.message",
   "sender": "username_of_sender",  // The sender's username
   "message": "Received message content"
+}
+
+
+## Chat Room API
+
+### GET `/api/chat/`
+Retrieve a list of all chat rooms associated with the authenticated user.
+
+- **Authentication**: Required (`IsAuthenticated`)
+- **Request Body**: None
+
+#### Response:
+- **Success (200 OK)**:
+  ```json
+  [
+      {
+          "id": 1,
+          "user1": "user1_username",
+          "user2": "user2_username",
+          "timestamp": "2024-12-15T12:00:00Z"
+      },
+      {
+          "id": 2,
+          "user1": "user1_username",
+          "user2": "user3_username",
+          "timestamp": "2024-12-15T12:10:00Z"
+      }
+  ]
+
+Error (400 Bad Request):
+
+{
+    "error": "Error message here"
+}
+
+Messages API
+GET /api/messages/
+Retrieve all messages from a specific chat.
+
+Authentication: Beraer Token
+Request Body:
+
+{
+    "chat_id": 1
+}
+
+Response:
+Success (200 OK)
+[
+    {
+        "id": 1,
+        "chat": 1,
+        "sender_user": "user1_username",
+        "receiver_user": "user1_username",
+        "message": "Hello!",
+        "updated_at": "2024-12-15T12:00:00Z"
+    },
+    {
+        "id": 2,
+        "chat": 1,
+        "sender_user": "user2_username",
+        "receiver_user": "user1_username",
+        "message": "Hi there!",
+        "updated_at": "2024-12-15T12:01:00Z"
+    }
+]
+
+Error (400 Bad Request):
+{
+    "error": "Error message here"
+}
+
+
+DELETE /api/messages/
+Delete a specific message sent by the authenticated user.
+
+Authentication: Beraer Token
+Request Body:
+Success (200 OK):
+"Message deleted"
+
+
+Error (400 Bad Request):
+"You are not the sender of this message"
+
+
+Pagination
+The Messages API supports pagination with a custom pagination class. By default, 10 messages are returned per page.
+
+Query Parameters:
+page: The page number to retrieve (e.g., ?page=2).
+Example Paginated Response:
+
+{
+    "count": 10,
+    "next": "http://127.0.0.1:8000/api/messages/?page=2",
+    "previous": null,
+    "results": [
+        {
+          "id": 1,
+          "chat": 1,
+          "sender_user": "user2_username",
+          "receiver_user": "user1_username",
+          "message": "Hi there!",
+          "updated_at": "2024-12-15T12:01:00Z"
+          },
+        {
+          "id": 2,
+          "chat": 1,
+          "sender_user": "user2_username",
+          "receiver_user": "user1_username",
+          "message": "Hi there!",
+          "updated_at": "2024-12-15T12:01:00Z"
+      }
+    ]
 }

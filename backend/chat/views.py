@@ -5,7 +5,10 @@ from .models import Message, Chat
 from .serializers import MessageSerializer, ChatSerializer
 from rest_framework.permissions import IsAuthenticated
 from django.db.models import Q
+from rest_framework.pagination import PageNumberPagination
 
+class CustomPagination(PageNumberPagination):
+    page_size = 10 
 
 class Chat_Room(APIView):
     permission_classes = [IsAuthenticated]
@@ -19,6 +22,7 @@ class Chat_Room(APIView):
         
 
 class Messages(APIView):
+    pagination_class = CustomPagination
     permission_classes = [IsAuthenticated]
     def get(self, request):
         try:

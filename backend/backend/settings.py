@@ -54,6 +54,8 @@ REST_FRAMEWORK = {
     'DEFAULT_PERMISSION_CLASSES': (
         'rest_framework.permissions.IsAuthenticated',
     ),
+    'DEFAULT_PAGINATION_CLASS': 'rest_framework.pagination.LimitOffsetPagination',
+    'PAGE_SIZE': 100
 }
 
 MIDDLEWARE = [
@@ -68,23 +70,6 @@ MIDDLEWARE = [
 ]
 
 ROOT_URLCONF = 'backend.urls'
-
-TEMPLATES = [
-    {
-        'BACKEND': 'django.template.backends.django.DjangoTemplates',
-        'DIRS': [],
-        'APP_DIRS': True,
-        'OPTIONS': {
-            'context_processors': [
-                'django.template.context_processors.debug',
-                'django.template.context_processors.request',
-                'django.contrib.auth.context_processors.auth',
-                'django.contrib.messages.context_processors.messages',
-            ],
-        },
-    },
-]
-
 WSGI_APPLICATION = 'backend.wsgi.application'
 ASGI_APPLICATION = 'backend.asgi.application'
 CORS_ALLOW_ALL_ORIGINS = True
@@ -174,14 +159,11 @@ CHANNEL_LAYERS = {
 }
 
 CLIENT_ID=os.environ.get('CLIENT_ID')
-G_CLIENT_ID=os.environ.get('G_CLIENT_ID')
 GITHUB_CLIENT_ID=os.environ.get('GITHUB_CLIENT_ID')
 
 
 CLIENT_SECRET=os.environ.get('CLIENT_SECRET')
-G_CLIENT_SECRET=os.environ.get('G_CLIENT_SECRET')
 GITHUB_CLIENT_SECRET=os.environ.get('GITHUB_CLIENT_SECRET')
 
 INTRA_REDIRECT_URI=os.environ.get('INTRA_REDIRECT_URI')
 GITHUB_REDIRECT_URI=os.environ.get('GITHUB_REDIRECT_URI')
-G_REDIRECT_URI=os.environ.get('G_REDIRECT_URI')
