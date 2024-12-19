@@ -16,7 +16,6 @@ from django.db.models import Q
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
 import os , requests
-from rest_framework.parsers import MultiPartParser, FormParser
 
 class RefreshTokenView(APIView):
     permission_classes = [AllowAny]
@@ -112,15 +111,9 @@ class UserUpdate(APIView):
     def put(self, request):
         try:
             user = request.user
-<<<<<<< HEAD
             avatar = infos.get('avatar',None)
-            username =infos.get('username',None)
+            username = infos.get('username',None)
             email = infos.get('email',None)
-=======
-            avatar = request.data.get('avatar',None)
-            username = request.data.get('username',None)
-            email = request.data.get('email',None)
->>>>>>> c843e6c (fix alluser)
             if email is not None or username is not None:
                 raise Exception("username or email can't be changed")
             if avatar is not None:
