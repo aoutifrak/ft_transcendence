@@ -652,3 +652,16 @@ Error Response Example:
 {
   "info": "user not found or not a friend"
 }
+
+
+
+
+## update  user avatar /api/update_user
+
+DELETE /api/friends/
+Authorization: Bearer <your_token>
+Content-Type: multipart/form-data
+
+{
+    "avatar":"/user/avatar.jpeg"
+}
