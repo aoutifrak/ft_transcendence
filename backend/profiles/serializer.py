@@ -133,7 +133,7 @@ class Machserializer(serializers.ModelSerializer):
 
 class FriendSerializer(serializers.ModelSerializer):
     is_friend = serializers.SerializerMethodField()
-    is_blocked = serializers.ç()
+    is_blocked = serializers.SerializerMethodField()
     class Meta:
         model = User
         fields = [

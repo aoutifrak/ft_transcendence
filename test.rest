@@ -13,15 +13,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 #######
 
-PUT http://127.0.0.1:8000/api/user_info
-Content-Type: multipart/form-data 
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0Mzc4OTkwLCJpYXQiOjE3MzQzNzg2OTAsImp0aSI6IjUyNjU0YTliNzFjNzRhYTA5N2ZmYTcyMmJmMDJiNzA5IiwidXNlcl9pZCI6MX0.aEyFn6JbM2vxjq_yWqhatbNdixGgkhRix5iXUEudU1k
+GET http://127.0.0.1:8000/api/user_info
+Content-Type: multipart/form-data
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0NDU0NzMxLCJpYXQiOjE3MzQ0NTQ0MzEsImp0aSI6IjVhNmU4ZjQ3YTlhNTQ0ZTlhZDFkOWIxNWM4ODY3YzVhIiwidXNlcl9pZCI6N30.Hf67pl7OyriO442hFkmej-Nat7MSAxsBsVN_QW17EH8
 
 {
   # "email":"mio@gmail.com",
-  "username":"mido",
-  "avatar":"'/Users/aoutifra/ft_trancendense/backend/media/avatars/defa
-ult.jpeg'"
+  "username":"mido"
 }
 
 ##############
@@ -31,7 +29,7 @@ POST http://127.0.0.1:8000/api/login
 Content-Type: application/json
 
 {
-  "email": "testp@example.com",
+  "email": "test@example.com",
   "password": "orllld123"
 }
 
@@ -54,7 +52,7 @@ POST  http://127.0.0.1:8000/api/login
 Content-Type: application/json
 
 {
-  "email": "ussjaa@example.com",
+  "email": "test@example.com",
   "password": "orllld123"
 }
 
@@ -70,7 +68,7 @@ POST http://127.0.0.1:8000/api/signup
 Content-Type: application/json
 
 {
-  "username": "test",
+  "username": "uassxjaa",
   "email": "test@example.com",
   "password": "orllld123"
 }
@@ -91,59 +89,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ##################
 ##################
 
-POST  http://127.0.0.1:8000/api/friend_req
+POST  http://127.0.0.1:8000/api/logout
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MzU3NDY0LCJpYXQiOjE3MzQzNTcxNjQsImp0aSI6IjgzZDhlMTk0ODgwYzQxN2NiOGRjMjNhMjhmOGE2ZjEwIiwidXNlcl9pZCI6MX0.YZFKLbnFVFM5y2j43vOij97xxf9FUF1Neha8pyR4z-4
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MTI2MTcyLCJpYXQiOjE3MzQxMjU4NzIsImp0aSI6IjBjNDU3NmM1ZWUwMzQyY2FhMWU0ZTQwZDY1NmRlZjc3IiwidXNlcl9pZCI6NH0.5Cpb4bjYGDu0RQoPHJ7EZ4r5jPJA-LCm0JDwMNY_j6o
 
 {
-  "username":"ussjaaa"
-}
-
-
-############
-############
-############
-
-
-POST  http://127.0.0.1:8000/api/search_user
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MzY2NTE3LCJpYXQiOjE3MzQzNjYyMTcsImp0aSI6ImVhYjk2NTkyYmNkMzQ1NTA5YTA5MjI2NWZjYmZhODZkIiwidXNlcl9pZCI6Mn0.eQk5LBf73bd4_o66lYPweOECj3eWP5l_60nRtsv4zPs
-
-{
-  "username":"ussjaa"
-}
-
-
-##########
-GET   http://127.0.0.1:8000/api/friend_req
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0MzY2ODUyLCJpYXQiOjE3MzQzNjY1NTIsImp0aSI6IjBkY2Y5NjkyOTU4ZDQwYTI5ZTkzOGFiMjdhZWZlZDYxIiwidXNlcl9pZCI6Mn0.u_FEsqXYUr6mazMDaatZ-9gBEMvmt1x6VibZj5HZHMA
-
-{
-  "type":"sd",
-  "username":"test"
-}
-##########
-##########
-
-POST   http://127.0.0.1:8000/api/friend_req
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0Mzc2MTQ0LCJpYXQiOjE3MzQzNzU4NDQsImp0aSI6IjViMWQxMjE5NjY1MzQwZDQ4NGJkMjAyZTlmNWU5MjM2IiwidXNlcl9pZCI6MX0.NgJW-AdsyMrqyAmFt6YpQtVdwxhRB2NRMAMELRgGkrE
-
-{
-  "type":"sd",
-
-  "username":"test"
-}
-##########
-
-
-DELETE  http://127.0.0.1:8000/api/friends
-Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0Mzc2MTQ0LCJpYXQiOjE3MzQzNzU4NDQsImp0aSI6IjViMWQxMjE5NjY1MzQwZDQ4NGJkMjAyZTlmNWU5MjM2IiwidXNlcl9pZCI6MX0.NgJW-AdsyMrqyAmFt6YpQtVdwxhRB2NRMAMELRgGkrE
-
-{
-  "type":"sd",
-  "username":"test"
 
 }

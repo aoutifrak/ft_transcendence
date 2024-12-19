@@ -16,6 +16,7 @@ from django.db.models import Q
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
 import os , requests
+from rest_framework.parsers import MultiPartParser, FormParser
 
 class RefreshTokenView(APIView):
     permission_classes = [AllowAny]
@@ -95,6 +96,7 @@ class Sign_upView(APIView):
 class Get_user_info(APIView):
     permission_classes = [IsAuthenticated]
     serializer_class = UserSerializer
+
     def get(self,request):
         try:
             user = request.user
@@ -102,14 +104,23 @@ class Get_user_info(APIView):
             return Response(serialized_user.data)
         except Exception as e:
             return Response({'info':str(e)},status=400)
-        
+
+class UserUpdate(APIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = UserSerializer
+
     def put(self, request):
         try:
-            infos = request.data
             user = request.user
+<<<<<<< HEAD
             avatar = infos.get('avatar',None)
             username =infos.get('username',None)
             email = infos.get('email',None)
+=======
+            avatar = request.data.get('avatar',None)
+            username = request.data.get('username',None)
+            email = request.data.get('email',None)
+>>>>>>> c843e6c (fix alluser)
             if email is not None or username is not None:
                 raise Exception("username or email can't be changed")
             if avatar is not None:
@@ -118,13 +129,14 @@ class Get_user_info(APIView):
                     return Response({"error": f"File size exceeds {max_size_mb}MB limit"}, status=400)
                 avatar_extension = os.path.splitext(avatar.name)[1]
                 avatar.name = f"{user.username}{avatar_extension}"
-                infos.avatar = avatar
-            serializer = self.serializer_class().update(user, infos)
-            serializer.save()
+                request.data['avatar'] = avatar
+            serializer = self.serializer_class(user,data=request.data,partial=True)
+            if serializer.is_valid(raise_exception=True):
+                serializer.save()
             return Response({"message": "User updated successfully!"},status=status.HTTP_200_OK)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
-            
+
 class LogoutView(APIView):
     permission_classes = [IsAuthenticated]
     def post(self, request):
