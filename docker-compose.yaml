@@ -4,7 +4,6 @@ services:
     container_name: backend
     depends_on:
       - db
-      - redis
     ports:
       - "8000:8000"
     env_file:
@@ -27,13 +26,6 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - backend
-
-  redis:
-    container_name: redis
-    image: redis:7
-    networks:
-      - backend
-    restart: always
 
 volumes:
   postgres_data:
