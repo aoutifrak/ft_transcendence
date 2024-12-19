@@ -140,6 +140,7 @@ class FriendSerializer(serializers.ModelSerializer):
                   'first_name',
                   'last_name',
                   'username',
+                  'avatar',
                   'is_online',
                   'is_blocked',
                   'is_friend',
