@@ -113,14 +113,14 @@ class UserUpdate(APIView):
             user = request.user
             infos = request.data
             avatar = infos.get('avatar',None)
-            username = infos.get('username',None)
-            email = infos.get('email',None)
-            if email is not None or username is not None:
-                raise Exception("username or email can't be changed")
+            valid_keys = ['first_name','last_name','avatar']
+            for key in infos.keys():
+                if key is not in valid_keys:
+                    return Response({"error": f"invalid fileds {key}!"},status=status.HTTP_400_BAD_REQUEST)
             if avatar is not None:
                 max_size_mb = 2
                 if avatar.size > max_size_mb * 1024 * 1024:
-                    return Response({"error": f"File size exceeds {max_size_mb}MB limit"}, status=400)
+                    return Response({"error": f"File size exceeds {max_size_mb}MB limit"}, status=HTTP_400_BAD_REQUEST)
                 avatar_extension = os.path.splitext(avatar.name)[1]
                 avatar.name = f"{user.username}{avatar_extension}"
                 request.data['avatar'] = avatar
@@ -128,7 +128,7 @@ class UserUpdate(APIView):
             if serializer.is_valid():
                 serializer.save()
                 return Response({"message": "User updated successfully!"},status=status.HTTP_200_OK)
-            return Response({"message": "User not updated successfully!"},status=status.HTTP_200_OK)
+            return Response({"message": "User not updated successfully!"},status=HTTP_400_BAD_REQUEST)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
