@@ -287,7 +287,7 @@ This endpoint retrieves the most recent 6 matches from the leaderboard. It provi
 - **Authorization**: Bearer token (Required for authentication)
 
 ### Example Request:
-```bash
+
 GET /api/leaderboard
 Authorization: Bearer <JWT_TOKEN>
 Response
@@ -658,7 +658,6 @@ Error Response Example:
 
 ## update  user avatar /api/update_user
 
-DELETE /api/friends/
 Authorization: Bearer <your_token>
 Content-Type: multipart/form-data
 

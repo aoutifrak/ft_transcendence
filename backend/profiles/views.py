@@ -111,6 +111,7 @@ class UserUpdate(APIView):
     def put(self, request):
         try:
             user = request.user
+            infos = request.data
             avatar = infos.get('avatar',None)
             username = infos.get('username',None)
             email = infos.get('email',None)

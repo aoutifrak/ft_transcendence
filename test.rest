@@ -13,13 +13,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 #######
 
-GET http://127.0.0.1:8000/api/user_info
-Content-Type: multipart/form-data
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0NDU0NzMxLCJpYXQiOjE3MzQ0NTQ0MzEsImp0aSI6IjVhNmU4ZjQ3YTlhNTQ0ZTlhZDFkOWIxNWM4ODY3YzVhIiwidXNlcl9pZCI6N30.Hf67pl7OyriO442hFkmej-Nat7MSAxsBsVN_QW17EH8
+PUT  http://127.0.0.1:8000/api/update_user
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0NzAxOTA2LCJpYXQiOjE3MzQ3MDE2MDYsImp0aSI6IjA5YjA5MGQxOTIxYjQwNGZiZTM4NjVmMmVkZmFhNzVmIiwidXNlcl9pZCI6N30.mtzxLrziTxJVtdIb5O_WbMDmwCXArmNqeUGVjUR5Q3k
 
 {
   # "email":"mio@gmail.com",
-  "username":"mido"
+  "first_name":"mido"
 }
 
 ##############
