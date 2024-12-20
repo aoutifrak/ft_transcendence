@@ -53,8 +53,6 @@ class UserSerializer(serializers.ModelSerializer):
             user.save()
         return user
 
-
-
 class LoginUserSerializer(serializers.Serializer):
     email = serializers.EmailField(max_length=55, min_length=8, allow_blank=False,required=True)
     password = serializers.CharField(max_length=68,min_length=8,write_only=True,required=True)

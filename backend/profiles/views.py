@@ -125,9 +125,10 @@ class UserUpdate(APIView):
                 avatar.name = f"{user.username}{avatar_extension}"
                 request.data['avatar'] = avatar
             serializer = self.serializer_class(user,data=request.data,partial=True)
-            if serializer.is_valid(raise_exception=True):
+            if serializer.is_valid():
                 serializer.save()
-            return Response({"message": "User updated successfully!"},status=status.HTTP_200_OK)
+                return Response({"message": "User updated successfully!"},status=status.HTTP_200_OK)
+            return Response({"message": "User not updated successfully!"},status=status.HTTP_200_OK)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
 
