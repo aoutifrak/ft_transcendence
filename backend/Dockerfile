@@ -2,8 +2,6 @@ FROM python:3.14.0a2-slim-bullseye
 
 WORKDIR /backend
 
-COPY  . . 
-
 ENV PYTHONUNBUFFERED 1
 
 RUN apt-get update && apt-get install -y \
@@ -17,10 +15,14 @@ RUN apt-get update && apt-get install -y \
     zlib1g-dev \
     libfreetype6-dev \
     liblcms2-dev 
+    
+COPY requirements.txt .
 
 RUN pip install --upgrade pip
 
 RUN pip install -r requirements.txt
+
+COPY  . .
 
 EXPOSE 8000
 

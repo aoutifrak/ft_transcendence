@@ -4,7 +4,7 @@
 
 GET  http://127.0.0.1:8000/api/user_info
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0NzEwMTUyLCJpYXQiOjE3MzQ3MDk4NTIsImp0aSI6ImQ1YjNkODU5NGE3NDRhYzZiZWMwMjdmNjdiNWM4ZTRiIiwidXNlcl9pZCI6MX0.oMdPQwZEz1H7MiPYwyyiItxijVlzuJA89Pxeg4zDzRU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0NzEwOTA3LCJpYXQiOjE3MzQ3MTA2MDcsImp0aSI6ImQ2MmU4MGRiNDk4NzRhYWQ5ZGY2MGE4YjY5NzczZTBkIiwidXNlcl9pZCI6MX0.MEQx9K3zqd08-6Jpd25LAgEg5R0_RFNScnx4ILkvVx8
 
 {
 
@@ -14,11 +14,11 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 PUT  http://127.0.0.1:8000/api/update_user
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0NzEwMTUyLCJpYXQiOjE3MzQ3MDk4NTIsImp0aSI6ImQ1YjNkODU5NGE3NDRhYzZiZWMwMjdmNjdiNWM4ZTRiIiwidXNlcl9pZCI6MX0.oMdPQwZEz1H7MiPYwyyiItxijVlzuJA89Pxeg4zDzRU
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0NzEwOTA3LCJpYXQiOjE3MzQ3MTA2MDcsImp0aSI6ImQ2MmU4MGRiNDk4NzRhYWQ5ZGY2MGE4YjY5NzczZTBkIiwidXNlcl9pZCI6MX0.MEQx9K3zqd08-6Jpd25LAgEg5R0_RFNScnx4ILkvVx8
 
 {
   # "email":"mio@gmail.com",
-  "first_nsame":"89"
+  "first_name":"89s"
 }
 
 ##############
