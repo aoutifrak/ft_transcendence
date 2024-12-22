@@ -318,9 +318,9 @@ class FriendRequestView(APIView):
             if friend:
                 friend_request = FriendRequest.objects.filter(Q(from_user=user,to_user=friend) | Q(from_user=friend,to_user=user)).first()
                 if friend_request:
-                    if friend_request.status == 1:
-                        return Response({'info':'you are already friends'},status=400)
                     return Response({'info':'friend request already sent'},status=400)
+                if friend in user.friends.all():
+                    return Response({'info':'you are already friends'},status=400)
                 else:
                     if friend.friends.count() > 100:
                         return Response({'info':'user can no longer add friends'},status=400)
