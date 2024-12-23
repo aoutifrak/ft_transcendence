@@ -86,11 +86,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ##################
 ##################
 
-PUT  http://127.0.0.1:8000/api/friend_req
+GET   http://127.0.0.1:8000/api/friend_req/?type=send
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0ODkwNDA5LCJpYXQiOjE3MzQ4OTAxMDksImp0aSI6IjFmN2E1ODczMWY5ODQwYjc5Y2JkNjcwNmNkNTI5NWFlIiwidXNlcl9pZCI6MX0.bQ4ClJFtbgLUzgZSeO6NKDecLAYyVSV6mrs_MQBmRZI
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0OTYyMzYxLCJpYXQiOjE3MzQ5NjIwNjEsImp0aSI6ImY4YzA4YTY3NDAzNTRjZmJiNDY3YzA4ZDk2NTYzMTlmIiwidXNlcl9pZCI6MX0.M_1o8rWDzi5UeMs_FNM1KxsoVFDvLH9869sZHffXvLk
 
 {
-  "type":"res",
   "username":"uassxjsaa"
 }

@@ -12,7 +12,7 @@ urlpatterns = [
     path('socialauth/', SocialAuthverify.as_view()),
     path('refresh_token', RefreshTokenView.as_view()),
     path('friends', FriendsView.as_view()),
-    path('friend_req', FriendRequestView.as_view()),
+    path('friend_req/', FriendRequestView.as_view()),
     path('block_user', BlockUser.as_view()),
     path('enable2fa', Control2Fa.as_view()),
     path('signin2fa', Signin2fa.as_view()),
