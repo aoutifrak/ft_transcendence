@@ -314,16 +314,18 @@ class FriendRequestView(APIView):
             friend = request.data['username']
             friend = User.objects.get(username=friend)
             if friend == user:
-                return Response({'info':'you can not send request to yourself'},status=400)
+                return Response({'info':'you can not send request to yourself'},status=200)
             if friend:
                 friend_request = FriendRequest.objects.filter(Q(from_user=user,to_user=friend) | Q(from_user=friend,to_user=user)).first()
                 if friend_request:
-                    return Response({'info':'friend request already sent'},status=400)
+                    return Response({'info':'friend request already sent'},status=200)
                 if friend in user.friends.all():
-                    return Response({'info':'you are already friends'},status=400)
+                    return Response({'info':'you are already friends'},status=200)
+                if friend in user.blocked.all():
+                    return Response({'info':'you blocked this user'},status=200)
                 else:
                     if friend.friends.count() > 100:
-                        return Response({'info':'user can no longer add friends'},status=400)
+                        return Response({'info':'user can no longer add friends'},status=200)
                     friend_request = FriendRequest.objects.create(from_user=user,to_user=friend)
                     friend_request.save()
                     channel_layer = get_channel_layer()
@@ -362,6 +364,14 @@ class FriendRequestView(APIView):
                 friend_request.delete()
                 user.friends.add(friend)
                 friend.friends.add(user)
+                channel_layer = get_channel_layer()
+                async_to_sync(channel_layer.group_send)(
+                    f'notification_{friend.id}',
+                    {
+                        'type': 'accept_request',
+                        'sender': user.username                  
+                    }
+                )
                 return Response({'info':'friend request accepted'},status=200)
             return Response({'info':'user not found'},status=400)
         except Exception as e:
@@ -376,6 +386,14 @@ class FriendRequestView(APIView):
                 friend_request = FriendRequest.objects.get(Q(from_user=friend) & Q(to_user=user) & Q(status=0) | \
                     Q(from_user=user) & Q(to_user=friend) & Q(status=0))
                 friend_request.delete()
+                channel_layer = get_channel_layer()
+                async_to_sync(channel_layer.group_send)(
+                    f'notification_{friend.id}',
+                    {
+                        'type': 'reject_request',
+                        'sender': user.username                  
+                    }
+                )
                 return Response({'info':'friend request deleted'},status=200)
             return Response({'info':'user not found'},status=400)
         except Exception as e:
@@ -395,13 +413,17 @@ class BlockUser(APIView):
             if user.blocked.filter(username=friend).exists():
                 return Response({'info':'user allready blocked'},status=400)
             
-            if user.friends.filter(username=friend).exists():
-                b_friend = user.friends.get(username=friend)
-                user.blocked.add(b_friend)
-                return Response({'info':'user blocked'},status=200)    
-            else:
-                return Response({'info':'you are not friend with this user'},status=400)
-            
+            b_friend = user.friends.get(username=friend)
+            user.blocked.add(b_friend)
+            channel_layer = get_channel_layer()
+            async_to_sync(channel_layer.group_send)(
+                f'notification_{friend.id}',
+                {
+                    'type': 'block_request',
+                    'sender': user.username                  
+                }
+            )
+            return Response({'info':'user blocked'},status=200)
         except User.DoesNotExist:
             return Response({'info':'user Dose Not exsiste'},status=400)
     
@@ -412,6 +434,14 @@ class BlockUser(APIView):
             if user.blocked.filter(username=friend).exists():
                 b_friend = user.blocked.get(username=friend)
                 user.blocked.remove(b_friend)
+                channel_layer = get_channel_layer()
+                async_to_sync(channel_layer.group_send)(
+                    f'notification_{friend.id}',
+                    {
+                        'type': 'unblock_request',
+                        'sender': user.username                  
+                    }
+                )
                 return Response({'info':'user unblocked'},status=200)
             return Response({'info':'user not blocked'},status=400)
         except User.DoesNotExist:

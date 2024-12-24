@@ -40,3 +40,35 @@ class NotificationConsumer(AsyncWebsocketConsumer):
             'type': 'friend_request',
             'message': f'{sender} sent you a friend request'
         }))
+
+    async def reject_request(self, event):
+        sender = event['sender']
+        await self.send(text_data=json.dumps({
+            'sender': sender,
+            'type': 'reject_request',
+            'message': f'{sender} reject your friend request'
+        }))
+
+    async def accept_request(self, event):
+        sender = event['sender']
+        await self.send(text_data=json.dumps({
+            'sender': sender,
+            'type': 'accept_request',
+            'message': f'{sender} accept your friend request'
+        }))
+
+    async def block_request(self, event):
+        sender = event['sender']
+        await self.send(text_data=json.dumps({
+            'sender': sender,
+            'type': 'block_request',
+            'message': f'{sender} blocked you'
+        }))
+
+    async def unblock_request(self, event):
+        sender = event['sender']
+        await self.send(text_data=json.dumps({
+            'sender': sender,
+            'type': 'unblock_request',
+            'message': f'{sender} blocked you'
+        }))
