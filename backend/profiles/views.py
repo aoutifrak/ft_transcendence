@@ -333,7 +333,7 @@ class FriendRequestView(APIView):
                         f'notification_{friend.id}',
                         {
                             'type': 'friend_request',
-                            'sender': user.username                  
+                            'sender': user                  
                         }
                     )
                 return Response({'info':'friend request sent'},status=200)
@@ -345,7 +345,7 @@ class FriendRequestView(APIView):
         try:
             user = request.user
             type = request.GET['type']
-            if type == 'send':
+            if type == 'sent':
                 friend_requests = FriendRequest.objects.filter(Q(from_user=user) & Q(status=0))
             elif type == 'received':
                 friend_requests = FriendRequest.objects.filter(Q(to_user=user) & Q(status=0))
