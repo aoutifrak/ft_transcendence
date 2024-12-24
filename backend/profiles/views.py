@@ -308,6 +308,7 @@ class FriendsView(APIView):
 
 class FriendRequestView(APIView):
     permission_classes = [IsAuthenticated]
+    serializer_class = [UserSerializer]
     def post(self,request):
         try:
             user = request.user
@@ -329,11 +330,12 @@ class FriendRequestView(APIView):
                     friend_request = FriendRequest.objects.create(from_user=user,to_user=friend)
                     friend_request.save()
                     channel_layer = get_channel_layer()
+                    user_data = self.serialaizer(user)
                     async_to_sync(channel_layer.group_send)(
                         f'notification_{friend.id}',
                         {
                             'type': 'friend_request',
-                            'sender': user                  
+                            'sender': user_data.data      
                         }
                     )
                 return Response({'info':'friend request sent'},status=200)
