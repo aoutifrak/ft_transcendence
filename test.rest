@@ -24,11 +24,12 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ##############
 ##############
 
+
 POST http://127.0.0.1:8000/api/login
 Content-Type: application/json
 
 {
-  "email": "tests@example.com",
+  "email": "test@example.com",
   "password": "orllld123"
 }
 
@@ -46,7 +47,6 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ##############
 ##############
 
-
 POST  http://127.0.0.1:8000/api/login
 Content-Type: application/json
 
@@ -60,34 +60,33 @@ Content-Type: application/json
 ##############
 ##############
 
-
 POST http://127.0.0.1:8000/api/signup
 Content-Type: application/json
 
 {
-  "username": "uassxjsaa",
-  "email": "test@example.com",
+  "username": "testa",
+  "email": "testa@example.com",
   "password": "orllld123"
 }
 
 ##############
 ##############
 
-POST   http://127.0.0.1:8000/api/friend_req
+
+POST  http://127.0.0.1:8000/api/friend_req/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0ODkwMzg2LCJpYXQiOjE3MzQ4OTAwODYsImp0aSI6ImE5Nzg4YWVjZGUzMDQ2YmNiNWMwM2QxZGIwOGVkNWI1IiwidXNlcl9pZCI6Mn0.gRmtFaJrhzZMC1cw3_y5qm_vGWdxJONV8KpgmzcDuR8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MDc5NzU3LCJpYXQiOjE3MzUwNzk0NTcsImp0aSI6IjA0ZDc5NTU3N2Y3NTRkY2ViOWIyMDZkOGZmMWFlMzM1IiwidXNlcl9pZCI6Mn0.7Zlvzrtr1NskYPirPKejS0K2ja7IZC68qGymQQEGs-w
 
 {
-  "username":"uassxjaa"
+  "username":"test"
 }
-
 ##################
 ##################
 
-GET   http://127.0.0.1:8000/api/friend_req/?type=send
+GET http://127.0.0.1:8000/api/notification/notif
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0OTYyMzYxLCJpYXQiOjE3MzQ5NjIwNjEsImp0aSI6ImY4YzA4YTY3NDAzNTRjZmJiNDY3YzA4ZDk2NTYzMTlmIiwidXNlcl9pZCI6MX0.M_1o8rWDzi5UeMs_FNM1KxsoVFDvLH9869sZHffXvLk
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MDgwMTMyLCJpYXQiOjE3MzUwNzk4MzIsImp0aSI6IjE0Yjk2MmIwYTNmNTRkYWI5YzNkZjgwMTYyMTdkZGNlIiwidXNlcl9pZCI6MX0.2dd5VY0bGSqdQnS3HFgmjCRBzTjiv5x7KtUXMjF0YzY
 
 {
-  "username":"uassxjsaa"
+
 }

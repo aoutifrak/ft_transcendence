@@ -6,6 +6,7 @@ from channels.db import database_sync_to_async
 from chat.models import Chat , Message
 from chat.serializers import MessageSerializer
 from django.db.models import Q
+from notification.consumers import NotificationConsumer
 
 User = get_user_model()
 
@@ -102,7 +103,9 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 raise Exception("could not create chat Message")
             
             messages = MessageSerializer(messages).data
-            
+
+            NotificationConsumer().sent_message(receiver=user.id,sender=self.scope['user'])
+
             await self.channel_layer.group_send(
                 f'chat_{user.id}',
                 {
@@ -119,8 +122,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
         }))
     
     async def chat_message(self, event):
-        message = event['message']
         sender = event['sender']
+        message = event['message']
         await self.send(text_data=json.dumps({
             'sender': sender,
             'message': message

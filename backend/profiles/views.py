@@ -16,6 +16,7 @@ from django.db.models import Q
 from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
 import os , requests
+from notification.models import Notification
 
 class RefreshTokenView(APIView):
     permission_classes = [AllowAny]
@@ -308,7 +309,6 @@ class FriendsView(APIView):
 
 class FriendRequestView(APIView):
     permission_classes = [IsAuthenticated]
-    serializer_class = [UserSerializer]
     def post(self,request):
         try:
             user = request.user
@@ -329,13 +329,15 @@ class FriendRequestView(APIView):
                         return Response({'info':'user can no longer add friends'},status=200)
                     friend_request = FriendRequest.objects.create(from_user=user,to_user=friend)
                     friend_request.save()
+                    notif = Notification.objects.create(sender_notif=user ,receiver_notif=friend,type='friend_request',message=f'{user.username} sent you a friend request')
+                    notif.save()
                     channel_layer = get_channel_layer()
-                    user_data = self.serialaizer(user)
+                    user_data = UserSerializer(instance=user).data
                     async_to_sync(channel_layer.group_send)(
                         f'notification_{friend.id}',
                         {
                             'type': 'friend_request',
-                            'sender': user_data.data      
+                            'sender': user_data      
                         }
                     )
                 return Response({'info':'friend request sent'},status=200)
@@ -389,6 +391,9 @@ class FriendRequestView(APIView):
                 friend_request = FriendRequest.objects.get(Q(from_user=friend) & Q(to_user=user) & Q(status=0) | \
                     Q(from_user=user) & Q(to_user=friend) & Q(status=0))
                 friend_request.delete()
+                notif = Notification.objects.get(Q(sender_notif=friend) & Q(receiver_notif=user)| \
+                    Q(sender_notif=user) & Q(receiver_notif=friend)) 
+                notif.delete()
                 channel_layer = get_channel_layer()
                 async_to_sync(channel_layer.group_send)(
                     f'notification_{friend.id}',
@@ -416,11 +421,11 @@ class BlockUser(APIView):
             if user.blocked.filter(username=friend).exists():
                 return Response({'info':'user allready blocked'},status=400)
             
-            b_friend = user.friends.get(username=friend)
+            b_friend = User.objects.get(username=friend)
             user.blocked.add(b_friend)
             channel_layer = get_channel_layer()
             async_to_sync(channel_layer.group_send)(
-                f'notification_{friend.id}',
+                f'notification_{b_friend.id}',
                 {
                     'type': 'block_request',
                     'sender': user.username                  
@@ -439,7 +444,7 @@ class BlockUser(APIView):
                 user.blocked.remove(b_friend)
                 channel_layer = get_channel_layer()
                 async_to_sync(channel_layer.group_send)(
-                    f'notification_{friend.id}',
+                    f'notification_{b_friend.id}',
                     {
                         'type': 'unblock_request',
                         'sender': user.username                  
@@ -466,7 +471,7 @@ class SearchUser(APIView):
     def post(self, request):
         try:
             all_users = User.objects.all()
-            user_data = self.serializer_class(all_users,many=True,context={'request': request})
+            user_data = self.serializer_class(all_users, many=True, context={'request': request})
             response = Response(
                 {'user':user_data.data},status=200
             )
