@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
-from .serializer import UserSerializer , LoginUserSerializer ,User_Register , SocialAuthontication ,FriendRequestSerializer ,Machserializer ,FriendSerializer
+from .serializer import UserSerializer , LoginUserSerializer ,User_Register , SocialAuthontication ,FriendRequestSerializer ,Machserializer ,FriendSerializer, SentFriendRequestSerializer
 from .models import User , FriendRequest, Matches 
 import jwt 
 from django.core.serializers import deserialize
@@ -349,9 +349,10 @@ class FriendRequestView(APIView):
             type = request.GET['type']
             if type == 'sent':
                 friend_requests = FriendRequest.objects.filter(Q(from_user=user) & Q(status=0))
+                serializer = SentFriendRequestSerializer(friend_requests, many=True)
             elif type == 'received':
                 friend_requests = FriendRequest.objects.filter(Q(to_user=user) & Q(status=0))
-            serializer = FriendRequestSerializer(friend_requests, many=True)
+                serializer = FriendRequestSerializer(friend_requests, many=True)
             return Response({'friend_requests':serializer.data},status=200)
         except Exception as e:
             return Response({'info':str(e)},status=400)

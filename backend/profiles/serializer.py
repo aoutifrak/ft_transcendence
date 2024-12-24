@@ -120,6 +120,13 @@ class FriendRequestSerializer(serializers.ModelSerializer):
         model = FriendRequest
         fields = ['from_user', 'status', 'created_at']
 
+class SentFriendRequestSerializer(serializers.ModelSerializer):
+    to_user =  UserSerializer()
+    class Meta:
+        model = FriendRequest
+        fields = ['to_user', 'status', 'created_at']
+
+
 class Machserializer(serializers.ModelSerializer):
     userone =  serializers.CharField(source='userone.username', read_only=True)
     usertow =  serializers.CharField(source='usertow.username', read_only=True)
