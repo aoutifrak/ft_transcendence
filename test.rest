@@ -72,10 +72,9 @@ Content-Type: application/json
 ##############
 ##############
 
-
-GET http://127.0.0.1:8000/api/friend_req/?type=received
+GET http://127.0.0.1:8000/api/friend_req/?type=received&page=1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MDkzMjA2LCJpYXQiOjE3MzUwOTI5MDYsImp0aSI6IjRlOTc1NDg2Y2M2MjQzYTk4Njg3ZWVmNjAxOTNjMjkyIiwidXNlcl9pZCI6M30.JMC_qv7CslfMtsFiGOLluDnnG0db3gVyo-m7hwVAnPs
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MDk0MDg2LCJpYXQiOjE3MzUwOTM3ODYsImp0aSI6ImFmMThhNTJjZjBhYjQ3MWU4NWRiZDE2NDNlYjEwMGUyIiwidXNlcl9pZCI6M30.KGobf7SYuYNGzFEvXAaQP6QZajOU9U5EW5PSqkiYhiw
 
 {
   "username":"testaa"

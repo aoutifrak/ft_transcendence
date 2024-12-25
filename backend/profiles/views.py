@@ -297,6 +297,7 @@ class SocialAuthverify(APIView):
 
 class FriendsView(APIView):
     permission_classes = [IsAuthenticated]
+    pagination_class = [CustomPagination]
     def get (self,request):
         try:
             user = request.user

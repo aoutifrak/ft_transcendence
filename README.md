@@ -613,7 +613,7 @@ This endpoint retrieves the list of friends for the authenticated user.
 
 #### Example Request:
 ```http
-GET /api/friends
+GET /api/friends?page=1
 Authorization: Bearer <your_token>
 Example Response:
 {
