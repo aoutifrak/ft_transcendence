@@ -24,9 +24,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ##############
 ##############
 
-
-POST http://127.0.0.1:8000/api/login
+POST http://127.0.0.1:8000/api/logout
 Content-Type: application/json
+Set-Cookie: refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTczNTY5ODk1MCwiaWF0IjoxNzM1MDk0MTUwLCJqdGkiOiJhM2I2N2UyMzkyYjQ0NTMyODk0MDdjZTNiMWI5OGMyNCIsInVzZXJfaWQiOjN9.R4rsCbh8f3cQ1JUjsRz5iii0hH1HNl2dhyN-dfKRyVo; HttpOnly; Path=/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MDk0NDUwLCJpYXQiOjE3MzUwOTQxNTAsImp0aSI6ImZhMDAyYjExNGNlYzRjNGM5NzI5MzQ1NDY3NTI4NWQ3IiwidXNlcl9pZCI6M30.7xLz1coPw1t8qqiDdn3904Sa-Hvvcu9YT0r7bgn1sI0
 
 {
   "email": "test@example.com",
