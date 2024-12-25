@@ -17,6 +17,10 @@ from channels.layers import get_channel_layer
 from asgiref.sync import async_to_sync
 import os , requests
 from notification.models import Notification
+from rest_framework.pagination import PageNumberPagination
+
+class CustomPagination(PageNumberPagination):
+    page_size = 10 
 
 class RefreshTokenView(APIView):
     permission_classes = [AllowAny]
@@ -57,6 +61,8 @@ class LoginView(APIView):
                     'email':user.email
                     })
                 token = user.token()
+                user.is_online = True
+                user.save()
                 response = Response({
                     'access': str(token.access_token)
                 },status=status.HTTP_200_OK)
@@ -125,6 +131,10 @@ class UserUpdate(APIView):
                 avatar_extension = os.path.splitext(avatar.name)[1]
                 avatar.name = f"{user.username}{avatar_extension}"
                 request.data['avatar'] = avatar
+                serializer = self.serializer_class(user,data=request.data,partial=True)
+                if serializer.is_valid():
+                    serializer.save()
+                return Response({"message": serializer.data['avatar']},status=status.HTTP_200_OK)
             serializer = self.serializer_class(user,data=request.data,partial=True)
             if serializer.is_valid():
                 serializer.save()
@@ -139,9 +149,10 @@ class LogoutView(APIView):
         try:
             refresh = request.COOKIES.get('refresh_token',None)
             if refresh is not None:
-                print(refresh)
                 token = RefreshToken(refresh)
                 token.blacklist()
+                user.is_online = False
+                user.save()
                 response = Response({"detail": "Successfully logged out."}, status=status.HTTP_200_OK)
                 response.delete_cookie('refresh_token')
                 return response
@@ -268,6 +279,8 @@ class SocialAuthverify(APIView):
                         'email':email
                         })
                     token = user.token()
+                    user.is_online = True
+                    user.save()
                     response = Response({
                         'access': str(token.access_token)
                     },status=status.HTTP_200_OK)
@@ -308,6 +321,7 @@ class FriendsView(APIView):
             return Response({'info':str(e)},status=400)
 
 class FriendRequestView(APIView):
+    pagination_class = [CustomPagination]
     permission_classes = [IsAuthenticated]
     def post(self,request):
         try:
@@ -369,6 +383,9 @@ class FriendRequestView(APIView):
                 friend_request.delete()
                 user.friends.add(friend)
                 friend.friends.add(user)
+                notif = Notification.objects.get(Q(sender_notif=friend) & Q(receiver_notif=user)| \
+                    Q(sender_notif=user) & Q(receiver_notif=friend)) 
+                notif.delete()
                 channel_layer = get_channel_layer()
                 async_to_sync(channel_layer.group_send)(
                     f'notification_{friend.id}',
@@ -494,89 +511,6 @@ class SearchUserByusername(APIView):
             return response
         except Exception as e:
             return Response({'error': str(e)})
-
-class Match(APIView):
-    permission_classes = [IsAuthenticated]
-    def post(self, request):
-        try:
-            user = request.user
-            friend = request.data['username']
-            friend = User.objects.get(username=friend)
-            match = Matches.objects.create(userone=user,usertow=friend)
-            async_to_sync(channel_layer.group_send)(
-            f'notification_{friend.id}',
-                {
-                    'type': 'game_invite',
-                    'sender': user.username                  
-                }
-            )
-            return Response({'info': 'match created and request sent', 'match_id': match.id}, status=200)
-        except Exception as e:
-            return Response({'info':str(e)},status=400)
-    
-    def get(self, request):
-        try:
-            user = request.user
-            friend = request.data['username']
-            friend = User.objects.get(username=friend)
-            matches = Matches.objects.get((Q(userone=user, usertow=friend) | Q(userone=friend, usertow=user)) & Q(status=0))
-            match_data = Machserializer(matches, many=True)
-            return Response({'matches':match_data.data},status=200)
-        except Matches.DoesNotExist:
-            return Response({'info': 'No match found'}, status=404)
-        except Exception as e:
-            return Response({'info': str(e)}, status=400)
-
-    def put(self, request):
-        try:
-            user = request.user
-            friend = request.data['username']
-            friend = User.objects.get(username=friend)
-            match = Matches.objects.get(Q(userone=user) & Q(usertow=user) & Q(status=0))
-            match.status = 1
-            match.save()
-            return Response({'info': 'Match accepted'}, status=200)
-        except Matches.DoesNotExist:
-            return Response({'info': 'No pending match found'}, status=404)
-        except Exception as e:
-            return Response({'info': str(e)}, status=400)
-            
-    def delete(self, request):
-        try:
-            user = request.user
-            friend = request.data['username']
-            friend = User.objects.get(username=friend)
-            match = Matches.objects.get((Q(userone=user, usertow=friend) | Q(userone=friend, usertow=user)) & Q(status=0))
-            if match.exists():
-                match.first().delete()
-                return Response({'info': 'Match deleted successfully'}, status=200)
-            else:
-                return Response({'info': 'No match found to delete'}, status=404)
-        except Exception as e:
-            return Response({'info': str(e)}, status=400)
-        
-class Recent_Matches(APIView):
-    permission_classes = [IsAuthenticated]
-    def get(self, request):
-        try:
-            user = request.user
-            friend = request.data['username']
-            friend = User.objects.get(username=friend)
-            matches = Matches.objects.get((Q(userone=user, usertow=friend) | Q(userone=friend, usertow=user)) & Q(status=1))
-            match_data = Machserializer(matches, many=True)
-            return Response({'matches':match_data.data},status=200)
-        except Exception as e:
-            return Response({'info':str(e)},status=400)
-
-class LeaderBoard(APIView):
-    permission_classes = [IsAuthenticated]
-    def get(self, request):
-        try:
-            matches = Matches.objects.all()[:6]
-            match_data = Machserializer(matches, many=True)
-            return Response({'matches':match_data.data},status=200)
-        except Exception as e:
-            return Response({'info':str(e)},status=400)
 
 class Password_Change(APIView):
     permission_classes = [IsAuthenticated]

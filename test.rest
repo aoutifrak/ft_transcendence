@@ -51,7 +51,7 @@ POST  http://127.0.0.1:8000/api/login
 Content-Type: application/json
 
 {
-  "email": "test@example.com",
+  "email": "testaa@example.com",
   "password": "orllld123"
 }
 
@@ -64,8 +64,8 @@ POST http://127.0.0.1:8000/api/signup
 Content-Type: application/json
 
 {
-  "username": "testa",
-  "email": "testa@example.com",
+  "username": "testaa",
+  "email": "testaa@example.com",
   "password": "orllld123"
 }
 
@@ -73,19 +73,19 @@ Content-Type: application/json
 ##############
 
 
-POST  http://127.0.0.1:8000/api/friend_req/
+GET http://127.0.0.1:8000/api/friend_req/?type=received
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MDc5NzU3LCJpYXQiOjE3MzUwNzk0NTcsImp0aSI6IjA0ZDc5NTU3N2Y3NTRkY2ViOWIyMDZkOGZmMWFlMzM1IiwidXNlcl9pZCI6Mn0.7Zlvzrtr1NskYPirPKejS0K2ja7IZC68qGymQQEGs-w
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MDkzMjA2LCJpYXQiOjE3MzUwOTI5MDYsImp0aSI6IjRlOTc1NDg2Y2M2MjQzYTk4Njg3ZWVmNjAxOTNjMjkyIiwidXNlcl9pZCI6M30.JMC_qv7CslfMtsFiGOLluDnnG0db3gVyo-m7hwVAnPs
 
 {
-  "username":"test"
+  "username":"testaa"
 }
 ##################
 ##################
 
 GET http://127.0.0.1:8000/api/notification/notif
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MDgwMTMyLCJpYXQiOjE3MzUwNzk4MzIsImp0aSI6IjE0Yjk2MmIwYTNmNTRkYWI5YzNkZjgwMTYyMTdkZGNlIiwidXNlcl9pZCI6MX0.2dd5VY0bGSqdQnS3HFgmjCRBzTjiv5x7KtUXMjF0YzY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MDkzMDA4LCJpYXQiOjE3MzUwOTI3MDgsImp0aSI6IjdjOGE4ZGE4ZjE0YTQ2YzFhODhjMGE1YWI2MzNjYjI1IiwidXNlcl9pZCI6MX0.YjzCSTL-2SHkCLSjHZ78IDKdOglsl1xE79zaw8LLXdU
 
 {
 

@@ -26,7 +26,7 @@ class Messages(APIView):
     permission_classes = [IsAuthenticated]
     def get(self, request):
         try:
-            chat_id = request.data['chat_id']
+            chat_id = request.GET['chat_id']
             messages = Message.objects.filter(chat=chat_id)
             serializer = MessageSerializer(messages, many=True)
             return Response(serializer.data, status=status.HTTP_200_OK)

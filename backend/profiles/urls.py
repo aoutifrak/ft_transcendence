@@ -19,9 +19,6 @@ urlpatterns = [
     path('search_user', SearchUser.as_view()),
     path('search_username', SearchUserByusername.as_view()),
     path('Verify_token', verifyToken.as_view()),
-    path('recent', Recent_Matches.as_view()),
-    path('matches', Match.as_view()),
-    path('leaderboard', LeaderBoard.as_view()),
     path('pass', Password_Change.as_view()), 
     path('update_user',UserUpdate.as_view()),
 ]
