@@ -73,9 +73,9 @@ Content-Type: application/json
 ##############
 ##############
 
-DELETE  http://127.0.0.1:8000/api/friend_req/?type=received&page=1
+POST http://127.0.0.1:8000/api/friend_req/?type=received&page=1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjQxNjk0LCJpYXQiOjE3MzUyNDEzOTQsImp0aSI6IjIyNDEzOGFkMWUyYjQ1MGI4YWIwMGZmODlmZjQzNzk1IiwidXNlcl9pZCI6NX0.Oxo7jd4vB_BS2Q0ZnwJ5v-8r0NRolGAz1J_grNrWbXc
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjQ1OTM4LCJpYXQiOjE3MzUyNDU2MzgsImp0aSI6ImU5Nzc3YzljMDczNjQ5MzJhOGE2OTExYzBjMjg0YjVmIiwidXNlcl9pZCI6NX0.DHZlvWW2wMTCip_7qrtwa_EquhKYPc4ZF16SHr8J9L0
 
 {
   "username":"testaa"

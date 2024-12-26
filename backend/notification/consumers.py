@@ -29,7 +29,7 @@ class NotificationConsumer(AsyncWebsocketConsumer):
         await self.send(text_data=json.dumps({
             'sender': sender,
             'type': 'friend_request',
-            'message': f'{sender.username} sent you a friend request'
+            'message': f'{sender['username']} sent you a friend request'
         }))
 
     async def reject_request(self, event):
@@ -38,7 +38,7 @@ class NotificationConsumer(AsyncWebsocketConsumer):
         await self.send(text_data=json.dumps({
             'sender': sender,
             'type': 'reject_request',
-            'message': f'{sender.username} reject your friend request'
+            'message': f'{sender['username']} reject your friend request'
         }))
 
     async def unfriend(self, event):
@@ -47,7 +47,7 @@ class NotificationConsumer(AsyncWebsocketConsumer):
         await self.send(text_data=json.dumps({
             'sender': sender,
             'type': 'unfriend',
-            'message': f'{sender.username} reject your friend request'
+            'message': f'{sender['username']} reject your friend request'
         }))
 
     async def accept_request(self, event):
@@ -55,7 +55,7 @@ class NotificationConsumer(AsyncWebsocketConsumer):
         await self.send(text_data=json.dumps({
             'sender': sender,
             'type': 'accept_request',
-            'message': f'{sender.username} accept your friend request'
+            'message': f'{sender['username']} accept your friend request'
         }))
 
     async def block_request(self, event):
@@ -63,7 +63,7 @@ class NotificationConsumer(AsyncWebsocketConsumer):
         await self.send(text_data=json.dumps({
             'sender': sender,
             'type': 'block_request',
-            'message': f'{sender.username} blocked you'
+            'message': f'{sender['username']} blocked you'
         }))
 
     async def unblock_request(self, event):
@@ -71,7 +71,7 @@ class NotificationConsumer(AsyncWebsocketConsumer):
         await self.send(text_data=json.dumps({
             'sender': sender,
             'type': 'unblock_request',
-            'message': f'{sender.username} unblocked you'
+            'message': f'{sender['username']} unblocked you'
         })
         )
      
@@ -80,7 +80,7 @@ class NotificationConsumer(AsyncWebsocketConsumer):
         await self.send(text_data=json.dumps({
             'sender': sender,
             'type': 'accept_invite',
-            'message': f'{sender.username} Accept you a Game request'
+            'message': f'{sender['username']} Accept you a Game request'
             })
         )
 
@@ -89,7 +89,7 @@ class NotificationConsumer(AsyncWebsocketConsumer):
         await self.send(text_data=json.dumps({
             'sender': sender,
             'type': 'game_invite',
-            'message': f'{sender.username} sent you a Game request'
+            'message': f'{sender['username']} sent you a Game request'
         }))
 
     async def sent_message(self, receiver, sender):
@@ -98,6 +98,6 @@ class NotificationConsumer(AsyncWebsocketConsumer):
             {
                 'sender': sender,
                 'type': 'sent_message',
-                'message': f'{sender.username} send you a message'
+                'message': f'{sender['username']} send you a message'
             }
         )
