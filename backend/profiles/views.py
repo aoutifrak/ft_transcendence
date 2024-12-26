@@ -332,7 +332,7 @@ class FriendsView(APIView):
             return Response({'info':str(e)},status=400)
 
 class FriendRequestView(APIView):
-    pagination_class = [CustomPagination]
+    pagination_class = CustomPagination
     permission_classes = [IsAuthenticated]
     def post(self,request):
         try:
@@ -379,8 +379,10 @@ class FriendRequestView(APIView):
                 serializer = SentFriendRequestSerializer(friend_requests, many=True)
             elif type == 'received':
                 friend_requests = FriendRequest.objects.filter(Q(to_user=user) & Q(status=0))
-                serializer = FriendRequestSerializer(friend_requests, many=True)
-            return Response({'friend_requests':serializer.data},status=200)
+                paginator = self.pagination_class()
+                paginated_friend_req = paginator.paginate_queryset(friend_requests, request, view=self)
+                serializer = FriendRequestSerializer(paginated_friend_req, many=True)
+            return paginator.get_paginated_response({'friend_requests': serializer.data})
         except Exception as e:
             return Response({'info':str(e)},status=400)
         

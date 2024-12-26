@@ -73,9 +73,9 @@ Content-Type: application/json
 ##############
 ##############
 
-POST http://127.0.0.1:8000/api/friend_req/?type=received&page=1
+GET http://127.0.0.1:8000/api/friend_req/?type=received&page=1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjQ1OTM4LCJpYXQiOjE3MzUyNDU2MzgsImp0aSI6ImU5Nzc3YzljMDczNjQ5MzJhOGE2OTExYzBjMjg0YjVmIiwidXNlcl9pZCI6NX0.DHZlvWW2wMTCip_7qrtwa_EquhKYPc4ZF16SHr8J9L0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjUzMjE0LCJpYXQiOjE3MzUyNTI5MTQsImp0aSI6IjVkMzIwOTkwYTljMDQyYTM5OTgyYjA4NGQ3MTQ2OGQ3IiwidXNlcl9pZCI6MjZ9.Z-jPtipZwF4aT240IYM16IkM-gIFH5fkKLRLGAB1huY
 
 {
   "username":"testaa"
@@ -83,10 +83,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ##################
 ##################
 
-POST http://127.0.0.1:8000/api/oauth
+GET http://127.0.0.1:8000/api/friend_req/?type=received&page=1
 Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjQ2MjUzLCJpYXQiOjE3MzUyNDU5NTMsImp0aSI6ImQzYjRkMmU3YzIxZDQ4NzdhZWEzY2IxM2MxMDZjZDZkIiwidXNlcl9pZCI6NH0.tvCCLl5Iy9egcNlVAoH0MlWo7sMkCwGC89M_6v1r69M
 
 {
-  "platform":"42"
-
+  "username":"testa"
 }
