@@ -30,7 +30,7 @@ Set-Cookie: refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlI
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MDk0NDUwLCJpYXQiOjE3MzUwOTQxNTAsImp0aSI6ImZhMDAyYjExNGNlYzRjNGM5NzI5MzQ1NDY3NTI4NWQ3IiwidXNlcl9pZCI6M30.7xLz1coPw1t8qqiDdn3904Sa-Hvvcu9YT0r7bgn1sI0
 
 {
-  "email": "test@example.com",
+  "email": "testa@example.com",
   "password": "orllld123"
 }
 
@@ -52,7 +52,7 @@ POST  http://127.0.0.1:8000/api/login
 Content-Type: application/json
 
 {
-  "email": "testaa@example.com",
+  "email": "testa@example.com",
   "password": "orllld123"
 }
 
@@ -65,17 +65,17 @@ POST http://127.0.0.1:8000/api/signup
 Content-Type: application/json
 
 {
-  "username": "testaa",
-  "email": "testaa@example.com",
+  "username": "testa",
+  "email": "testa@example.com",
   "password": "orllld123"
 }
 
 ##############
 ##############
 
-GET http://127.0.0.1:8000/api/friend_req/?type=received&page=1
+DELETE  http://127.0.0.1:8000/api/friend_req/?type=received&page=1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MDk0MDg2LCJpYXQiOjE3MzUwOTM3ODYsImp0aSI6ImFmMThhNTJjZjBhYjQ3MWU4NWRiZDE2NDNlYjEwMGUyIiwidXNlcl9pZCI6M30.KGobf7SYuYNGzFEvXAaQP6QZajOU9U5EW5PSqkiYhiw
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1MjQxNjk0LCJpYXQiOjE3MzUyNDEzOTQsImp0aSI6IjIyNDEzOGFkMWUyYjQ1MGI4YWIwMGZmODlmZjQzNzk1IiwidXNlcl9pZCI6NX0.Oxo7jd4vB_BS2Q0ZnwJ5v-8r0NRolGAz1J_grNrWbXc
 
 {
   "username":"testaa"
