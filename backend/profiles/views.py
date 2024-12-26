@@ -317,6 +317,15 @@ class FriendsView(APIView):
                 user.friends.remove(friend)
                 if friend in user.blocked.all():
                     user.blocked.remove(friend)
+                    channel_layer = get_channel_layer()
+                    user_data = UserSerializer(instance=user).data
+                    async_to_sync(channel_layer.group_send)(
+                        f'notification_{friend.id}',
+                        {
+                            'type': 'unfriend',
+                            'sender': user_data      
+                        }
+                    )
                 return Response({'info':'friend deleted'},status=200)
             return Response({'info':'user not found or not a friend'},status=400)
         except Exception as e:
@@ -389,11 +398,12 @@ class FriendRequestView(APIView):
                     Q(sender_notif=user) & Q(receiver_notif=friend)) 
                 notif.delete()
                 channel_layer = get_channel_layer()
+                user_data = UserSerializer(instance=user).data
                 async_to_sync(channel_layer.group_send)(
                     f'notification_{friend.id}',
                     {
                         'type': 'accept_request',
-                        'sender': user.username                  
+                        'sender': user_data               
                     }
                 )
                 return Response({'info':'friend request accepted'},status=200)
@@ -414,11 +424,12 @@ class FriendRequestView(APIView):
                     Q(sender_notif=user) & Q(receiver_notif=friend)) 
                 notif.delete()
                 channel_layer = get_channel_layer()
+                user_data = UserSerializer(instance=user).data
                 async_to_sync(channel_layer.group_send)(
                     f'notification_{friend.id}',
                     {
                         'type': 'reject_request',
-                        'sender': user.username                  
+                        'sender': user_data                  
                     }
                 )
                 return Response({'info':'friend request deleted'},status=200)
@@ -443,11 +454,12 @@ class BlockUser(APIView):
             b_friend = User.objects.get(username=friend)
             user.blocked.add(b_friend)
             channel_layer = get_channel_layer()
+            user_data = UserSerializer(instance=user).data
             async_to_sync(channel_layer.group_send)(
                 f'notification_{b_friend.id}',
                 {
                     'type': 'block_request',
-                    'sender': user.username                  
+                    'sender': user_data                  
                 }
             )
             return Response({'info':'user blocked'},status=200)
@@ -462,11 +474,12 @@ class BlockUser(APIView):
                 b_friend = user.blocked.get(username=friend)
                 user.blocked.remove(b_friend)
                 channel_layer = get_channel_layer()
+                user_data = UserSerializer(instance=user).data
                 async_to_sync(channel_layer.group_send)(
                     f'notification_{b_friend.id}',
                     {
                         'type': 'unblock_request',
-                        'sender': user.username                  
+                        'sender': user_data                  
                     }
                 )
                 return Response({'info':'user unblocked'},status=200)
