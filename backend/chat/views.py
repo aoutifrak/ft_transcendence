@@ -10,24 +10,16 @@ from rest_framework.pagination import PageNumberPagination
 class CustomPagination(PageNumberPagination):
     page_size = 10 
 
-class Chat_Room(APIView):
-    permission_classes = [IsAuthenticated]
-    def get(self, request):
-        try:
-            chats = Chat.objects.filter(Q(user1=request.user) | Q(user2=request.user))
-            serializer = ChatSerializer(chats, many=True)
-            return Response(serializer.data, status=status.HTTP_200_OK)
-        except Exception as e:
-            return Response({str(e)},status=status.HTTP_400_BAD_REQUEST)
-        
-
 class Messages(APIView):
     pagination_class = CustomPagination
     permission_classes = [IsAuthenticated]
     def get(self, request):
         try:
-            chat_id = request.GET['chat_id']
-            messages = Message.objects.filter(chat=chat_id)
+            username = request.GET['username']
+            user2 = User.objects.get(username=username)
+            chats = Chat.objects.filter(Q(user1=request.user) & Q(user2=user2) |Q(user1=user2) & Q(user2=request.user)).first()
+
+            messages = Message.objects.filter(chat=chats.id)
             paginator = self.pagination_class()
             paginated_messages = paginator.paginate_queryset(messages, request)
             
