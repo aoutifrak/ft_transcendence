@@ -379,9 +379,9 @@ class FriendRequestView(APIView):
                 serializer = SentFriendRequestSerializer(friend_requests, many=True)
             elif type == 'received':
                 friend_requests = FriendRequest.objects.filter(Q(to_user=user) & Q(status=0))
-                paginator = self.pagination_class()
-                paginated_friend_req = paginator.paginate_queryset(friend_requests, request, view=self)
-                serializer = FriendRequestSerializer(paginated_friend_req, many=True)
+            paginator = self.pagination_class()
+            paginated_friend_req = paginator.paginate_queryset(friend_requests, request, view=self)
+            serializer = FriendRequestSerializer(paginated_friend_req, many=True)
             return paginator.get_paginated_response({'friend_requests': serializer.data})
         except Exception as e:
             return Response({'info':str(e)},status=400)
