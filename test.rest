@@ -72,12 +72,12 @@ Content-Type: application/json
 ##############
 ##############
 
-GET http://127.0.0.1:8000/api/friends
+DELETE http://127.0.0.1:8000/api/friends
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NTg4MDI1LCJpYXQiOjE3MzU1ODc3MjUsImp0aSI6IjdiODkyN2RmMTMzYTRjZGRhMzlhMjJmZWRmMTYzYWU2IiwidXNlcl9pZCI6M30.93J3DYo6V6hVbykn-TQX7l-ddNg3RUdzUs822dbWTI0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjAwNTk4LCJpYXQiOjE3MzU2MDAyOTgsImp0aSI6IjJlZDllNzY5ZDJhOTQxMTFhNDJmNWU0OThhNDcxOGU0IiwidXNlcl9pZCI6Mn0.JXVEc5XNzdTCvl6_xpNMyQkzge048C3-6V82Hw1GmxQ
 
 {
-  "username":"testa"
+  "username":"aoutifrak"
 }
 ##################
 ##################
@@ -87,19 +87,19 @@ Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NTg3NzA5LCJpYXQiOjE3MzU1ODc0MDksImp0aSI6Ijg5ZTVhNzEwMWRlYjRhOGE5YzQxNmFmMWMyMTM3NjRlIiwidXNlcl9pZCI6M30.a6iCLAgsfY8z_j8uNl2YSZPubEJg77N8tjNoqLgAU_c
 
 {
-  "username":"testa"
+  "username":"aoutifrak"
 }
 
 ###########
 ###########
 ###########
 
-PUT http://127.0.0.1:8000/api/friend_req/?type=received&page=1
+DELETE http://127.0.0.1:8000/api/friend_req/?type=sent&page=1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NTc4NDA0LCJpYXQiOjE3MzU1NzgxMDQsImp0aSI6IjYyOWNiNzRjMGYyNTQwNzE5YzJkMzhhOWMyYzJhYTIyIiwidXNlcl9pZCI6Mn0.Ck7jU4jLDmbV68Ohl6ZNOq5Gw-9YbrE9oiUhMwjXJjM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjAwOTIwLCJpYXQiOjE3MzU2MDA2MjAsImp0aSI6Ijg2MmZlYjM2MzNhMDQxY2FhNWEyNWQ3ZWY2MWQyMzY3IiwidXNlcl9pZCI6Mn0.Lvap0iL3tuqBlcXmg4MbHKaxVSH_m8h6hWBDNXTlR0g
 
 {
-  "username":"user1"
+  "username":"aoutifrak"
 }
 
 #########################

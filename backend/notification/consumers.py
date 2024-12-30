@@ -47,7 +47,7 @@ class NotificationConsumer(AsyncWebsocketConsumer):
         await self.send(text_data=json.dumps({
             'sender': sender,
             'type': 'unfriend',
-            'message': f'{sender['username']} reject your friend request'
+            'message': f'{sender['username']} unfriend your'
         }))
 
     async def accept_request(self, event):

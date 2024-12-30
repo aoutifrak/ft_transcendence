@@ -17,7 +17,6 @@ def generate_unique_username(email):
         if counter > 100: 
             raise ValueError("Unable to generate a unique username")
     return username
-        
 
 class User_Register(serializers.ModelSerializer):
     email = serializers.EmailField(max_length=55, min_length=8, allow_blank=False)
