@@ -73,7 +73,7 @@ Content-Type: application/json
 
 GET http://127.0.0.1:8000/api/friends
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NTg3NzA5LCJpYXQiOjE3MzU1ODc0MDksImp0aSI6Ijg5ZTVhNzEwMWRlYjRhOGE5YzQxNmFmMWMyMTM3NjRlIiwidXNlcl9pZCI6M30.a6iCLAgsfY8z_j8uNl2YSZPubEJg77N8tjNoqLgAU_c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NTg4MDI1LCJpYXQiOjE3MzU1ODc3MjUsImp0aSI6IjdiODkyN2RmMTMzYTRjZGRhMzlhMjJmZWRmMTYzYWU2IiwidXNlcl9pZCI6M30.93J3DYo6V6hVbykn-TQX7l-ddNg3RUdzUs822dbWTI0
 
 {
   "username":"testa"
@@ -81,7 +81,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ##################
 ##################
 
-GET http://127.0.0.1:8000/api/friend_req/?type=sent&page=1
+GET http://127.0.0.1:8000/api/friend_req/?type=received&page=1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NTg3NzA5LCJpYXQiOjE3MzU1ODc0MDksImp0aSI6Ijg5ZTVhNzEwMWRlYjRhOGE5YzQxNmFmMWMyMTM3NjRlIiwidXNlcl9pZCI6M30.a6iCLAgsfY8z_j8uNl2YSZPubEJg77N8tjNoqLgAU_c
 
@@ -136,4 +136,20 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
   "username":"user1"
 }
 
+###############
 
+POST http://127.0.0.1:8000/api/oauth
+Content-Type: application/json
+
+{
+  "platform":"github"
+}
+###############
+
+GET http://localhost:8000/api/socialauth/?platform=github&code=c716ff99f883caf70523
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NTg4ODY2LCJpYXQiOjE3MzU1ODg1NjYsImp0aSI6ImExMjExNjJjNjgzYTRhZmNhNzU0NDUwYmQwYWQ5ZWJmIiwidXNlcl9pZCI6M30.tWlwhYa87uCjWTslLWTeLkhfBs5dhsWD98UNyrydh0I
+
+{
+  "platform":"github"
+}

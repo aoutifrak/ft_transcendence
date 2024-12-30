@@ -14,14 +14,36 @@ class User_Register(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['email', 'first_name', 'last_name', 'username', 'password', 'avatar']
+    def generate_unique_username(email):
+        base_username = email.split('@')[0]
+        username = base_username
 
+        counter = 0
+        while User.objects.filter(username=username).exists():
+            counter += 1
+            username = f"{base_username}{random.randint(1000, 9999)}"
+            if counter > 100: 
+                raise ValueError("Unable to generate a unique username")
+
+        return username
     def create(self, validated_data):
         password = validated_data.get('password', None)
+        username = validated_data.get('username`', None)
+
+        if len(password) < 6:
+            raise ValidationError("Password must be at least 8 characters long.")
+        if len(password) > 68:
+            raise ValidationError("Password cannot exceed 50 characters.")
+
+        if User.objects.filter(username=username).exists():
+            username = generate_unique_username(validated_data['email'])
+        validated_data['username'] = username
         user = User.objects.create_user(**validated_data)
         user.set_password(password)
+        user.avatar = validated_data.get('avatar')
         user.save()
         return user
-
+    
 class UserSerializer(serializers.ModelSerializer):
     password = serializers.CharField(write_only=True)
     avatar = serializers.ImageField(required=False)
