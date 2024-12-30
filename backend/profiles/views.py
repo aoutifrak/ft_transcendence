@@ -79,12 +79,11 @@ class Sign_upView(APIView):
     permission_classes = [AllowAny]
     def post(self,request):
         try:
-            email = request.data.get('email', None)
-            username = request.data.get('username', None)
+            email = request.data.get('email')
+            username = request.data.get('username')
             if User.objects.filter(email=email).exists():
                 raise AuthenticationFailed('Email already exists')
-            if User.objects.filter(username=username).exists():
-                raise AuthenticationFailed('Username already exists')
+
             serialaizer = User_Register(data=request.data)
             if serialaizer.is_valid(raise_exception=True):
                 user = serialaizer.save()
@@ -273,7 +272,7 @@ class SocialAuthverify(APIView):
             serializer = self.serializer_class(data=data)
             if serializer.is_valid(raise_exception=True):
                 email = serializer.validated_data
-                user  = User.objects.filter(email=email).first()
+                user  = User.objects.get(email=email)
                 if user :
                     if user.is2fa:
                         return Response({'2fa':True,
@@ -294,6 +293,8 @@ class SocialAuthverify(APIView):
                 else:
                     return Response({'info':'user not found'},status=400)
         except requests.exceptions.RequestException as e:
+            return Response({'info':str(e)}, status=400)
+        except Exception as e:
             return Response({'info':str(e)}, status=400)
 
 class FriendsView(APIView):

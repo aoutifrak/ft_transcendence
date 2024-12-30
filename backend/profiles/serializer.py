@@ -6,6 +6,19 @@ import requests ,random
 from django.core.exceptions import ValidationError
 
 
+def generate_unique_username(email):
+    base_username = email.split('@')[0]
+    username = base_username
+
+    counter = 0
+    while User.objects.filter(username=username).exists():
+        counter += 1
+        username = f"{base_username}{random.randint(1000, 9999)}"
+        if counter > 100: 
+            raise ValueError("Unable to generate a unique username")
+    return username
+        
+
 class User_Register(serializers.ModelSerializer):
     email = serializers.EmailField(max_length=55, min_length=8, allow_blank=False)
     password = serializers.CharField(max_length=68,min_length=6,write_only=True)
@@ -14,21 +27,11 @@ class User_Register(serializers.ModelSerializer):
     class Meta:
         model = User
         fields = ['email', 'first_name', 'last_name', 'username', 'password', 'avatar']
-    def generate_unique_username(email):
-        base_username = email.split('@')[0]
-        username = base_username
 
-        counter = 0
-        while User.objects.filter(username=username).exists():
-            counter += 1
-            username = f"{base_username}{random.randint(1000, 9999)}"
-            if counter > 100: 
-                raise ValueError("Unable to generate a unique username")
 
-        return username
     def create(self, validated_data):
-        password = validated_data.get('password', None)
-        username = validated_data.get('username`', None)
+        password = validated_data.get('password')
+        username = validated_data.get('username')
 
         if len(password) < 6:
             raise ValidationError("Password must be at least 8 characters long.")
@@ -37,6 +40,7 @@ class User_Register(serializers.ModelSerializer):
 
         if User.objects.filter(username=username).exists():
             username = generate_unique_username(validated_data['email'])
+        
         validated_data['username'] = username
         user = User.objects.create_user(**validated_data)
         user.set_password(password)
@@ -101,7 +105,7 @@ class SocialAuthontication(serializers.Serializer):
         platform = data['platform']
         headers = {'Authorization':f'Bearer {access_token}'}
         if platform == "github":
-            response = requests.get('https://api.github.com/user/emails',headers=headers, timeout=10000)
+            response = requests.get('https://api.github.com/user/emails', headers=headers, timeout=10000)
             response.raise_for_status()
             res = response.json()
             email = None
@@ -111,29 +115,50 @@ class SocialAuthontication(serializers.Serializer):
                     break
             if email is None:
                 raise serializers.ValidationError('email is required')
-            user , created = User.objects.get_or_create(email=email)
-            if created:
-                userinfo = requests.get('https://api.github.com/user',headers=headers, timeout=10000)
-                userinfo.raise_for_status()
-                userinfo['password'] = random.randint(10000000,99999999)
-                user = User_Register(data=userinfo.json())
-                user.is_valid(raise_exception=True)
-                return user.data['email']
-            return user.email
-            if email is None:
-                raise serializers.ValidationError('email is required')
+            try:
+                user = User.objects.get(email=email)
+                return user.email
+            except:
+                try:
+                    userinfo = requests.get('https://api.github.com/user', headers=headers, timeout=10000)
+                    userinfo.raise_for_status()
+                    userinfo = userinfo.json()
+                    validated_data = {}
+                    validated_data['username'] = userinfo['login']
+                    if User.objects.filter(username=validated_data['username']).exists():
+                        validated_data['username'] = generate_unique_username(email)
+                    validated_data['email'] = email
+                    user = User.objects.create_user(**validated_data)
+                    user.set_password(str(random.randint(10000000,99999999)))
+                    user.save()
+                    return user.email
+                except Exception as e:
+                    print(e)
+                    raise serializers.ValidationError('Failed to login with given credentials')
         elif platform == "42":
             response = requests.get('https://api.intra.42.fr/v2/me',headers=headers, timeout=10000)
             response.raise_for_status()
             res = response.json()
             email = res['email']
-            user , created = User.objects.get_or_create(email=email)
-            if created:
-                res['password'] = random.randint(10000000,99999999)
-                user = User_Register(data=res)
-                user.is_valid(raise_exception=True)
-                return user.data['email']
-            return user.email
+            try:
+                user = User.objects.get(email=email)
+                return user.email
+            except :
+                try:
+                    validated_data['username'] = res['username']
+                    if User.objects.filter(username=res['login']).exists():
+                        validated_data['username'] = generate_unique_username(email)
+                    validated_data = {}
+                    validated_data['username'] = generate_unique_username(email)
+                    validated_data['email'] = email
+                    validated_data['first_name'] = res['first_name']
+                    validated_data['last_name'] = res['last_name']
+                    user = User.objects.create_user(**validated_data)
+                    user.set_password(str(random.randint(10000000,99999999)))
+                    user.save()
+                    return user.email
+                except Exception as e:
+                    raise serializers.ValidationError('Failed to login with given credentials')
         raise serializers.ValidationError('Failed to login with given credentials')
 
 class FriendRequestSerializer(serializers.ModelSerializer):

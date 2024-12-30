@@ -4,7 +4,7 @@
 
 GET  http://127.0.0.1:8000/api/user_info
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0NzEwOTA3LCJpYXQiOjE3MzQ3MTA2MDcsImp0aSI6ImQ2MmU4MGRiNDk4NzRhYWQ5ZGY2MGE4YjY5NzczZTBkIiwidXNlcl9pZCI6MX0.MEQx9K3zqd08-6Jpd25LAgEg5R0_RFNScnx4ILkvVx8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjAwNDU5LCJpYXQiOjE3MzU2MDAxNTksImp0aSI6Ijc2NGMzNDg1YTBmODQzMDVhNGY3ZjZkMmU4N2NmNzBhIiwidXNlcl9pZCI6Mn0.wk6B0ppb3bhh3cxzrgD9TyWjMs8IE2eYt3TQvIPcImY
 
 {
 
@@ -48,12 +48,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ##############
 ##############
 
+
 POST http://127.0.0.1:8000/api/login
 Content-Type: application/json
 
 {
-  "email": "user1@example.com",
-  "password": "password123"
+  "email": "aoutifrak@example.com",
+  "password": "orllld123"
 }
 
 ##############
@@ -63,8 +64,8 @@ POST http://127.0.0.1:8000/api/signup
 Content-Type: application/json
 
 {
-  "username": "user1",
-  "email": "testa@example.com",
+  "username": "aoutifrak",
+  "email": "aoutifrak@example.com",
   "password": "orllld123"
 }
 
@@ -118,10 +119,10 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 POST http://127.0.0.1:8000/api/search_username
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NTg2NDQxLCJpYXQiOjE3MzU1ODYxNDEsImp0aSI6IjBlZTY1YzcwMWI2NTRlNTM4MDQ0NGI3ZmUxMDc5NGU3IiwidXNlcl9pZCI6Mn0.3AoWq0fVCMmNMmSlbFV7QK15irzom2O-pWJa0kpMRa8
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NTkzMzI5LCJpYXQiOjE3MzU1OTMwMjksImp0aSI6IjFmMjQwNzNjMzRjNTQ4ZDU5Y2UxMzEzZDVlYzEzNTlmIiwidXNlcl9pZCI6NH0.-qmN4jjrk4hmBs__vUsUa1dZXqvL1htnknJPIE4gKmM
 
 {
-  "username":"user1"
+  "username":""
 }
 
 #################
@@ -130,14 +131,13 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 POST http://127.0.0.1:8000/api/search_user?page=1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NTg3MTIzLCJpYXQiOjE3MzU1ODY4MjMsImp0aSI6Ijc4YTEzMzRlN2JhYTQ4NGI4YjJmYjY3ZDY3Y2EwNmNiIiwidXNlcl9pZCI6M30.d8sgE-S01ypxLKKFQpNT4hkMwLCu-5qE9RNtvNsMNd0
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NTkzNDUxLCJpYXQiOjE3MzU1OTMxNTEsImp0aSI6IjY0NzEwOTcxOGM0MTRjYjU4MjljNjk3Nzc3NDFiOThiIiwidXNlcl9pZCI6MX0.sRhv5X8fFQ-tHL1WLQqvD5cvpRNaH6vyjT1yIDllHqs
 
 {
-  "username":"user1"
+
 }
 
 ###############
-
 POST http://127.0.0.1:8000/api/oauth
 Content-Type: application/json
 
