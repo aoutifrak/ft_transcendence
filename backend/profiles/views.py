@@ -301,10 +301,12 @@ class FriendsView(APIView):
     pagination_class = [CustomPagination]
     def get (self,request):
         try:
+            paginator = self.pagination_class()
             user = request.user
             friends = user.friends.all()
-            serializer = UserSerializer(friends, many=True)
-            return Response({'friends':serializer.data},status=200)
+            friend = paginator.paginate_queryset(friends, request)
+            serializer = UserSerializer(friend, many=True)
+            return paginator.get_paginated_response({'friends': serializer.data})
         except Exception as e:
             return Response({'info':str(e)},status=400)
     
@@ -315,17 +317,15 @@ class FriendsView(APIView):
             friend = User.objects.get(username=friend)
             if friend in user.friends.all():
                 user.friends.remove(friend)
-                if friend in user.blocked.all():
-                    user.blocked.remove(friend)
-                    channel_layer = get_channel_layer()
-                    user_data = UserSerializer(instance=user).data
-                    async_to_sync(channel_layer.group_send)(
-                        f'notification_{friend.id}',
-                        {
-                            'type': 'unfriend',
-                            'sender': user_data      
-                        }
-                    )
+                channel_layer = get_channel_layer()
+                user_data = UserSerializer(instance=user).data
+                async_to_sync(channel_layer.group_send)(
+                    f'notification_{friend.id}',
+                    {
+                        'type': 'unfriend',
+                        'sender': user_data      
+                    }
+                )
                 return Response({'info':'friend deleted'},status=200)
             return Response({'info':'user not found or not a friend'},status=400)
         except Exception as e:
@@ -374,14 +374,17 @@ class FriendRequestView(APIView):
         try:
             user = request.user
             type = request.GET['type']
+            paginator = self.pagination_class()
             if type == 'sent':
                 friend_requests = FriendRequest.objects.filter(Q(from_user=user) & Q(status=0))
-                serializer = SentFriendRequestSerializer(friend_requests, many=True)
+                paginated_friend_req = paginator.paginate_queryset(friend_requests, request)
+                serializer = SentFriendRequestSerializer(paginated_friend_req, many=True)
             elif type == 'received':
                 friend_requests = FriendRequest.objects.filter(Q(to_user=user) & Q(status=0))
-            paginator = self.pagination_class()
-            paginated_friend_req = paginator.paginate_queryset(friend_requests, request, view=self)
-            serializer = FriendRequestSerializer(paginated_friend_req, many=True)
+                paginated_friend_req = paginator.paginate_queryset(friend_requests, request)
+                serializer = FriendRequestSerializer(paginated_friend_req, many=True)
+            else:
+                return Response({'type':'error type'},status=400)
             return paginator.get_paginated_response({'friend_requests': serializer.data})
         except Exception as e:
             return Response({'info':str(e)},status=400)
@@ -441,6 +444,7 @@ class FriendRequestView(APIView):
            
 class BlockUser(APIView):
     permission_classes = [IsAuthenticated]
+    pagination_class = CustomPagination
 
     def post(self,request):
         try:
@@ -488,40 +492,31 @@ class BlockUser(APIView):
             return Response({'info':'user not blocked'},status=400)
         except User.DoesNotExist:
             return Response({'info':'user Dose Not exsiste'},status=400)
-    
-    def get(self,request):
-        try:
-            user = request.user
-            blocked = user.blocked.all()
-            serializer = UserSerializer(blocked, many=True)
-            return Response({'blocked':serializer.data},status=200)
-        except Exception as e:
-            return Response({'info':str(e)},status=400)
 
 class SearchUser(APIView):
     permission_classes = [IsAuthenticated]
     serializer_class = FriendSerializer
+    pagination_class = CustomPagination
 
     def post(self, request):
         try:
+            paginator = self.pagination_class()
             all_users = User.objects.all()
-            user_data = self.serializer_class(all_users, many=True, context={'request': request})
-            response = Response(
-                {'user':user_data.data},status=200
-            )
-            return response
+            all_user = paginator.paginate_queryset(all_users, request)
+            user_data = self.serializer_class(all_user, many=True, context={'request': request})
+            return paginator.get_paginated_response({'users': user_data.data})
         except Exception as e:
             return Response({'error': str(e)})
 
 class SearchUserByusername(APIView):
     permission_classes = [IsAuthenticated]
-    serializer_class = UserSerializer
+    serializer_class = FriendSerializer
 
     def post(self, request):
         try:
             username = request.data['username']
             user = User.objects.get(username=username)
-            user_data = self.serializer_class(user)
+            user_data = self.serializer_class(user , context={'request': request})
             response = Response(
                 {'user':user_data.data},status=200
             )
@@ -531,6 +526,7 @@ class SearchUserByusername(APIView):
 
 class Password_Change(APIView):
     permission_classes = [IsAuthenticated]
+    
     def post(self,request):
         try:
             user = request.user

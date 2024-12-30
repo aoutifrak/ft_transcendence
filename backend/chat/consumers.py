@@ -20,7 +20,7 @@ def get_messages(chat,user,receiver,message):
         return None
 
 @database_sync_to_async
-def get_chat_room(user1,user2):
+def get_chat_room(user1, user2):
     try :
         chat_room = Chat.objects.get(Q(user1=user1,user2=user2) | Q(user1=user2,user2=user1))
         return chat_room
@@ -98,7 +98,7 @@ class ChatConsumer(AsyncWebsocketConsumer):
             if chat_room is None:
                 raise Exception("could not create chat room")
             
-            messages = await get_messages(chat=chat_room, user=self.scope['user'], message=message)
+            messages = await get_messages(chat=chat_room, user=self.scope['user'],receiver=user, message=message)
             if messages is None:
                 raise Exception("could not create chat Message")
             

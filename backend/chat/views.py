@@ -18,11 +18,9 @@ class Messages(APIView):
             username = request.GET['username']
             user2 = User.objects.get(username=username)
             chats = Chat.objects.filter(Q(user1=request.user) & Q(user2=user2) |Q(user1=user2) & Q(user2=request.user)).first()
-
             messages = Message.objects.filter(chat=chats.id)
             paginator = self.pagination_class()
-            paginated_messages = paginator.paginate_queryset(messages, request)
-            
+            paginated_messages = paginator.paginate_queryset(messages, request)            
             serializer = MessageSerializer(paginated_messages, many=True)
             return paginator.get_paginated_response(serializer.data)
         except Exception as e:
