@@ -9,7 +9,7 @@ class Chat(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        unique_together = ('user1', 'user2')
+        unique_together = ['user1', 'user2']
         db_table = 'chat'
         
 class Message(models.Model):

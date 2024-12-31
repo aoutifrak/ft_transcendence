@@ -4,7 +4,7 @@ from django.contrib.auth import authenticate
 from rest_framework.exceptions import AuthenticationFailed
 import requests ,random
 from django.core.exceptions import ValidationError
-
+from django.conf import settings
 
 def generate_unique_username(email):
     base_username = email.split('@')[0]
@@ -172,17 +172,41 @@ class SentFriendRequestSerializer(serializers.ModelSerializer):
         model = FriendRequest
         fields = ['to_user', 'status', 'created_at']
 
-class Machserializer(serializers.ModelSerializer):
-    userone =  serializers.CharField(source='userone.username', read_only=True)
-    usertow =  serializers.CharField(source='usertow.username', read_only=True)
-    winner =  serializers.CharField(source='winner.username', read_only=True)
+class ByUserSerializer(serializers.ModelSerializer):
+    is_blocked = serializers.SerializerMethodField()
+    avatar = serializers.SerializerMethodField()
     class Meta:
-        model = Matches
-        fields = '__all__'
+        model = User
+        fields = [
+                  'email',
+                  'first_name',
+                  'last_name',
+                  'username',
+                  'avatar',
+                  'created_at',
+                  'last_login',
+                  'wins',
+                  'losses',
+                  'level',
+                  'matches_played',
+                  'is2fa',
+                  'is_online',
+                  'rank',
+                  'is_online',
+                  'is_blocked',
+                  ]
+
+    def get_is_blocked(self,obj):
+        request_user = self.context['request'].user
+        return request_user.blocked.filter(id=obj.id).exists()
+    
+    def get_avatar(self, obj):
+        return obj.avatar.url.replace(settings.MEDIA_URL, '/media/')
 
 class FriendSerializer(serializers.ModelSerializer):
     is_friend = serializers.SerializerMethodField()
     is_blocked = serializers.SerializerMethodField()
+    avatar = serializers.SerializerMethodField()
     class Meta:
         model = User
         fields = [
@@ -195,7 +219,6 @@ class FriendSerializer(serializers.ModelSerializer):
                   'is_friend',
                   ]
     
-
     def get_is_friend(self,obj):
         request_user = self.context['request'].user
         return request_user.friends.filter(id=obj.id).exists()
@@ -204,3 +227,5 @@ class FriendSerializer(serializers.ModelSerializer):
         request_user = self.context['request'].user
         return request_user.blocked.filter(id=obj.id).exists()
 
+    def get_avatar(self, obj):
+        return obj.avatar.url.replace(settings.MEDIA_URL, '/media/')

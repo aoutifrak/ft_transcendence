@@ -2,7 +2,7 @@ from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
 from rest_framework.exceptions import AuthenticationFailed
-from .serializer import UserSerializer , LoginUserSerializer ,User_Register , SocialAuthontication ,FriendRequestSerializer ,Machserializer ,FriendSerializer, SentFriendRequestSerializer
+from .serializer import UserSerializer , LoginUserSerializer ,User_Register , SocialAuthontication ,FriendRequestSerializer ,FriendSerializer, SentFriendRequestSerializer,ByUserSerializer
 from .models import User , FriendRequest, Matches 
 import jwt 
 from django.core.serializers import deserialize
@@ -518,7 +518,7 @@ class SearchUser(APIView):
 
 class SearchUserByusername(APIView):
     permission_classes = [IsAuthenticated]
-    serializer_class = FriendSerializer
+    serializer_class = ByUserSerializer
 
     def post(self, request):
         try:
