@@ -2,9 +2,9 @@
 # # Content-Type: application/json
 # # {}
 
-GET  http://127.0.0.1:8000/api/user_info
+GET http://127.0.0.1:8000/api/user_info
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjAwNDU5LCJpYXQiOjE3MzU2MDAxNTksImp0aSI6Ijc2NGMzNDg1YTBmODQzMDVhNGY3ZjZkMmU4N2NmNzBhIiwidXNlcl9pZCI6Mn0.wk6B0ppb3bhh3cxzrgD9TyWjMs8IE2eYt3TQvIPcImY
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjA2MDQ0LCJpYXQiOjE3MzU2MDU3NDQsImp0aSI6IjdkYTIxMzZlMmY2ZTQyNDg5ODFjZDliNDFjMzc1ZGQ3IiwidXNlcl9pZCI6MX0.SNNILVk4iB3GCRR62kslIzU763AgpdmbO3QeWiXwpWo
 
 {
 
@@ -74,7 +74,7 @@ Content-Type: application/json
 
 DELETE http://127.0.0.1:8000/api/friends
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjAwNTk4LCJpYXQiOjE3MzU2MDAyOTgsImp0aSI6IjJlZDllNzY5ZDJhOTQxMTFhNDJmNWU0OThhNDcxOGU0IiwidXNlcl9pZCI6Mn0.JXVEc5XNzdTCvl6_xpNMyQkzge048C3-6V82Hw1GmxQ
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjA2MDQ0LCJpYXQiOjE3MzU2MDU3NDQsImp0aSI6IjdkYTIxMzZlMmY2ZTQyNDg5ODFjZDliNDFjMzc1ZGQ3IiwidXNlcl9pZCI6MX0.SNNILVk4iB3GCRR62kslIzU763AgpdmbO3QeWiXwpWo
 
 {
   "username":"aoutifrak"
@@ -84,7 +84,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 GET http://127.0.0.1:8000/api/friend_req/?type=received&page=1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NTg3NzA5LCJpYXQiOjE3MzU1ODc0MDksImp0aSI6Ijg5ZTVhNzEwMWRlYjRhOGE5YzQxNmFmMWMyMTM3NjRlIiwidXNlcl9pZCI6M30.a6iCLAgsfY8z_j8uNl2YSZPubEJg77N8tjNoqLgAU_c
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjA2MDQ0LCJpYXQiOjE3MzU2MDU3NDQsImp0aSI6IjdkYTIxMzZlMmY2ZTQyNDg5ODFjZDliNDFjMzc1ZGQ3IiwidXNlcl9pZCI6MX0.SNNILVk4iB3GCRR62kslIzU763AgpdmbO3QeWiXwpWo
 
 {
   "username":"aoutifrak"
@@ -96,7 +96,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 DELETE http://127.0.0.1:8000/api/friend_req/?type=sent&page=1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjAwOTIwLCJpYXQiOjE3MzU2MDA2MjAsImp0aSI6Ijg2MmZlYjM2MzNhMDQxY2FhNWEyNWQ3ZWY2MWQyMzY3IiwidXNlcl9pZCI6Mn0.Lvap0iL3tuqBlcXmg4MbHKaxVSH_m8h6hWBDNXTlR0g
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjA2MDQ0LCJpYXQiOjE3MzU2MDU3NDQsImp0aSI6IjdkYTIxMzZlMmY2ZTQyNDg5ODFjZDliNDFjMzc1ZGQ3IiwidXNlcl9pZCI6MX0.SNNILVk4iB3GCRR62kslIzU763AgpdmbO3QeWiXwpWo
 
 {
   "username":"aoutifrak"
@@ -142,7 +142,7 @@ POST http://127.0.0.1:8000/api/oauth
 Content-Type: application/json
 
 {
-  "platform":"github"
+  "platform":"42"
 }
 ###############
 

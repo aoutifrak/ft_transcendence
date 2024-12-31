@@ -132,7 +132,6 @@ class SocialAuthontication(serializers.Serializer):
                     user.save()
                     return user.email
                 except Exception as e:
-                    print(e)
                     raise serializers.ValidationError('Failed to login with given credentials')
         elif platform == "42":
             response = requests.get('https://api.intra.42.fr/v2/me',headers=headers, timeout=10000)
@@ -144,10 +143,10 @@ class SocialAuthontication(serializers.Serializer):
                 return user.email
             except :
                 try:
-                    validated_data['username'] = res['username']
-                    if User.objects.filter(username=res['login']).exists():
-                        validated_data['username'] = generate_unique_username(email)
                     validated_data = {}
+                    validated_data['username'] = res['login']
+                    if User.objects.filter(username=validated_data['username']).exists():
+                        validated_data['username'] = generate_unique_username(email)
                     validated_data['username'] = generate_unique_username(email)
                     validated_data['email'] = email
                     validated_data['first_name'] = res['first_name']
@@ -158,6 +157,8 @@ class SocialAuthontication(serializers.Serializer):
                     return user.email
                 except Exception as e:
                     raise serializers.ValidationError('Failed to login with given credentials')
+        else:
+            raise serializers.ValidationError('Failed to login with given credentials')
         raise serializers.ValidationError('Failed to login with given credentials')
 
 class FriendRequestSerializer(serializers.ModelSerializer):

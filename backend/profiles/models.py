@@ -42,7 +42,6 @@ class User(AbstractBaseUser):
     
     def __str__(self):
         return f'{self.first_name} {self.last_name} {self.email}'
-    
 
 
 class FriendRequest(models.Model):

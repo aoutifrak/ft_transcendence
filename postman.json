@@ -1,243 +1,313 @@
 {
-    "info": {
-      "name": "API Collection",
-      "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  "info": {
+    "name": "User Authentication and Social API",
+    "_postman_id": "12345678-1234-1234-1234-1234567890ab",
+    "description": "This collection tests the authentication, social login, and user-related endpoints.",
+    "schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+  },
+  "item": [
+    {
+      "name": "Refresh Token",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": ""
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/refresh-token/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "refresh-token"
+          ]
+        }
+      },
+      "response": []
     },
-    "auth": {
-        "type": "bearer",
-        "bearer": [
+    {
+      "name": "Verify Token",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"token\": \"your_token_here\"}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/verify-token/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "verify-token"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Login User",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"user@example.com\", \"password\": \"your_password_here\"}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/login/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "login"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Sign Up User",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"newuser@example.com\", \"username\": \"newuser\", \"password\": \"new_password_here\"}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/sign-up/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "sign-up"
+          ]
+        }
+      },
+      "response": []
+    },
+    {
+      "name": "Get User Info",
+      "request": {
+        "method": "GET",
+        "header": [
           {
-            "key": "token",
-            "value": "{{access_token}}",
-            "type": "string"
+            "key": "Authorization",
+            "value": "Bearer your_access_token_here"
           }
-        ]
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/user-info/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "user-info"
+          ]
+        }
+      },
+      "response": []
     },
-    "item": [
-      {
-        "name": "Activate User",
-        "request": {
-          "method": "GET",
-          "header": [
-            { "key": "Content-Type", "value": "application/json" }
-          ],
-          "url": {
-            "raw": "http://localhost:8000/api/activate/?token={{activation_token}}",
-            "host": ["localhost:8000"],
-            "path": ["api", "activate"],
-            "query": [
-              {
-                "key": "token",
-                "value": "{{activation_token}}"
-              }
-            ]
+    {
+      "name": "Update User Info",
+      "request": {
+        "method": "PUT",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer your_access_token_here"
           }
+        ],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"first_name\": \"NewFirst\", \"last_name\": \"NewLast\", \"avatar\": \"image_file_here\"}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/user-update/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "user-update"
+          ]
         }
       },
-      {
-        "name": "Logout",
-        "request": {
-          "method": "POST",
-          "header": [
-            { "key": "Content-Type", "value": "application/json" },
-            { "key": "Cookie", "value": "refresh_token={{refresh_token}}" },
-            { "key": "Authorization", "value": "Bearer {{access_token}}" }
-          ],
-          "url": {
-            "raw": "http://127.0.0.1:8000/api/logout",
-            "host": ["127.0.0.1:8000"],
-            "path": ["api", "logout"]
+      "response": []
+    },
+    {
+      "name": "Logout User",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer your_access_token_here"
           }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/logout/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "logout"
+          ]
         }
       },
-      {
-        "name": "Update User Info",
-        "request": {
-          "method": "PUT",
-          "header": [
-            { "key": "Content-Type", "value": "application/json" },
-            { "key": "Authorization", "value": "Bearer {{access_token}}" }
-          ],
-          "body": {
-            "mode": "raw",
-            "raw": "{\n  \"username\": \"mido\"\n}"
-          },
-          "url": {
-            "raw": "http://127.0.0.1:8000/api/user_info",
-            "host": ["127.0.0.1:8000"],
-            "path": ["api", "user_info"]
+      "response": []
+    },
+    {
+      "name": "Control 2FA",
+      "request": {
+        "method": "POST",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer your_access_token_here"
           }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/control-2fa/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "control-2fa"
+          ]
         }
       },
-      {
-        "name": "Get User Info",
-        "request": {
-          "method": "GET",
-          "header": [
-            { "key": "Content-Type", "value": "application/json" },
-            { "key": "Authorization", "value": "Bearer {{access_token}}" }
+      "response": []
+    },
+    {
+      "name": "Signin with 2FA",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"email\": \"user@example.com\", \"otp\": \"your_otp_here\"}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/signin-2fa/",
+          "protocol": "http",
+          "host": [
+            "localhost"
           ],
-          "url": {
-            "raw": "http://127.0.0.1:8000/api/user_info",
-            "host": ["127.0.0.1:8000"],
-            "path": ["api", "user_info"]
-          }
+          "port": "8000",
+          "path": [
+            "api",
+            "signin-2fa"
+          ]
         }
       },
-      {
-        "name": "Update Password",
-        "request": {
-          "method": "PUT",
-          "header": [
-            { "key": "Content-Type", "value": "application/json" },
-            { "key": "Authorization", "value": "Bearer {{access_token}}" }
+      "response": []
+    },
+    {
+      "name": "Social Auth",
+      "request": {
+        "method": "POST",
+        "header": [],
+        "body": {
+          "mode": "raw",
+          "raw": "{\"platform\": \"github\"}"
+        },
+        "url": {
+          "raw": "http://localhost:8000/api/social-auth/",
+          "protocol": "http",
+          "host": [
+            "localhost"
           ],
-          "body": {
-            "mode": "raw",
-            "raw": "{\n  \"password\": \"password\"\n}"
-          },
-          "url": {
-            "raw": "http://127.0.0.1:8000/api/update_password",
-            "host": ["127.0.0.1:8000"],
-            "path": ["api", "update_password"]
-          }
+          "port": "8000",
+          "path": [
+            "api",
+            "social-auth"
+          ]
         }
       },
-      {
-        "name": "Delete Account",
-        "request": {
-          "method": "DELETE",
-          "header": [
-            { "key": "Content-Type", "value": "application/json" },
-            { "key": "Authorization", "value": "Bearer {{access_token}}" }
+      "response": []
+    },
+    {
+      "name": "Social Auth Verify",
+      "request": {
+        "method": "GET",
+        "header": [],
+        "url": {
+          "raw": "http://localhost:8000/api/social-auth-verify/?platform=github&code=your_code_here",
+          "protocol": "http",
+          "host": [
+            "localhost"
           ],
-          "url": {
-            "raw": "http://127.0.0.1:8000/api/delete_account",
-            "host": ["127.0.0.1:8000"],
-            "path": ["api", "delete_account"]
-          }
-        }
-      },
-      {
-        "name": "Login",
-        "request": {
-          "method": "POST",
-          "header": [
+          "port": "8000",
+          "path": [
+            "api",
+            "social-auth-verify"
+          ],
+          "query": [
             {
-              "key": "Content-Type",
-              "value": "application/json"
+              "key": "platform",
+              "value": "github"
+            },
+            {
+              "key": "code",
+              "value": "your_code_here"
             }
-          ],
-          "body": {
-            "mode": "raw",
-            "raw": "{\n  \"email\": \"testp@example.com\",\n  \"password\": \"orllld123\"\n}"
-          },
-          "url": {
-            "raw": "http://127.0.0.1:8000/api/login",
-            "protocol": "http",
-            "host": [
-              "127.0.0.1"
-            ],
-            "port": "8000",
-            "path": [
-              "api",
-              "login"
-            ]
-          }
+          ]
         }
       },
-      {
-        "name": "Signup",
-        "request": {
-          "method": "POST",
-          "header": [
-            {
-              "key": "Content-Type",
-              "value": "application/json"
-            }
-          ],
-          "body": {
-            "mode": "raw",
-            "raw": "{\n  \"username\": \"test\",\n  \"email\": \"test@example.com\",\n  \"password\": \"orllld123\"\n}"
-          },
-          "url": {
-            "raw": "http://127.0.0.1:8000/api/signup",
-            "protocol": "http",
-            "host": [
-              "127.0.0.1"
-            ],
-            "port": "8000",
-            "path": [
-              "api",
-              "signup"
-            ]
+      "response": []
+    },
+    {
+      "name": "Friends List",
+      "request": {
+        "method": "GET",
+        "header": [
+          {
+            "key": "Authorization",
+            "value": "Bearer your_access_token_here"
           }
+        ],
+        "url": {
+          "raw": "http://localhost:8000/api/friends/",
+          "protocol": "http",
+          "host": [
+            "localhost"
+          ],
+          "port": "8000",
+          "path": [
+            "api",
+            "friends"
+          ]
         }
       },
-      {
-        "name": "Search user",
-        "request": {
-          "method": "POST",
-          "header": [
-            {
-              "key": "Content-Type",
-              "value": "application/json"
-            }
-          ],
-          "body": {
-            "mode": "raw",
-            "raw": "{\n  \"username\": \"test\",\n}"
-          },
-          "url": {
-            "raw": "http://127.0.0.1:8000/api/search_user",
-            "protocol": "http",
-            "host": [
-              "127.0.0.1"
-            ],
-            "port": "8000",
-            "path": [
-              "api",
-              "search_user"
-            ]
-          }
-        }
-      },
-      {
-        "name": "user_info",
-        "request": {
-            
-          "method": "PUT",
-          "header": [
-            {
-              "key": "Content-Type",
-              "value": "multipart/form-data"
-            }
-          ],
-          "body": {
-            "mode": "formdata",
-            "formdata": [
-              {
-                "key": "avatar",
-                "value": "/Users/aoutifra/ft_trancendense/backend/media/avatars/default.jpeg",
-                "type": "file"
-              }
-            ]
-          },
-          "url": {
-            "raw": "http://127.0.0.1:8000/api/user_info",
-            "protocol": "http",
-            "host": [
-              "127.0.0.1"
-            ],
-            "port": "8000",
-            "path": [
-              "api",
-              "user_info"
-            ]
-          }
-        }
-      }
-      
-    ]
-  }
-  
+      "response": []
+    }
+  ]
+}
