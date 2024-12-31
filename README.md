@@ -124,27 +124,211 @@ Example Success Response:
 
 json
 
-{
-    "count": 10,
-    "next": null,
 
-    "previous": null,
-    "results": [
-        {
-            "id": 1,
-            "sender": "janedoe",
-            "receiver": "johndoe",
-            "content": "Hello!",
-            "timestamp": "2024-12-31T12:34:56Z"
-        },
-        {
-            "id": 2,
-            "sender": "johndoe",
-            "receiver": "janedoe",
-            "content": "Hi!",
-            "timestamp": "2024-12-31T12:35:56Z"
-        }
-    ]
+{
+  "count": 9,
+  "next": null,
+  "previous": null,
+  "results": [
+    {
+      "id": 9,
+      "chat": 1,
+      "sender": {
+        "email": "aoutifra@student.1337.ma",
+        "first_name": "Amine",
+        "last_name": "Outifrakh",
+        "username": "aoutifra",
+        "avatar": "/media/avatars/default.jpeg",
+        "created_at": "2024-12-31T00:53:48.697383Z",
+        "last_login": null,
+        "wins": 0,
+        "losses": 0,
+        "level": 0,
+        "matches_played": 0,
+        "is2fa": false,
+        "is_online": true,
+        "rank": 0
+      },
+      "message": "zsjnkmlasdfadsfksdgmkasdgml;;a;'d;",
+      "updated_at": "2024-12-31T03:13:44.709629Z"
+    },
+    {
+      "id": 8,
+      "chat": 1,
+      "sender": {
+        "email": "aoutifra@student.1337.ma",
+        "first_name": "Amine",
+        "last_name": "Outifrakh",
+        "username": "aoutifra",
+        "avatar": "/media/avatars/default.jpeg",
+        "created_at": "2024-12-31T00:53:48.697383Z",
+        "last_login": null,
+        "wins": 0,
+        "losses": 0,
+        "level": 0,
+        "matches_played": 0,
+        "is2fa": false,
+        "is_online": true,
+        "rank": 0
+      },
+      "message": "zsjnkmlasdfadsfksdgmkasdgml;;a;'d;",
+      "updated_at": "2024-12-31T03:12:15.915262Z"
+    },
+    {
+      "id": 7,
+      "chat": 1,
+      "sender": {
+        "email": "aoutifra@student.1337.ma",
+        "first_name": "Amine",
+        "last_name": "Outifrakh",
+        "username": "aoutifra",
+        "avatar": "/media/avatars/default.jpeg",
+        "created_at": "2024-12-31T00:53:48.697383Z",
+        "last_login": null,
+        "wins": 0,
+        "losses": 0,
+        "level": 0,
+        "matches_played": 0,
+        "is2fa": false,
+        "is_online": true,
+        "rank": 0
+      },
+      "message": "zsjnkmlasdfadsfksdgmkasdgml;;a;'d;",
+      "updated_at": "2024-12-31T03:10:14.106769Z"
+    },
+    {
+      "id": 6,
+      "chat": 1,
+      "sender": {
+        "email": "aoutifra@student.1337.ma",
+        "first_name": "Amine",
+        "last_name": "Outifrakh",
+        "username": "aoutifra",
+        "avatar": "/media/avatars/default.jpeg",
+        "created_at": "2024-12-31T00:53:48.697383Z",
+        "last_login": null,
+        "wins": 0,
+        "losses": 0,
+        "level": 0,
+        "matches_played": 0,
+        "is2fa": false,
+        "is_online": true,
+        "rank": 0
+      },
+      "message": "zsjnkmlasdfadsfksdgmkasdgml;;a;'d;",
+      "updated_at": "2024-12-31T03:07:33.643369Z"
+    },
+    {
+      "id": 5,
+      "chat": 1,
+      "sender": {
+        "email": "aoutifra@student.1337.ma",
+        "first_name": "Amine",
+        "last_name": "Outifrakh",
+        "username": "aoutifra",
+        "avatar": "/media/avatars/default.jpeg",
+        "created_at": "2024-12-31T00:53:48.697383Z",
+        "last_login": null,
+        "wins": 0,
+        "losses": 0,
+        "level": 0,
+        "matches_played": 0,
+        "is2fa": false,
+        "is_online": true,
+        "rank": 0
+      },
+      "message": "zsjnkmlasdfadsfksdgmkasdgml;;a;'d;",
+      "updated_at": "2024-12-31T03:05:48.130236Z"
+    },
+    {
+      "id": 4,
+      "chat": 1,
+      "sender": {
+        "email": "aoutifra@student.1337.ma",
+        "first_name": "Amine",
+        "last_name": "Outifrakh",
+        "username": "aoutifra",
+        "avatar": "/media/avatars/default.jpeg",
+        "created_at": "2024-12-31T00:53:48.697383Z",
+        "last_login": null,
+        "wins": 0,
+        "losses": 0,
+        "level": 0,
+        "matches_played": 0,
+        "is2fa": false,
+        "is_online": true,
+        "rank": 0
+      },
+      "message": "zsjnkmlasdfadsfksdgmkasdgml;;a;'d;",
+      "updated_at": "2024-12-31T03:04:32.781732Z"
+    },
+    {
+      "id": 3,
+      "chat": 1,
+      "sender": {
+        "email": "aoutifra@student.1337.ma",
+        "first_name": "Amine",
+        "last_name": "Outifrakh",
+        "username": "aoutifra",
+        "avatar": "/media/avatars/default.jpeg",
+        "created_at": "2024-12-31T00:53:48.697383Z",
+        "last_login": null,
+        "wins": 0,
+        "losses": 0,
+        "level": 0,
+        "matches_played": 0,
+        "is2fa": false,
+        "is_online": true,
+        "rank": 0
+      },
+      "message": "zsjnkmlasdfadsfksdgmkasdgml;;a;'d;",
+      "updated_at": "2024-12-31T03:02:06.838570Z"
+    },
+    {
+      "id": 2,
+      "chat": 1,
+      "sender": {
+        "email": "aoutifra@student.1337.ma",
+        "first_name": "Amine",
+        "last_name": "Outifrakh",
+        "username": "aoutifra",
+        "avatar": "/media/avatars/default.jpeg",
+        "created_at": "2024-12-31T00:53:48.697383Z",
+        "last_login": null,
+        "wins": 0,
+        "losses": 0,
+        "level": 0,
+        "matches_played": 0,
+        "is2fa": false,
+        "is_online": true,
+        "rank": 0
+      },
+      "message": "zsjnkmlasdfadsfksdgmkasdgml;;a;'d;",
+      "updated_at": "2024-12-31T03:02:00.364191Z"
+    },
+    {
+      "id": 1,
+      "chat": 1,
+      "sender": {
+        "email": "aoutifrak@example.com",
+        "first_name": "",
+        "last_name": "",
+        "username": "aoutifrak",
+        "avatar": null,
+        "created_at": "2024-12-30T23:09:14.293307Z",
+        "last_login": null,
+        "wins": 0,
+        "losses": 0,
+        "level": 0,
+        "matches_played": 0,
+        "is2fa": false,
+        "is_online": true,
+        "rank": 0
+      },
+      "message": "zsjnkmlasdfadsfksdgmkasdgml;;a;'d;",
+      "updated_at": "2024-12-31T02:58:25.279225Z"
+    }
+  ]
 }
 DELETE Method
 Description:
