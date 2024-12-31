@@ -78,7 +78,7 @@ example of what you will recive
 
 
 
-Endpoint: /messages/
+Endpoint: api/chat/messages/
 Methods Supported:
 GET: Retrieve paginated messages between the authenticated user and another user.
 DELETE: Delete a specific message sent by the authenticated user.
@@ -118,7 +118,7 @@ json
 Example Request:
 http
 
-GET /messages/?username=johndoe HTTP/1.1
+GET /messages/api/chat?username=johndoe HTTP/1.1
 Authorization: Bearer <token>
 Example Success Response:
 
@@ -178,7 +178,7 @@ json
 Example Request:
 http
 
-DELETE /messages/ HTTP/1.1
+DELETE /messages/api/chat HTTP/1.1
 Authorization: Bearer <token>
 Content-Type: application/json
 

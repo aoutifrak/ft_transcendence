@@ -6,6 +6,9 @@ from .serializers import MessageSerializer
 from rest_framework.permissions import IsAuthenticated
 from django.db.models import Q
 from rest_framework.pagination import PageNumberPagination
+from django.contrib.auth import get_user_model
+
+User = get_user_model()
 
 class CustomPagination(PageNumberPagination):
     page_size = 10 

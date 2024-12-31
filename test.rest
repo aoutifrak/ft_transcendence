@@ -37,9 +37,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ##############
 ##############
 
-GET http://127.0.0.1:8000/api/messages
+GET http://127.0.0.1:8000/api/chat/messages/?username=aoutifra
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0Mzc5MzA2LCJpYXQiOjE3MzQzNzkwMDYsImp0aSI6IjBkMTZlYTNhMmZkNzRhZTQ4ZDAwNDM4YjkxNWE3NTE2IiwidXNlcl9pZCI6Mn0.euEQ98goSf4BFW0xxLtnYzJStS1CPyHW84enTqs-Y28
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjE1Mzg3LCJpYXQiOjE3MzU2MTUwODcsImp0aSI6ImU3OTQ4N2QyNzIwZjQ3NTA5NzdhODQ0Y2U0Y2UwYTE2IiwidXNlcl9pZCI6MX0.R3K0WfuX-QWzHQrHt8TV9U30i5h7uz2QdOmznjII27I
 
 {
 	"chat_id": 4
@@ -47,6 +47,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 ##############
 ##############
+
 
 POST http://127.0.0.1:8000/api/login
 Content-Type: application/json
