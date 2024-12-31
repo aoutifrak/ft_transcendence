@@ -6,6 +6,8 @@ services:
       - db
     env_file:
       - .env
+    ports:
+      - "8000:8000"
     networks:
       - backend
     volumes:
@@ -31,11 +33,13 @@ services:
     networks:
       - backend
     ports:
+      - "80:80"
       - "443:443"
     environment:
       - SERVER_NAME=${SERVER_NAME}
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - ./backend/media:/media
     depends_on:
       # - front
       - django
@@ -43,8 +47,8 @@ services:
 
 volumes:
   postgres_data:
-  backend:
-  nginx:
+  static:
+  media:
 
 networks:
   backend:

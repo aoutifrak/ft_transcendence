@@ -387,4 +387,11 @@ If the username parameter is missing or invalid in the GET request, or the messa
 
 
 
+Put you ip in SERVER_NAME variable in env
+and 
+you can access the backend throw https://yourIP/api/
+you can access the backend throw https://yourIP/
 
+web socket need to be accessed securly throw wss//yourip/api
+
+avatars are accessible throw https://yourip/media/avatars/default.jpeg

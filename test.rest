@@ -1,10 +1,10 @@
-# # GET  http://localhost:8000/api/activate/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MX0.sU30l9m_tmqh_HzL9lvvy7nv7g-9Q18sxtRwMMslpQA
+# # GET  https://localhost/api/activate/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MX0.sU30l9m_tmqh_HzL9lvvy7nv7g-9Q18sxtRwMMslpQA
 # # Content-Type: application/json
 # # {}
 
-GET http://127.0.0.1:8000/api/user_info
+GET https://10.13.4.13/api/user_info
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjEzODY0LCJpYXQiOjE3MzU2MTM1NjQsImp0aSI6ImMyNDczNDI2NDNmNjRjMzdhY2JkOTY1MDUxZmJmZTYxIiwidXNlcl9pZCI6M30.B9RFygD2QsOhFi0DFx6HWJjIYrOhCHsG8GdP4C-IAyM
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjE5MTMyLCJpYXQiOjE3MzU2MTg4MzIsImp0aSI6IjRlMGFlZWU0NWQyZTQzOWRhNTE1YmJlZjNjYTg5ZWVjIiwidXNlcl9pZCI6NX0.Z_GSaJ1mzYOt1VJLBYHb-7zrEFLY_V3NObyA7kfkutc
 
 {
 
@@ -12,7 +12,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 #######
 
-PUT  http://127.0.0.1:8000/api/update_user
+PUT  https://10.13.4.13/api/update_user
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0NzEwOTA3LCJpYXQiOjE3MzQ3MTA2MDcsImp0aSI6ImQ2MmU4MGRiNDk4NzRhYWQ5ZGY2MGE4YjY5NzczZTBkIiwidXNlcl9pZCI6MX0.MEQx9K3zqd08-6Jpd25LAgEg5R0_RFNScnx4ILkvVx8
 
@@ -24,9 +24,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ##############
 ##############
 
-POST http://127.0.0.1:8000/api/logout
+POST https://10.13.4.13/api/logout
 Content-Type: application/json
-Set-Cookie: refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTczNTY5ODk1MCwiaWF0IjoxNzM1MDk0MTUwLCJqdGkiOiJhM2I2N2UyMzkyYjQ0NTMyODk0MDdjZTNiMWI5OGMyNCIsInVzZXJfaWQiOjN9.R4rsCbh8f3cQ1JUjsRz5iii0hH1HNl2dhyN-dfKRyVo; HttpOnly; Path=/
+Set-Cookie: refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTczNTY5ODk1MCwiaWF0IjoxNzM1MDk0MTUwLCJqdGkiOiJhM2I2N2UyMzkyYjQ0NTMyODk0MDdjZTNiMWI5OGMyNCIsInVzZXJfaWQiOjN9.R4rsCbh8f3cQ1JUjsRz5iii0hH1HNl2dhyN-dfKRyVo; HttpsOnly; Path=/
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NTg2NTI0LCJpYXQiOjE3MzU1ODYyMjQsImp0aSI6ImQyODYwNzUxNzg4YTQ3MTg4NzY3YmViNjdhNGZiYjk0IiwidXNlcl9pZCI6M30.r-GREqbbpMtnQfhK3c2jH72qrwuPxVNoQ-R6QQY3FDA
 
 {
@@ -37,7 +37,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ##############
 ##############
 
-GET http://127.0.0.1:8000/api/chat/messages/?username=aoutifra
+GET https://10.13.4.13/api/chat/messages/?username=aoutifra
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjE1Mzg3LCJpYXQiOjE3MzU2MTUwODcsImp0aSI6ImU3OTQ4N2QyNzIwZjQ3NTA5NzdhODQ0Y2U0Y2UwYTE2IiwidXNlcl9pZCI6MX0.R3K0WfuX-QWzHQrHt8TV9U30i5h7uz2QdOmznjII27I
 
@@ -49,30 +49,30 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ##############
 
 
-POST http://127.0.0.1:8000/api/login
+POST https://10.13.4.13/api/login
 Content-Type: application/json
 
 {
-  "email": "aoutifrak@example.com",
+  "email": "aoutifra@example.com",
   "password": "orllld123"
 }
 
 ##############
 ##############
 
-POST http://127.0.0.1:8000/api/signup
+POST https://10.13.4.13/api/signup
 Content-Type: application/json
 
 {
-  "username": "aoutifrak",
-  "email": "aoutifrak@example.com",
+  "username": "aoutifra",
+  "email": "aoutifra@example.com",
   "password": "orllld123"
 }
 
 ##############
 ##############
 
-DELETE http://127.0.0.1:8000/api/friends
+DELETE https://10.13.4.13/api/friends
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjA3OTYxLCJpYXQiOjE3MzU2MDc2NjEsImp0aSI6ImJhZTk3N2NjY2U2MzQ5ODhhNmNkNDJkZmY4YmRkYWU5IiwidXNlcl9pZCI6M30.Zs21jQDYnH9iuQEUQeloIhg44gLAVkEqlX6ilCZFEXA
 
@@ -82,7 +82,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ##################
 ##################
 
-PUT http://127.0.0.1:8000/api/friend_req/?type=received&page=1
+PUT https://10.13.4.13/api/friend_req/?type=received&page=1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjE0MTc4LCJpYXQiOjE3MzU2MTM4NzgsImp0aSI6IjNhNTMzODFlNGFmMDQwOWM4Y2MxZTVmZjgwYmNjNzFhIiwidXNlcl9pZCI6MX0.SzRyvIZ3KXB2hYdrpYEmLSIpIBxX9OHM7-QSSUcNuV4
 
@@ -94,7 +94,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ###########
 ###########
 
-POST http://127.0.0.1:8000/api/friend_req/?type=sent&page=1
+POST https://10.13.4.13/api/friend_req/?type=sent&page=1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjE0MTE5LCJpYXQiOjE3MzU2MTM4MTksImp0aSI6ImJjZGM4OTFhODhjYTRjNTk5MzdjOTNkMDA3MWNiMWYyIiwidXNlcl9pZCI6M30.xn0Ifu80wEbU826uf82c3uQmxusRdlAUzsD7zemwy9o
 
@@ -104,7 +104,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 #########################
 
-GET http://127.0.0.1:8000/api/notification/notif
+GET https://10.13.4.13/api/notification/notif
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NTc4NDA0LCJpYXQiOjE3MzU1NzgxMDQsImp0aSI6IjYyOWNiNzRjMGYyNTQwNzE5YzJkMzhhOWMyYzJhYTIyIiwidXNlcl9pZCI6Mn0.Ck7jU4jLDmbV68Ohl6ZNOq5Gw-9YbrE9oiUhMwjXJjM
 
@@ -117,7 +117,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 #############
 
 
-POST http://127.0.0.1:8000/api/search_username
+POST https://10.13.4.13/api/search_username
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NTkzMzI5LCJpYXQiOjE3MzU1OTMwMjksImp0aSI6IjFmMjQwNzNjMzRjNTQ4ZDU5Y2UxMzEzZDVlYzEzNTlmIiwidXNlcl9pZCI6NH0.-qmN4jjrk4hmBs__vUsUa1dZXqvL1htnknJPIE4gKmM
 
@@ -129,7 +129,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 #################
 #################
 
-POST http://127.0.0.1:8000/api/search_user?page=1
+POST https://10.13.4.13/api/search_user?page=1
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NTkzNDUxLCJpYXQiOjE3MzU1OTMxNTEsImp0aSI6IjY0NzEwOTcxOGM0MTRjYjU4MjljNjk3Nzc3NDFiOThiIiwidXNlcl9pZCI6MX0.sRhv5X8fFQ-tHL1WLQqvD5cvpRNaH6vyjT1yIDllHqs
 
@@ -139,15 +139,16 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 ###############
 
-POST http://127.0.0.1:8000/api/oauth
+POST https://10.13.4.13/api/oauth
 Content-Type: application/json
 
 {
   "platform":"42"
 }
+
 ###############
 
-GET http://localhost:8000/api/socialauth/?platform=github&code=c716ff99f883caf70523
+GET https://localhost/api/socialauth/?platform=github&code=c716ff99f883caf70523
 Content-Type: application/json
 Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NTg4ODY2LCJpYXQiOjE3MzU1ODg1NjYsImp0aSI6ImExMjExNjJjNjgzYTRhZmNhNzU0NDUwYmQwYWQ5ZWJmIiwidXNlcl9pZCI6M30.tWlwhYa87uCjWTslLWTeLkhfBs5dhsWD98UNyrydh0I
 

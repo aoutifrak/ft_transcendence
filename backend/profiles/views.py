@@ -81,7 +81,8 @@ class Sign_upView(APIView):
         try:
             email = request.data.get('email')
             username = request.data.get('username')
-
+            infos = request.data
+            
             valid_keys = ['email','username','password']
             for key in infos.keys():
                 if key not in valid_keys:
