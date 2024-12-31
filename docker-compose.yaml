@@ -4,8 +4,6 @@ services:
     container_name: backend
     depends_on:
       - db
-    ports:
-      - "8000:8000"
     env_file:
       - .env
     networks:
@@ -22,32 +20,31 @@ services:
       - POSTGRES_DB=${DB_NAME}
       - POSTGRES_USER=${DB_USER}
       - POSTGRES_PASSWORD=${DB_PASSWORD}
-    ports:
-      - "5432:5432"
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - backend
   
-  # nginx:
-  #   container_name: nginx
-  #   build: ./nginx
-  #   networks:
-  #     - backend
-  #   ports:
-  #     - "443:443"
-  #   environment:
-  #     - SERVER_NAME=${SERVER_NAME}
-  #   volumes:
-  #     - ./nginx/nginx.conf.template:/etc/nginx/templates/nginx.conf.template
-  #   depends_on:
-  #     - next
-  #     - django
-  #   restart: always
+  nginx:
+    container_name: nginx
+    build: ./nginx
+    networks:
+      - backend
+    ports:
+      - "443:443"
+    environment:
+      - SERVER_NAME=${SERVER_NAME}
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+    depends_on:
+      # - front
+      - django
+    restart: always
 
 volumes:
   postgres_data:
   backend:
+  nginx:
 
 networks:
   backend:
