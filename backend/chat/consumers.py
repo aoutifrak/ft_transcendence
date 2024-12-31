@@ -7,6 +7,7 @@ from chat.models import Chat , Message
 from chat.serializers import MessageSerializer
 from django.db.models import Q
 from notification.consumers import NotificationConsumer
+from profiles.serializer import UserSerializer
 
 User = get_user_model()
 
@@ -110,7 +111,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
                 f'chat_{user.id}',
                 {
                     'type': 'chat.message',
-                    'sender': self.scope['user'].username,
                     'message': messages
                 }
             )
@@ -122,10 +122,8 @@ class ChatConsumer(AsyncWebsocketConsumer):
         }))
     
     async def chat_message(self, event):
-        sender = event['sender']
         message = event['message']
         await self.send(text_data=json.dumps({
-            'sender': sender,
             'message': message
         }))
-   
+    

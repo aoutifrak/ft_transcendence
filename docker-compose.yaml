@@ -10,8 +10,8 @@ services:
       - .env
     networks:
       - backend
-    # volumes:
-    #   - postgres_data:/var/lib/postgresql/data
+    volumes:
+      - ./backend:/backend
     restart: always
 
   db:
@@ -28,9 +28,26 @@ services:
       - postgres_data:/var/lib/postgresql/data
     networks:
       - backend
+  
+  # nginx:
+  #   container_name: nginx
+  #   build: ./nginx
+  #   networks:
+  #     - backend
+  #   ports:
+  #     - "443:443"
+  #   environment:
+  #     - SERVER_NAME=${SERVER_NAME}
+  #   volumes:
+  #     - ./nginx/nginx.conf.template:/etc/nginx/templates/nginx.conf.template
+  #   depends_on:
+  #     - next
+  #     - django
+  #   restart: always
 
 volumes:
   postgres_data:
+  backend:
 
 networks:
   backend:
