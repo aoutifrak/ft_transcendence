@@ -7,6 +7,7 @@ from rest_framework.permissions import IsAuthenticated
 from django.db.models import Q
 from rest_framework.pagination import PageNumberPagination
 from django.contrib.auth import get_user_model
+from profiles.serializer import UserSerializer
 
 User = get_user_model()
 
@@ -48,9 +49,12 @@ class Chat_Room(APIView):
         try:
             paginator = self.pagination_class()
             chats = Chat.objects.filter(Q(user1=request.user) | Q(user2=request.user))
-            paginated_chats = paginator.paginate_queryset(chats, request)            
-            serializer = ChatSerializer(paginated_chats, many=True)
+            other_users_chats = []
+            for chat in chats:
+                other_user = chat.user1 if chat.user2 == request.user else chat.user2
+                other_users_chats.append(other_user) 
+            paginated_chats = paginator.paginate_queryset(other_users_chats, request)
+            serializer = UserSerializer(paginated_chats, many=True)
             return paginator.get_paginated_response(serializer.data)
         except Exception as e:
-            return Response({str(e)},status=status.HTTP_400_BAD_REQUEST)
-        
+            return Response({"error": str(e)}, status=status.HTTP_400_BAD_REQUEST)
