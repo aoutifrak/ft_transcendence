@@ -10,7 +10,8 @@ class MessageSerializer(serializers.ModelSerializer):
         fields = ['id', 'chat','sender', 'message', 'updated_at']
 
 class ChatSerializer(serializers.ModelSerializer):
+    user1 = UserSerializer()
     user2 = UserSerializer()
     class Meta:
         model = Chat
-        fields = ['user2', 'created_at']
+        fields = ['user2','user1', 'created_at']
