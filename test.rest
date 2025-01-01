@@ -4,9 +4,7 @@
 
 GET https://192.168.1.5/api/user_info
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjgyMTExLCJpYXQiOjE3MzU2ODEyMTEsImp0aSI6ImY1ZWNmYzgwYjRhYjQyZDE5NmZiZTYwNTAzZmZlYzczIiwidXNlcl9pZCI6MX0.8JAOQSQy19FdJMSHfWRzJLDlDmI0BT4KEFJGiSKa7Dg
-
-
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1Njg3NTgwLCJpYXQiOjE3MzU2ODY2ODAsImp0aSI6IjEzZDQ3NWVjNWFiNDRjMWE5NjU2OWM5M2U0Yzg0MjM5IiwidXNlcl9pZCI6M30.tslPkdnEqjN6_OQJw-QMxdXD8z_uJIiMMpbNeRovzcA
 #######
 
 PUT  https://192.168.1.5/api/update_user
@@ -49,7 +47,7 @@ POST https://192.168.1.5/api/login
 Content-Type: application/json
 
 {
-  "email": "aoustsifra@example.com",
+  "email": "aoutifra@example.com",
   "password": "orllld123"
 }
 
@@ -60,8 +58,8 @@ POST https://192.168.1.5/api/signup
 Content-Type: application/json
 
 {
-  "username": "aoustifrsa",
-  "email": "aoustsifra@example.com",
+  "username": "aoutifra",
+  "email": "aoutifra@example.com",
   "password": "orllld123"
 }
 
@@ -127,7 +125,7 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 POST https://192.168.1.5/api/search_user?page=1
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjgyMTExLCJpYXQiOjE3MzU2ODEyMTEsImp0aSI6ImY1ZWNmYzgwYjRhYjQyZDE5NmZiZTYwNTAzZmZlYzczIiwidXNlcl9pZCI6MX0.8JAOQSQy19FdJMSHfWRzJLDlDmI0BT4KEFJGiSKa7Dg
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1Njg3NTgwLCJpYXQiOjE3MzU2ODY2ODAsImp0aSI6IjEzZDQ3NWVjNWFiNDRjMWE5NjU2OWM5M2U0Yzg0MjM5IiwidXNlcl9pZCI6M30.tslPkdnEqjN6_OQJw-QMxdXD8z_uJIiMMpbNeRovzcA
 
 {
 
@@ -169,4 +167,4 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 GET https://192.168.1.5/api/chat/conversations
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1Njg0MjIzLCJpYXQiOjE3MzU2ODMzMjMsImp0aSI6IjEwYzBjMjViMzcyODRkMWM4ODllYzdiZTVhNzUzZTUzIiwidXNlcl9pZCI6M30.ZTBhO6RJApUbkd0SSbx724XNT-wNDlEVpK07azy0-QE
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjkwMzcwLCJpYXQiOjE3MzU2ODk0NzAsImp0aSI6ImI4ODhiYWJiOTM1MzRhMGI5YjUxYTljOTQyM2NlMzZjIiwidXNlcl9pZCI6MX0._spGMMTlldF7ZNlsZeQe05pyDLZZrjJR-5ThQLe6gtc

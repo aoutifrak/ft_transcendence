@@ -1,6 +1,6 @@
 #import serializers
 from rest_framework import serializers
-from chat.models import Message
+from chat.models import Message,Chat
 from profiles.serializer import UserSerializer
 
 class MessageSerializer(serializers.ModelSerializer):
@@ -12,5 +12,5 @@ class MessageSerializer(serializers.ModelSerializer):
 class ChatSerializer(serializers.ModelSerializer):
     user2 = UserSerializer()
     class Meta:
-        model = Message
+        model = Chat
         fields = ['user2', 'created_at']

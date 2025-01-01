@@ -47,7 +47,7 @@ class Chat_Room(APIView):
     def get(self, request):
         try:
             paginator = self.pagination_class()
-            chats = Chat.objects.filter(user1=request.user)
+            chats = Chat.objects.filter(Q(user1=request.user) | Q(user2=request.user))
             paginated_chats = paginator.paginate_queryset(chats, request)            
             serializer = ChatSerializer(paginated_chats, many=True)
             return paginator.get_paginated_response(serializer.data)
