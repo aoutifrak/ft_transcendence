@@ -1,0 +1,7 @@
+add AllowedHostsOriginValidator to middlewares | DONE
+add search user view | DONE
+add media upload | DONE
+add nginx and redis 50%
+add database and env config | 80%
+pack backend as docker container | 100 %
+add core headers and git app 

@@ -1,0 +1,52 @@
+services:
+  django:
+    build: ./backend
+    container_name: backend
+    depends_on:
+      - db
+    env_file:
+      - .env
+    networks:
+      - backend
+    volumes:
+      - ./backend:/backend
+    restart: always
+
+  db:
+    image: postgres:12
+    container_name: db
+    restart: always
+    environment:
+      - POSTGRES_DB=${DB_NAME}
+      - POSTGRES_USER=${DB_USER}
+      - POSTGRES_PASSWORD=${DB_PASSWORD}
+    volumes:
+      - postgres_data:/var/lib/postgresql/data
+    networks:
+      - backend
+  
+  nginx:
+    container_name: nginx
+    build: ./nginx
+    networks:
+      - backend
+    ports:
+      - "80:80"
+      - "443:443"
+    environment:
+      - SERVER_NAME=${SERVER_NAME}
+    volumes:
+      - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
+      - ./backend/media:/media
+    depends_on:
+      # - front
+      - django
+    restart: always
+
+volumes:
+  postgres_data:
+  static:
+  media:
+
+networks:
+  backend:

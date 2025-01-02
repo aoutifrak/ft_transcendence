@@ -1,0 +1,170 @@
+# # GET  https://localhost/api/activate/?token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6MX0.sU30l9m_tmqh_HzL9lvvy7nv7g-9Q18sxtRwMMslpQA
+# # Content-Type: application/json
+# # {}
+
+GET https://192.168.1.5/api/user_info
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1Njg3NTgwLCJpYXQiOjE3MzU2ODY2ODAsImp0aSI6IjEzZDQ3NWVjNWFiNDRjMWE5NjU2OWM5M2U0Yzg0MjM5IiwidXNlcl9pZCI6M30.tslPkdnEqjN6_OQJw-QMxdXD8z_uJIiMMpbNeRovzcA
+#######
+
+PUT  https://192.168.1.5/api/update_user
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM0NzEwOTA3LCJpYXQiOjE3MzQ3MTA2MDcsImp0aSI6ImQ2MmU4MGRiNDk4NzRhYWQ5ZGY2MGE4YjY5NzczZTBkIiwidXNlcl9pZCI6MX0.MEQx9K3zqd08-6Jpd25LAgEg5R0_RFNScnx4ILkvVx8
+
+{
+  # "email":"mio@gmail.com",
+  "first_name":"89s"
+}
+
+##############
+##############
+
+POST https://192.168.1.5/api/logout
+Content-Type: application/json
+Set-Cookie: refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTczNTY5ODk1MCwiaWF0IjoxNzM1MDk0MTUwLCJqdGkiOiJhM2I2N2UyMzkyYjQ0NTMyODk0MDdjZTNiMWI5OGMyNCIsInVzZXJfaWQiOjN9.R4rsCbh8f3cQ1JUjsRz5iii0hH1HNl2dhyN-dfKRyVo; HttpsOnly; Path=/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NTg2NTI0LCJpYXQiOjE3MzU1ODYyMjQsImp0aSI6ImQyODYwNzUxNzg4YTQ3MTg4NzY3YmViNjdhNGZiYjk0IiwidXNlcl9pZCI6M30.r-GREqbbpMtnQfhK3c2jH72qrwuPxVNoQ-R6QQY3FDA
+
+{
+  "email": "testa@example.com",
+  "password": "orllld123"
+}
+
+##############
+##############
+
+GET https://192.168.1.5/api/chat/messages/?username=aoutifra
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjE1Mzg3LCJpYXQiOjE3MzU2MTUwODcsImp0aSI6ImU3OTQ4N2QyNzIwZjQ3NTA5NzdhODQ0Y2U0Y2UwYTE2IiwidXNlcl9pZCI6MX0.R3K0WfuX-QWzHQrHt8TV9U30i5h7uz2QdOmznjII27I
+
+{
+	"chat_id": 4
+}
+
+##############
+##############
+
+POST https://192.168.1.5/api/login
+Content-Type: application/json
+
+{
+  "email": "aoutifra@example.com",
+  "password": "orllld123"
+}
+
+##############
+##############
+
+POST https://192.168.1.5/api/signup
+Content-Type: application/json
+
+{
+  "username": "aoutifra",
+  "email": "aoutifra@example.com",
+  "password": "orllld123"
+}
+
+##############
+##############
+
+DELETE https://192.168.1.5/api/friends
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjA3OTYxLCJpYXQiOjE3MzU2MDc2NjEsImp0aSI6ImJhZTk3N2NjY2U2MzQ5ODhhNmNkNDJkZmY4YmRkYWU5IiwidXNlcl9pZCI6M30.Zs21jQDYnH9iuQEUQeloIhg44gLAVkEqlX6ilCZFEXA
+
+{
+  "username":"aoutifrak"
+}
+##################
+##################
+
+PUT https://192.168.1.5/api/friend_req/?type=received&page=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjgzNDI4LCJpYXQiOjE3MzU2ODI1MjgsImp0aSI6ImVkNGFhMmQ3Yjc3YTQyOWZiZWNhZWYyMTAwMTVlNjZjIiwidXNlcl9pZCI6M30.rGWVPuWngcpLgbdfaUB44_aVhR6BQaDTm4uJPpBrPac
+
+{
+  "username":"aoutifra"
+}
+
+###########
+###########
+###########
+
+POST https://192.168.1.5/api/friend_req/?type=sent&page=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjgzMjg3LCJpYXQiOjE3MzU2ODIzODcsImp0aSI6IjgwMjAxYTA2NmI5ZDRlYzI4ODMzNWJjZDMwZDcyMTM3IiwidXNlcl9pZCI6MX0.cHITlESOuYrAV6Ppmapd9S9Jc6Vyy1VGVzLvyRHM0PM
+
+{
+  "username":"aoustifrsa"
+}
+
+#########################
+
+GET https://192.168.1.5/api/notification/notif
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NTc4NDA0LCJpYXQiOjE3MzU1NzgxMDQsImp0aSI6IjYyOWNiNzRjMGYyNTQwNzE5YzJkMzhhOWMyYzJhYTIyIiwidXNlcl9pZCI6Mn0.Ck7jU4jLDmbV68Ohl6ZNOq5Gw-9YbrE9oiUhMwjXJjM
+
+{
+  "username":"user1"
+}
+
+#############
+#############
+#############
+
+
+POST https://192.168.1.5/api/search_username
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjgyMTExLCJpYXQiOjE3MzU2ODEyMTEsImp0aSI6ImY1ZWNmYzgwYjRhYjQyZDE5NmZiZTYwNTAzZmZlYzczIiwidXNlcl9pZCI6MX0.8JAOQSQy19FdJMSHfWRzJLDlDmI0BT4KEFJGiSKa7Dg
+
+{
+  "username":"aoustifrsa"
+}
+
+#################
+#################
+#################
+
+POST https://192.168.1.5/api/search_user?page=1
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjkwMzcwLCJpYXQiOjE3MzU2ODk0NzAsImp0aSI6ImI4ODhiYWJiOTM1MzRhMGI5YjUxYTljOTQyM2NlMzZjIiwidXNlcl9pZCI6MX0._spGMMTlldF7ZNlsZeQe05pyDLZZrjJR-5ThQLe6gtc
+
+{
+
+
+}
+
+###############
+
+POST https://192.168.1.5/api/oauth
+Content-Type: application/json
+
+{
+  "platform":"42"
+}
+
+###############
+
+GET https://localhost/api/socialauth/?platform=github&code=c716ff99f883caf70523
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NTg4ODY2LCJpYXQiOjE3MzU1ODg1NjYsImp0aSI6ImExMjExNjJjNjgzYTRhZmNhNzU0NDUwYmQwYWQ5ZWJmIiwidXNlcl9pZCI6M30.tWlwhYa87uCjWTslLWTeLkhfBs5dhsWD98UNyrydh0I
+
+{
+  "platform":"github"
+}
+
+
+####################
+
+DELETE https://192.168.1.5/api/block_user
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjgzMjg3LCJpYXQiOjE3MzU2ODIzODcsImp0aSI6IjgwMjAxYTA2NmI5ZDRlYzI4ODMzNWJjZDMwZDcyMTM3IiwidXNlcl9pZCI6MX0.cHITlESOuYrAV6Ppmapd9S9Jc6Vyy1VGVzLvyRHM0PM
+
+{
+  "username":"aoustifrsa"
+}
+
+
+####################
+
+GET https://192.168.1.5/api/chat/conversations
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NzQyMTI3LCJpYXQiOjE3MzU3NDEyMjcsImp0aSI6ImFiYTA3ZDUxMGNiODQ5NThhMmM3MTc0MmM3Y2ZlNmQ1IiwidXNlcl9pZCI6MX0.69VTZZ5PTKzqOb-XaOyfQa__UJnJiDhXMpzlpHdHLew
