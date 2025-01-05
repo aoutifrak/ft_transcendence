@@ -67,10 +67,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
         except Exception as e:
             await self.close()
 
-    async def disconnect(self):
+    async def disconnect(self,close_code):
         await self.channel_layer.group_discard(
-            self.channel_name,
-            self.room_group_name
+            self.room_group_name,
+            self.channel_name
         )
 
     async def receive(self, text_data):

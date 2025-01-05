@@ -79,8 +79,6 @@ class Sign_upView(APIView):
     permission_classes = [AllowAny]
     def post(self,request):
         try:
-            email = request.data.get('email')
-            username = request.data.get('username')
             infos = request.data
             
             valid_keys = ['email','username','password']
@@ -88,6 +86,7 @@ class Sign_upView(APIView):
                 if key not in valid_keys:
                     return Response({"error": f"invalid fileds {key}!"},status=status.HTTP_400_BAD_REQUEST)
         
+            email = request.data.get('email')
             if User.objects.filter(email=email).exists():
                 raise AuthenticationFailed('Email already exists')
 
