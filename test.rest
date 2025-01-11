@@ -2,9 +2,9 @@
 # # Content-Type: application/json
 # # {}
 
-GET https://10.12.7.14/api/user_info
+POST https://10.12.7.14/api/refresh_token
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1Njg3NTgwLCJpYXQiOjE3MzU2ODY2ODAsImp0aSI6IjEzZDQ3NWVjNWFiNDRjMWE5NjU2OWM5M2U0Yzg0MjM5IiwidXNlcl9pZCI6M30.tslPkdnEqjN6_OQJw-QMxdXD8z_uJIiMMpbNeRovzcA
+Set-Cookie: refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTczNzIxMDM4MiwiaWF0IjoxNzM2NjA1NTgyLCJqdGkiOiI4ZWJhNWQxYjlmMWM0OTVjOTIxMzY4Y2UwYjUyZGY0YSIsInVzZXJfaWQiOjIxfQ.ijjuRF9vxTh_LrsJUpWSJoocQHhncyE_iYulGFL8c4k; HttpOnly; Path=/
 #######
 
 PUT  https://10.12.7.14/api/update_user
@@ -21,8 +21,8 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 POST https://10.12.7.14/api/logout
 Content-Type: application/json
-Set-Cookie: refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTczNTY5ODk1MCwiaWF0IjoxNzM1MDk0MTUwLCJqdGkiOiJhM2I2N2UyMzkyYjQ0NTMyODk0MDdjZTNiMWI5OGMyNCIsInVzZXJfaWQiOjN9.R4rsCbh8f3cQ1JUjsRz5iii0hH1HNl2dhyN-dfKRyVo; HttpsOnly; Path=/
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NTg2NTI0LCJpYXQiOjE3MzU1ODYyMjQsImp0aSI6ImQyODYwNzUxNzg4YTQ3MTg4NzY3YmViNjdhNGZiYjk0IiwidXNlcl9pZCI6M30.r-GREqbbpMtnQfhK3c2jH72qrwuPxVNoQ-R6QQY3FDA
+Set-Cookie: refresh_token=eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoicmVmcmVzaCIsImV4cCI6MTczNzIxMDM4MiwiaWF0IjoxNzM2NjA1NTgyLCJqdGkiOiI4ZWJhNWQxYjlmMWM0OTVjOTIxMzY4Y2UwYjUyZGY0YSIsInVzZXJfaWQiOjIxfQ.ijjuRF9vxTh_LrsJUpWSJoocQHhncyE_iYulGFL8c4k; HttpOnly; Path=/
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjA2NDgyLCJpYXQiOjE3MzY2MDU1ODIsImp0aSI6ImQ3MDdhNWZhMDQzOTQ0NDlhYTdhNjUwN2Y1NjQzMDdjIiwidXNlcl9pZCI6MjF9.AbxGcU5Z9QB-FF2cN-krvNWgX-QNlyRsPwq4CByvnGs
 
 {
   "email": "testa@example.com",
@@ -34,10 +34,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 
 GET https://10.12.7.14/api/chat/messages/?username=aoutifra
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM1NjE1Mzg3LCJpYXQiOjE3MzU2MTUwODcsImp0aSI6ImU3OTQ4N2QyNzIwZjQ3NTA5NzdhODQ0Y2U0Y2UwYTE2IiwidXNlcl9pZCI6MX0.R3K0WfuX-QWzHQrHt8TV9U30i5h7uz2QdOmznjII27I
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjA2MjI0LCJpYXQiOjE3MzY2MDUzMjQsImp0aSI6IjFhZDgxZjkyYTRmYTRlNTY5NDkzNGUzZTY5Nzk3MjMxIiwidXNlcl9pZCI6MjF9.hwtnWjQaBJT0iERXx-s1RTpUotb-9cgeyfdmD7hlsPI
 
 {
-	"chat_id": 4
 }
 
 ##############

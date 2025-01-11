@@ -160,10 +160,22 @@ class LogoutView(APIView):
                 token.blacklist()
                 user.is_online = False
                 user.save()
+                chat_group_name = f"chat_{user.id}"
+                notif_group_name = f"notification_{user.id}"
                 logout(request)
-                response = Response({"detail": "Successfully logged out."}, status=status.HTTP_200_OK)
-                response.delete_cookie('refresh_token')
-                return response
+                async_to_sync(channel_layer.group_send)(
+                    notif_group_name,
+                    {
+                        'type': 'disconnect',
+                    }
+                )
+                async_to_sync(channel_layer.group_send)(
+                chat_group_name,
+                    {
+                        'type': 'disconnect',
+                    }
+                )
+                return Response({"detail": "Successfully logged out."}, status=status.HTTP_200_OK)
             response = Response({"detail": "Not logedin yet."}, status=status.HTTP_400_BAD_REQUEST)
             return response
         except TokenError:

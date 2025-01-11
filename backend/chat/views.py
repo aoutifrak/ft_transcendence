@@ -22,11 +22,13 @@ class Messages(APIView):
             username = request.GET['username']
             user2 = User.objects.get(username=username)
             chats = Chat.objects.filter(Q(user1=request.user) & Q(user2=user2) |Q(user1=user2) & Q(user2=request.user)).first()
-            messages = Message.objects.filter(chat=chats.id)
-            paginator = self.pagination_class()
-            paginated_messages = paginator.paginate_queryset(messages, request)            
-            serializer = MessageSerializer(paginated_messages, many=True)
-            return paginator.get_paginated_response(serializer.data)
+            if chats is not None:
+                messages = Message.objects.filter(chat=chats.id)
+                paginator = self.pagination_class()
+                paginated_messages = paginator.paginate_queryset(messages, request)            
+                serializer = MessageSerializer(paginated_messages, many=True)
+                return paginator.get_paginated_response(serializer.data)
+            return Response('no chat room found',status=400)
         except Exception as e:
             return Response({str(e)}, status=status.HTTP_400_BAD_REQUEST)
         
