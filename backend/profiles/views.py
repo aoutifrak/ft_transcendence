@@ -5,6 +5,7 @@ from rest_framework.exceptions import AuthenticationFailed
 from .serializer import UserSerializer , LoginUserSerializer ,User_Register , SocialAuthontication ,FriendRequestSerializer ,FriendSerializer ,ByUserSerializer
 from .models import User , FriendRequest 
 import jwt 
+from django.contrib.auth import logout
 from django.core.serializers import deserialize
 from django.conf import settings
 import json
@@ -159,6 +160,7 @@ class LogoutView(APIView):
                 token.blacklist()
                 user.is_online = False
                 user.save()
+                logout(request)
                 response = Response({"detail": "Successfully logged out."}, status=status.HTTP_200_OK)
                 response.delete_cookie('refresh_token')
                 return response
@@ -381,16 +383,9 @@ class FriendRequestView(APIView):
         try:
             user = request.user
             paginator = self.pagination_class()
-            # if type == 'sent':
             friend_requests = FriendRequest.objects.filter(Q(from_user=user) | Q(to_user=user) & Q(status=0))
             paginated_friend_req = paginator.paginate_queryset(friend_requests, request)
-            #     serializer = SentFriendRequestSerializer(paginated_friend_req, many=True)
-            # elif type == 'received':
-            #     friend_requests = FriendRequest.objects.filter(Q(to_user=user) & Q(status=0))
-            #     paginated_friend_req = paginator.paginate_queryset(friend_requests, request)
             serializer = FriendRequestSerializer(paginated_friend_req, many=True ,context={'request': request})
-            # else:
-            #     return Response({'type':'error type'},status=400)
             return paginator.get_paginated_response(serializer.data)
         except Exception as e:
             return Response({'info':str(e)},status=400)
@@ -419,6 +414,7 @@ class FriendRequestView(APIView):
                     }
                 )
                 return Response({'info':'friend request accepted'},status=200)
+        except User.DoesNotExist:
             return Response({'info':'user not found'},status=400)
         except Exception as e:
             return Response({'info':str(e)},status=400)
@@ -445,6 +441,7 @@ class FriendRequestView(APIView):
                     }
                 )
                 return Response({'info':'friend request deleted'},status=200)
+        except User.DoesNotExist:
             return Response({'info':'user not found'},status=400)
         except Exception as e:
             return Response({'info':str(e)},status=400)
@@ -522,6 +519,8 @@ class SearchUserByusername(APIView):
     def post(self, request):
         try:
             username = request.data['username']
+            if username == request.user.username:
+                return Response('you can not search for your self',status=400)
             user = User.objects.get(username=username)
             user_data = self.serializer_class(user , context={'request': request})
             response = Response(user_data.data,status=200)

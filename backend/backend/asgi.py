@@ -14,6 +14,7 @@ from chat import routing, middleware
 from channels.security.websocket import AllowedHostsOriginValidator
 from notification import routing as notification_routing
 from pong import routing as pong_routing
+
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'backend.settings')
 
 application = ProtocolTypeRouter({
