@@ -89,6 +89,10 @@ class ChatConsumer(AsyncWebsocketConsumer):
             if await check_friendship(user, self.scope['user']) == False:
                 raise Exception("You are not friend with this user")
             
+            messages = await get_messages(chat=chat_room, user=self.scope['user'],receiver=user, message=message)
+            if messages is None:
+                raise Exception("could not create chat Message")
+
             if await check_blocked(self.scope['user'],user) == True:
                 raise Exception("Can't send message to this blocked user")
             
@@ -99,9 +103,6 @@ class ChatConsumer(AsyncWebsocketConsumer):
             if chat_room is None:
                 raise Exception("could not create chat room")
             
-            messages = await get_messages(chat=chat_room, user=self.scope['user'],receiver=user, message=message)
-            if messages is None:
-                raise Exception("could not create chat Message")
             
             messages = MessageSerializer(messages).data
 

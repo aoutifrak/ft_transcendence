@@ -160,19 +160,7 @@ class SocialAuthontication(serializers.Serializer):
             raise serializers.ValidationError('Failed to login with given credentials')
         raise serializers.ValidationError('Failed to login with given credentials')
 
-class FriendRequestSerializer(serializers.ModelSerializer):
-    from_user =  UserSerializer()
-    to_user =  UserSerializer()
-    type = serializers.SerializerMethodField()
-    class Meta:
-        model = FriendRequest
-        fields = ['from_user', 'to_user' ,'status', 'created_at','type']
 
-    def get_type(self,obj):
-        request_user = self.context['request'].user
-        if request_user ==  obj.from_user:
-            return 'sent'
-        return 'received'
 
 class ByUserSerializer(serializers.ModelSerializer):
     is_blocked = serializers.SerializerMethodField()
@@ -231,3 +219,18 @@ class FriendSerializer(serializers.ModelSerializer):
 
     def get_avatar(self, obj):
         return obj.avatar.url.replace(settings.MEDIA_URL, '/media/')
+
+class FriendRequestSerializer(serializers.ModelSerializer):
+    from_user =  ByUserSerializer()
+    to_user =  ByUserSerializer()
+    type = serializers.SerializerMethodField()
+
+    class Meta:
+        model = FriendRequest
+        fields = ['from_user', 'to_user' ,'status', 'created_at','type']
+
+    def get_type(self, obj):
+        request_user = self.context['request'].user
+        if request_user ==  obj.from_user:
+            return 'sent'
+        return 'received'

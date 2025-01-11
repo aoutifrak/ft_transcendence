@@ -87,17 +87,24 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
 ###########
 POST https://10.12.7.14/api/friend_req/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NTk3NDQ1LCJpYXQiOjE3MzY1OTY1NDUsImp0aSI6IjQxNWMyZGZhNjE1NTQ0YzE4MzI4ZTY3MGUyNWJmM2YxIiwidXNlcl9pZCI6MjN9.lZ2YrZOvukTjs9bHvQ88UWp34FHPUAne__s4pCfY2og
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjAzNzg0LCJpYXQiOjE3MzY2MDI4ODQsImp0aSI6ImE2M2E3ZDdkOGM4YzQwOTU5MDBkMmEwYzMzYjMwYTExIiwidXNlcl9pZCI6MjF9.rOU_C3ZpLkMi_JaStACkT90bQrJgpdHDRh1-lJ_ZxvA
 
 {
   "username":"aoutifra"
 }
 ###########
+POST https://10.12.7.14/api/search_user
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjAzNzg0LCJpYXQiOjE3MzY2MDI4ODQsImp0aSI6ImE2M2E3ZDdkOGM4YzQwOTU5MDBkMmEwYzMzYjMwYTExIiwidXNlcl9pZCI6MjF9.rOU_C3ZpLkMi_JaStACkT90bQrJgpdHDRh1-lJ_ZxvA
+
+{
+  "username":"aoustifrsa"
+}
 ###########
 
 GET https://10.12.7.14/api/friend_req/
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NTk5MzM3LCJpYXQiOjE3MzY1OTg0MzcsImp0aSI6IjdiMmJjOGQ4MTdkZjRmOGI5N2NhY2EzZDJlMGNhOTdiIiwidXNlcl9pZCI6MjF9._Kupl-T6BwpSYKDZJr5eFLutj3BcxXhGTsMYlbrVQ14
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjAzNzg0LCJpYXQiOjE3MzY2MDI4ODQsImp0aSI6ImE2M2E3ZDdkOGM4YzQwOTU5MDBkMmEwYzMzYjMwYTExIiwidXNlcl9pZCI6MjF9.rOU_C3ZpLkMi_JaStACkT90bQrJgpdHDRh1-lJ_ZxvA
 
 {
   "username":"aoustifrsa"

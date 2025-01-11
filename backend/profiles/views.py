@@ -81,7 +81,7 @@ class Sign_upView(APIView):
         try:
             infos = request.data
             
-            valid_keys = ['email','username','password']
+            valid_keys = ['email','username','password','last_name','first_name']
             for key in infos.keys():
                 if key not in valid_keys:
                     return Response({"error": f"invalid fileds {key}!"},status=status.HTTP_400_BAD_REQUEST)
@@ -508,7 +508,7 @@ class SearchUser(APIView):
     def post(self, request):
         try:
             paginator = self.pagination_class()
-            all_users = User.objects.all()
+            all_users = User.objects.exclude(id=request.user.id)
             all_user = paginator.paginate_queryset(all_users, request)
             user_data = self.serializer_class(all_user, many=True, context={'request': request})
             return paginator.get_paginated_response(user_data.data)
