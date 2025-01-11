@@ -92,12 +92,12 @@ class NotificationConsumer(AsyncWebsocketConsumer):
             'message': f'{sender['username']} sent you a Game request'
         }))
 
-    async def sent_message(self, receiver, sender):
-        await self.channel_layer.group_send(
-            f'notification_{receiver}',
+    async def sent_message(self, event):
+        sender = event['sender']
+        await self.send(text_data=json.dumps(
             {
                 'sender': sender,
                 'type': 'sent_message',
                 'message': f'{sender['username']} send you a message'
             }
-        )
+        ))
