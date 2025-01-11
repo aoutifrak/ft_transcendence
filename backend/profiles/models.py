@@ -53,16 +53,3 @@ class FriendRequest(models.Model):
     class Meta:
         db_table = "Friend_Request"
         unique_together = ['from_user', 'to_user']
-
-
-class Matches(models.Model):
-    userone = models.ForeignKey(User, related_name='userone', on_delete=models.DO_NOTHING)
-    usertow = models.ForeignKey(User, related_name='usertow', on_delete=models.DO_NOTHING)
-    winner = models.ForeignKey(User, related_name='winner', on_delete=models.DO_NOTHING)
-    created_at = models.DateTimeField(auto_now_add=True)
-    status = models.IntegerField(default=0)
-    
-    class Meta:
-        db_table = "Matches"
-        unique_together = ['userone', 'usertow']
-        ordering = ['-created_at']

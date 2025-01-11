@@ -1,5 +1,5 @@
 from rest_framework import serializers 
-from .models import User , FriendRequest, Matches
+from .models import User , FriendRequest
 from django.contrib.auth import authenticate
 from rest_framework.exceptions import AuthenticationFailed
 import requests ,random
@@ -162,15 +162,17 @@ class SocialAuthontication(serializers.Serializer):
 
 class FriendRequestSerializer(serializers.ModelSerializer):
     from_user =  UserSerializer()
-    class Meta:
-        model = FriendRequest
-        fields = ['from_user', 'status', 'created_at']
-
-class SentFriendRequestSerializer(serializers.ModelSerializer):
     to_user =  UserSerializer()
+    type = serializers.SerializerMethodField()
     class Meta:
         model = FriendRequest
-        fields = ['to_user', 'status', 'created_at']
+        fields = ['from_user', 'to_user' ,'status', 'created_at','type']
+
+    def get_type(self,obj):
+        request_user = self.context['request'].user
+        if request_user ==  obj.from_user:
+            return 'sent'
+        return 'received'
 
 class ByUserSerializer(serializers.ModelSerializer):
     is_blocked = serializers.SerializerMethodField()
