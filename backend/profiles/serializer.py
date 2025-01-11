@@ -5,6 +5,8 @@ from rest_framework.exceptions import AuthenticationFailed
 import requests ,random
 from django.core.exceptions import ValidationError
 from django.conf import settings
+from django.db.models import Q
+
 
 def generate_unique_username(email):
     base_username = email.split('@')[0]
@@ -160,8 +162,6 @@ class SocialAuthontication(serializers.Serializer):
             raise serializers.ValidationError('Failed to login with given credentials')
         raise serializers.ValidationError('Failed to login with given credentials')
 
-
-
 class ByUserSerializer(serializers.ModelSerializer):
     is_blocked = serializers.SerializerMethodField()
     avatar = serializers.SerializerMethodField()
@@ -196,6 +196,7 @@ class ByUserSerializer(serializers.ModelSerializer):
 class FriendSerializer(serializers.ModelSerializer):
     is_friend = serializers.SerializerMethodField()
     is_blocked = serializers.SerializerMethodField()
+    is_friend_req = serializers.SerializerMethodField()
     avatar = serializers.SerializerMethodField()
     class Meta:
         model = User
@@ -207,6 +208,7 @@ class FriendSerializer(serializers.ModelSerializer):
                   'is_online',
                   'is_blocked',
                   'is_friend',
+                  'is_friend_req',
                   ]
     
     def get_is_friend(self,obj):
@@ -219,6 +221,16 @@ class FriendSerializer(serializers.ModelSerializer):
 
     def get_avatar(self, obj):
         return obj.avatar.url.replace(settings.MEDIA_URL, '/media/')
+    def get_is_friend_req(self, obj):
+        request_user = self.context['request'].user
+        user = obj
+        if FriendRequest.objects.filter(Q(from_user=request_user) & Q(to_user=user) & Q(status=0)).exists():
+            return 'sent'
+        if FriendRequest.objects.filter(Q(from_user=user) & Q(to_user=request_user) & Q(status=0)).exists():
+            return 'received'
+        else:    
+            return False
+
 
 class FriendRequestSerializer(serializers.ModelSerializer):
     from_user =  ByUserSerializer()

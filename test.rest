@@ -57,8 +57,8 @@ POST https://10.12.7.14/api/signup
 Content-Type: application/json
 
 {
-  "username": "aoutifra2",
-  "email": "aoutifra2@example.com",
+  "username": "aoutifra22",
+  "email": "aoutifra22@example.com",
   "password": "orllld123"
 }
 
@@ -92,9 +92,9 @@ Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiY
   "username":"aoutifra"
 }
 ###########
-POST https://10.12.7.14/api/search_user
+POST https://10.12.7.14/api/search_user?page=2
 Content-Type: application/json
-Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjAzNzg0LCJpYXQiOjE3MzY2MDI4ODQsImp0aSI6ImE2M2E3ZDdkOGM4YzQwOTU5MDBkMmEwYzMzYjMwYTExIiwidXNlcl9pZCI6MjF9.rOU_C3ZpLkMi_JaStACkT90bQrJgpdHDRh1-lJ_ZxvA
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJ0b2tlbl90eXBlIjoiYWNjZXNzIiwiZXhwIjoxNzM2NjA4NjE4LCJpYXQiOjE3MzY2MDc3MTgsImp0aSI6IjkxMTUwMjI4ZjYyYTRiYzZiY2YxNWZjNmJiZGI1YzAwIiwidXNlcl9pZCI6MjF9.m27tqLQS5RpGL39zZN004jLIIKp1YRix8eW8fJ6U_UE
 
 {
   "username":"aoustifrsa"
