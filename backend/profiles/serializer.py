@@ -246,3 +246,14 @@ class FriendRequestSerializer(serializers.ModelSerializer):
         if request_user ==  obj.from_user:
             return 'sent'
         return 'received'
+
+    def to_representation(self, instance):
+
+        representation = super().to_representation(instance)
+
+        if representation['type'] == 'sent':
+            representation.pop('from_user', None)
+        else:
+            representation.pop('to_user', None)  
+
+        return representation
