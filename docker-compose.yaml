@@ -110,7 +110,6 @@ services:
     container_name: kibana
     depends_on:
       - elasticsearch
-      - setup
     volumes:
       - certs:/usr/share/kibana/config/certs
       - kibana:/usr/share/kibana/data
@@ -136,6 +135,7 @@ services:
       - .env
     networks:
       - transcendence_network
+    restart: always
 
 volumes:
   postgres_data:
