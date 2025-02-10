@@ -1,0 +1,82 @@
+/* border border-black rounded-4 w-100 */
+.pongPlayerInGame {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+    color: #C144D5;
+    height: 100%;
+
+    div[class~="pong-player-text-vector"] {
+        display: flex;
+        position: relative;
+        border: 2px #D9D9D91A solid;
+        border-radius: 20px;
+        width: 90%;
+        min-height: 15em;
+        background: rgba(217, 217, 217, 0.1);
+
+
+
+
+        div[class~="user-welcoming-play-button"] {
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            z-index: 1;
+            margin-top: 1em;
+            margin-left: 1em;
+            width: 100%;
+
+            div[class~="user-welcoming"] {
+
+                >span {
+                    text-wrap: nowrap;
+                    margin-right: 2em;
+                }
+            }
+
+            button {
+                background: linear-gradient(90deg, #E03CCF -40.94%, #5D5AE7 168.9%);
+                font-size: clamp(1em, 0.5em + 1vw, 2em) !important;
+                border: none;
+                color: white;
+                border-radius: 32px;
+                width: fit-content;
+                padding-inline: 0.5em !important;
+                margin-top: auto;
+                margin-bottom: auto;
+                line-height: 1.1em;
+            }
+        }
+
+        div[class~="pong-player-vector"] {
+            position: absolute;
+            right: 0px;
+            bottom: 0px;
+            z-index: 0;
+            border-radius: inherit;
+            background-image: url("/assets/images/blurEffectBackgroundImage.svg");
+            background-size: 120% 120%;
+            background-position: 60% 20%;
+            background-repeat: no-repeat;
+
+            >img {
+                display: flex;
+                justify-content: end;
+                margin-left: auto;
+                margin-right: 0px;
+                width: 95%;
+            }
+        }
+
+        * {
+            font-family: "LuckiestGuy";
+            font-size: clamp(1em, 0.5em + 1vw, 1.5em);
+            font-weight: 400;
+            line-height: 30px;
+            letter-spacing: 0.14em;
+        }
+    }
+}

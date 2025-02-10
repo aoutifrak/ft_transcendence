@@ -1,0 +1,303 @@
+.tournamentLayout {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  div[class="tournament-logo"] {
+    width: 100%;
+    height: 5%;
+    text-align: center;
+    padding-top: 57px;
+  }
+  div [class="input_text"] {
+    width: 80%;
+    outline: none;
+    border-radius: 10px;
+    height: 80%;
+    margin-left: 5px;
+    border-width: 0px;
+  }
+  div [class="timer_geton"] {
+    background-color: red;
+    width: 10%;
+    border-radius: 10px;
+    height: 100%;
+  }
+  div [class="timer_all"] {
+
+    bottom: 0;
+    position: absolute;
+    width: 100%;
+    height: 10px;
+    background-color: white;
+    border-radius: 10px;
+  }
+  div [class="submit_but"] {
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 100%;
+  }
+  div [class="submit_but"]:hover {
+    cursor: pointer;
+  }
+  div [class="input_holder"] {
+    position: absolute;
+    gap: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    top: 30px;
+    border-radius: 10px;
+    width: 180px;
+    height: 30px;
+  }
+  div [class="name_seter"] {
+    width: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 25px;
+    border-radius: 100%;
+  }
+  div[class="TournamentBodyLeftSide"] {
+    flex-grow: 0.8;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-end;
+    height: 100%;
+  }
+  div[class="TournamentBodyMiddleSide"] {
+    flex-grow: 1.4;
+    display: flex;
+    flex-direction: row;
+    height: 100%;
+    text-align: center;
+    justify-content: center;
+    align-items: center;
+  }
+  div[class="MiddleLeftLines"] {
+    flex-grow: 1;
+    height: 100%;
+    display: flex;
+  }
+  div[class="MiddleLeftVerticalLine"] {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+  }
+  div[class="Line1"] {
+    height: 470px;
+    width: 100%;
+    background-color: transparent;
+    border-color: white;
+    border-top-right-radius: 20px;
+    border-bottom-right-radius: 20px;
+    border-top: 1px solid;
+    border-right: 1px solid;
+    border-bottom: 1px solid;
+    border-color: white;
+  }
+  div[class="MiddleLeftHorizentalLine"] {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+  }
+  div[class="Line2"] {
+    height: 100%;
+    width: 50%;
+    height: 1px;
+    width: 100%;
+    background-color: #ffffff;
+  }
+  div[class="MiddleRightLines"] {
+    flex-grow: 1;
+    height: 100%;
+    display: flex;
+  }
+  div[class="MiddleRightVerticalLine"] {
+    flex-grow: 1;
+    display: flex;
+    align-items: center;
+    height: 100%;
+  }
+  div[class="Line3"] {
+    height: 1px;
+    width: 100%;
+    background-color: #ffffff;
+  }
+  div[class="MiddleRightHorizentalLine"] {
+    display: flex;
+    align-items: center;
+    height: 100%;
+    width: 50%;
+  }
+  div[class="Line4"] {
+    height: 470px;
+    width: 100%;
+    background-color: transparent;
+    border-color: white;
+    border-top-left-radius: 20px;
+    border-bottom-left-radius: 20px;
+    border-top: 1px solid;
+    border-left: 1px solid;
+    border-bottom: 1px solid;
+    border-color: white;
+  }
+  div[class="TournamentBody"] {
+    width: 100%;
+    height: 567px;
+    display: flex;
+    flex-direction: row;
+    margin-top: 128px;
+  }
+  div[class="PlayerHolders"] {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+  }
+  div[class="PlayerHolder"] {
+    height: 77px;
+    width: 300px;
+    margin: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    align-items: center;
+    background-color: #877e9b;
+    color: #d9bfff;
+    padding: 0 10px;
+    border-radius: 23px;
+  }
+  div[class="PlayerData"] {
+    display: flex;
+    gap: 10px;
+    align-items: center;
+  }
+  div[class="TournamentBodyRightSide"] {
+    flex-grow: 0.8;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: flex-start;
+    height: 100%;
+  }
+  *[class="JoinButton"] {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 207px;
+    padding: 0.25em;
+    background: #b87ea5;
+    border-radius: 12px;
+  }
+  *[class="Friend"] {
+    display: flex;
+    width: 207px;
+    align-items: center;
+    background: #51237c;
+    border-radius: 12px;
+    padding: 0.27em;
+  }
+  *[class="FriendInfo"] {
+    display: flex;
+    flex-direction: row;
+    width: 90%;
+  }
+  *[class="FriendOnline"] {
+    height: 5px;
+    width: 5px;
+    border-radius: 5px;
+    position: relative;
+    right: 4px;
+  }
+  *[class="InviteFriend"] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position:relative;
+    width: 25px;
+    height: 17px;
+    border-radius: 9px;
+    background: #c90085;
+  }
+  div[class="InviteButton"]{
+    position: relative;
+  }
+  div[class="FriendsList"] {
+    display: flex;
+    flex-direction: column;
+    justify-content: start;
+    align-items: start;
+    padding: 10px;
+    width: 236px;
+    height: 315px;
+    position: absolute;
+    gap: 5px;
+    background: purple;
+    border-radius: 15px;
+    border: 2px #270756 solid;
+    overflow: scroll;
+    overflow-x: hidden;
+    z-index: 1;
+    left: -120px;
+  }
+  *[class="FriendsList"]::-webkit-scrollbar {
+    background-color: #d9bfff;
+    border-radius: 10px;
+    width: 0.5em;
+    /*jeff TODO : fix width*/
+  }
+  *[class="FriendsList"]::-webkit-scrollbar-thumb {
+    background: #440b7b;
+    border-radius: 10px;
+  }
+  *[class="StartButtonText"] {
+    font-family: Hiragino Maru Gothic ProN;
+    font-size: 40px;
+    font-weight: 400;
+    line-height: 60px;
+    letter-spacing: 0.3em;
+    color: #959595;
+    text-shadow: 1px 1px 0 black, -1px -1px 0 black, 1px -1px 0 black,
+      -1px 1px 0 black;
+  }
+  *[class="StartButton"] {
+    width: 311px;
+    height: 93px;
+    border-radius: 11px;
+    background-color: #656565;
+    position: absolute;
+    bottom: 54px;
+    right: 80px;
+    padding: 0px;
+    margin: 0px;
+    pointer-events: none;
+  }
+  *[class="StartTournament"] {
+    width: 100%;
+    display: flex;
+    flex-direction: row-reverse;
+  }
+  *[class="pd"] {
+    padding: 0px;
+    margin: 0px;
+  }
+  *[class="image"] {
+    width: 20px;
+    height: 20x;
+  }
+  *[class="FriendPfpContainer"] {
+    display: flex;
+    align-items: center;
+    justify-items: center;
+  }
+}

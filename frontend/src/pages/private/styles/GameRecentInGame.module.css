@@ -1,0 +1,139 @@
+.gameRecentInGame {
+  /**title of the recent games(text Recent)*/
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  height: 100%;
+  min-width: 90%;
+  width: fit-content;
+  margin-inline: auto;
+  color: white;
+
+  div[class~="title"] {
+    margin-bottom: 0px;
+    margin-top: 1em;
+    font-family: var(--font-luckiestGuy);
+    font-size: clamp(0.9em, 1.5em + 1vw, 3.5em);
+    line-height: fit-content;
+    text-align: center;
+  }
+
+  div[class~="recent-board"] {
+    display: flex;
+    flex-direction: column;
+    border: 1px white solid;
+    border-radius: 35px;
+    padding-block: 0.5em;
+    padding-inline: 0.75em;
+    border-radius: 20px;
+    background-image: linear-gradient(180deg, #03062e 0%, #5f0a94 170.71%);
+    background-color: rgba(217, 217, 217, 0.1);
+  }
+}
+
+.gameRecentInGameImageAndName {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-block: 0.25em;
+  padding: 0.5em;
+  min-width: fit-content;
+  border-radius: 10px;
+  background: linear-gradient(
+    90deg,
+    rgba(68, 255, 0, 0.442) 0%,
+    rgba(255, 0, 0, 0.383) 100%
+  );
+
+  > div[class~="winner"] {
+    display: flex;
+    flex-direction: row;
+    min-width: fit-content;
+    width: 45%;
+
+    > div[class~="user-image"] {
+      display: flex;
+      justify-content: center;
+      padding: 0px;
+      margin: 0px;
+      width: 2.5em;
+      min-width: 2.5em;
+      max-width: 2.5em;
+      border: 2px solid black;
+      border-radius: 100%;
+
+      img {
+        border-radius: 100%;
+        width: 100%;
+        padding: 0px;
+        margin: 0px;
+      }
+    }
+
+    > div[class~="user-name"] {
+      text-align: center;
+      font-weight: 500;
+      flex-grow: 1;
+      font-size: clamp(1em, 0.2em + 1vw, 6em);
+    }
+  }
+
+  > div[class~="vs-container"] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+    padding: 0px;
+    margin: 0px;
+    font-size: clamp(0.4em, 0.3em + 1vw, 3.5em);
+    font-family: var(--font-luckiestGuy);
+    font-weight: 600;
+    line-height: fit-content;
+  }
+
+  > div[class~="loser"] {
+    display: flex;
+    flex-direction: row;
+    flex-grow: 2;
+    min-width: fit-content;
+    width: 45%;
+
+    > div[class~="user-name"] {
+      text-align: center;
+      font-weight: 500;
+      flex-grow: 1;
+      font-size: clamp(1em, 0.2em + 1vw, 6em);
+    }
+
+    div[class~="user-image"] {
+      display: flex;
+      justify-content: center;
+      width: 2.5em;
+      min-width: 2.5em;
+      max-width: 2.5em;
+      border: 2px solid black;
+      border-radius: 100%;
+
+      img {
+        border-radius: 100%;
+        width: 100%;
+        padding: 0px;
+        margin: 0px;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 920px) {
+  .gameRecentInGame {
+    div[class~="recent-board"] {
+      padding-inline: 0.2em;
+      padding-block: 0.2em;
+    }
+  }
+  .gameRecentInGameImageAndName {
+    margin-inline: 0px;
+    padding-inline: 1px;
+    margin-block: 0.1em;
+  }
+}

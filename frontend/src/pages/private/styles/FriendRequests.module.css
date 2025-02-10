@@ -1,0 +1,180 @@
+.friendRequests {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  height: 100%;
+  color: rgba(217, 191, 255, 1);
+  p[class~="no-friend-requests"] {
+    width: 100%;
+  }
+}
+
+.friendRequests > div {
+  display: flex;
+  flex-direction: column;
+  height: 85%;
+  width: 90%;
+  overflow-y: auto;
+  margin-right: 1em;
+}
+
+.friendRequests > div::-webkit-scrollbar {
+  width: 0.4em;
+  background-color: black;
+}
+
+.friendRequests > div::-webkit-scrollbar-thumb {
+  background-color: rgba(68, 11, 123, 1);
+  border-radius: 400px;
+  outline: 1px solid slategrey;
+}
+
+.friendRequests > div::-webkit-scrollbar-track {
+  border-radius: 200px;
+  background-color: rgba(217, 191, 255, 1);
+  -webkit-box-shadow: inset 1 5 5px rgba(0, 0, 0, 0.3);
+}
+
+.friendRequests div[class~="friendrequests-card"] {
+  background: rgba(92, 49, 134, 1);
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: fit-content;
+  width: 90%;
+  min-width: 90%;
+  font-size: 0.8em;
+  border-radius: 9px;
+  padding: 0em 0.4em;
+  padding-right: 0px;
+  margin-block: 0.2em;
+  justify-content: space-between;
+  position: relative;
+
+  a[class~="user-image-name-fullname"] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+
+    div[class~="user-image"] {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-right: 1em;
+
+      img {
+        width: 2.5em;
+        min-width: 2.5em;
+        max-width: 2.5em;
+      }
+    }
+
+    div[class~="user-name-fullname"] {
+      display: flex;
+      flex-direction: column;
+      min-height: fit-content;
+
+      div[class~="user-fullname"] {
+        color: white;
+        font-size: clamp(0.3em, 0.3em + 1vw, 1em);
+        font-family: "Hiragino Maru Gothic ProN";
+        font-weight: 300 !important;
+        line-height: 1em;
+      }
+
+      div[class~="user-name"] {
+        color: rgba(227, 120, 120, 1);
+        font-size: clamp(0.2em, 0.3em + 1vw, 0.8em);
+        line-height: 1em;
+        font-weight: 200;
+      }
+    }
+  }
+
+  div[class~="accept-reject-cancel-button"] {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: center;
+    /**the box of accept-button and reject-button*/
+    > div[class~="accept-button"],
+    div[class~="reject-button"],
+    div[class~="cancel-button"] {
+      flex-grow: 1;
+      display: flex;
+      gap: 0.2em !important;
+      justify-content: center;
+      padding-inline: 0.6em;
+      padding-block: 0.1em;
+      border-radius: 1em;
+      cursor: pointer;
+      font-size: clamp(0.8em, 0.3em + 1vw, 1.5em);
+      line-height: 1em;
+    }
+    div[class~="accept-button"] {
+      background: rgb(163, 101, 220);
+      cursor: pointer;
+    }
+
+    div[class~="reject-button"] {
+      background: rgb(198, 0, 132, 0.8);
+    }
+    div[class|="cancel-button"] {
+      background: rgb(198, 0, 132, 0.8);
+    }
+  }
+
+  div[class|="friend-request-type"] {
+    border-top-right-radius: inherit;
+    border-bottom-right-radius: inherit;
+    margin-left: 0.3em;
+    padding: 0.2em;
+    display: flex;
+    align-content: center;
+    align-items: center;
+    font-size: clamp(0.3em, 0.3em + 1vw, 1.5em);
+    cursor: help;
+  }
+  div[class~="friend-request-type-received"] {
+    background-color: rgb(136, 0, 255);
+  }
+  div[class~="friend-request-type-sent"] {
+    background-color: rgb(0, 255, 13, 0.5);
+  }
+}
+
+.friendRequests {
+  @media screen and (max-width: 800px) {
+    justify-content: center;
+    padding-inline: 0.5em;
+    > div {
+      width: 100%;
+      height: 100%;
+    }
+    div[class~="friendrequests-card"] {
+      width: 90%;
+      div[class~="accept-reject-button"] {
+        /**the box of accept-button and reject-button*/
+        > div[class~="accept-button"],
+        div[class~="reject-button"] {
+          font-size: clamp(0.8em, 0.3em + 3vw, 1.5em);
+        }
+        div[class~="reject-button"] {
+          margin-left: 0.2em;
+        }
+      }
+    }
+    div[class~="user-name"] {
+      font-size: clamp(0.5em, 1.2em + 1vw, 1.5em);
+      line-height: 1em;
+    }
+
+    div[class~="user-fullname"] {
+      font-size: clamp(0.2em, 0.8em + 1vw, 0.8em);
+      line-height: 1em;
+    }
+  }
+}

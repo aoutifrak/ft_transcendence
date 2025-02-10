@@ -1,0 +1,86 @@
+.modalOtp {
+  position: relative;
+  top: 50%;
+  border-radius: 23px;
+  background: linear-gradient(180deg, #5f0a94 0%, #03062e 156.71%);
+  max-width: fit-content;
+  min-width: 25%;
+  padding: 2px;
+  div[class~="modal-body"] {
+    border-radius: 23px;
+    border-radius: inherit;
+    > span {
+      display: flex;
+      margin-left: 2em;
+    }
+    > form {
+      padding: 1em;
+      display: flex;
+      flex-direction: column;
+
+      justify-content: space-between;
+      div[class~="otp-code"] {
+        display: flex;
+        flex-direction: column;
+        min-height: 5em;
+        justify-content: space-between;
+        > span {
+          margin-top: 0.5em;
+          margin-bottom: auto;
+        }
+        div[class~="inputs-code"] {
+          display: flex;
+          flex: row no-wrap;
+          justify-content: space-between;
+          column-gap: 1em;
+          width: 100%;
+          > input {
+            display: flex;
+            justify-content: center;
+            border-radius: 12px;
+            padding: 0.3em;
+            padding-left: 0.8em;
+            font-size: 1em;
+            margin: 0px;
+            border: 0px;
+            align-items: center;
+            font-family: var(--font-luckiestGuy);
+            line-height: 1em;
+            width: 2.2em;
+            height: 2em;
+          }
+        }
+      }
+      div[class~="submit-cancel-button"] {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-between;
+        font-family: var(--font-luckiestGuy);
+
+        input[class~="cancel"] {
+          border-radius: 12px;
+          font-size: 1.5em;
+          padding-block: 0em;
+          padding-inline: 0.5em;
+        }
+        input[class~="cancel"]:hover {
+          background-color: rgb(255, 0, 0, 0.9);
+          font-size: 1.2em;
+          transition: 0.2s;
+        }
+        input[class~="submit"] {
+          border-radius: 12px;
+          font-size: 1.5em;
+          padding-block: 0em;
+          padding-inline: 0.5em;
+        }
+        input[class~="submit"]:hover {
+          background-color: rgb(0, 125, 0, 0.8);
+          font-size: 1.75em;
+          padding-block: 0px;
+          transition: 0.2s;
+        }
+      }
+    }
+  }
+}

@@ -1,0 +1,60 @@
+.recent {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    height: 100%;
+    color: rgba(217, 191, 255, 1);
+
+}
+
+.recent>div {
+    display: flex;
+    flex-direction: column;
+    height: 80%;
+    width: 90%;
+    overflow-y: auto;
+    margin-right: 1em;
+
+}
+
+.recent p{
+    font-size: clamp(0.1em, 0.2em + 1vw, 1.5em);
+    font-weight: 300;
+    line-height: 1em;
+    padding: 0px;
+}
+.recent span[class~="win"]
+{
+    color: greenyellow;
+}
+
+.recent span[class~="lose"]
+{
+    color: red;
+}
+
+.recent>div::-webkit-scrollbar {
+    width: 0.4em;
+    background-color: black;
+}
+
+.recent>div::-webkit-scrollbar-thumb {
+    background-color: rgba(68, 11, 123, 1);
+    border-radius: 400px;
+    outline: 1px solid slategrey;
+}
+
+.recent>div::-webkit-scrollbar-track {
+    border-radius: 200px;
+    background-color: rgba(217, 191, 255, 1);
+    -webkit-box-shadow: inset 1 5 5px rgba(0, 0, 0, 0.3);
+}
+@media screen and (max-width: 800px) {
+    .recent{
+        justify-content: center;
+        padding-left:0.5em ;
+    }
+    .recent p{
+        font-size: clamp(0.5em, 0.6em + 1vw, 1.5em);        
+    }
+}

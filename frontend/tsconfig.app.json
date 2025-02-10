@@ -1,0 +1,42 @@
+{
+  "compilerOptions": {
+    "target": "ES2020",
+    "useDefineForClassFields": true,
+    "lib": ["ES2020", "DOM", "DOM.Iterable"],
+    "module": "ESNext",
+    "skipLibCheck": true,
+
+    /* Bundler mode */
+    "moduleResolution": "bundler",
+    "allowImportingTsExtensions": true,
+    "isolatedModules": true,
+    "moduleDetection": "force",
+    "noEmit": true,
+    "jsx": "react-jsx",
+
+    /* Linting */
+    "strict": true,
+    "noUnusedLocals": true,
+    "noUnusedParameters": true,
+    "noFallthroughCasesInSwitch": true,
+    "baseUrl": ".",
+    "paths": {
+      "@/*" : [".", "./*"],
+      "@assets/*" : ["/assets", "/assets/*"],
+      "@images/*" : ["/assets/images", "/assets/images/*"],
+      "@videos/*" : ["/assets/videos", "/assets/videos/*"],
+      "@icons/*" : ["/assets/icons", "/assets/icons/*"],
+      "@src/*" : ["./src", "./src/*"],
+      "@router/*" : ["./src/router", "./src/router/*"],
+      "@states/*" : ["./src/states", "./src/states/*"],
+      "@pages/*" : ["./src/pages", "./src/pages/*"],
+      "@publicPages/*" : ["./src/pages/public", "./src/pages/public/*"],
+      "@publicPagesStyles/*" : ["./src/pages/public/styles", "./src/pages/public/styles/*"],
+      "@publicComponents/*" : ["./src/pages/public/components", "./src/pages/public/components/*"],
+      "@privatePages/*" : ["./src/pages/private", "./src/pages/private/*"],
+      "@privatePagesStyles/*" : ["./src/pages/public/styles", "./src/pages/public/styles/*"],
+      "@privateComponents/*" : ["./src/pages/private/components", "./src/pages/private/components/*"]
+    },
+  },
+  "include": ["src/**/*", "public/**/*", "./**/*"]
+}

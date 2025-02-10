@@ -1,0 +1,10 @@
+.loadingOrNoMoreData{
+    div[class~="loading-data"]{
+        display: flex;
+        justify-content: center;
+    }
+    div[class~="no-more-data"]{
+        display: flex;
+        justify-content: center;
+    }
+}

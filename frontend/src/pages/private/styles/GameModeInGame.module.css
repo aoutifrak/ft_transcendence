@@ -1,0 +1,241 @@
+.gameModeInGame {
+    display: flex;
+    justify-content: space-between;
+    margin-left: auto;
+    margin-top: auto;
+    height: 80%;
+    width: 98%;
+    color: white;
+
+    >div[class~="left-arrow"],
+    >div[class~="right-arrow"] {
+        display: flex;
+        flex-direction: row;
+        justify-content: center;
+        z-index: 1;
+        border: 1px white solid;
+        border-radius: 6px;
+        cursor: pointer !important;
+        width: fit-content;
+        height: fit-content;
+        margin-block: auto;
+        padding-inline: 0.3em;
+        padding-block: 0.1em;
+    }
+}
+
+.gameModeInGameSlides {
+    display: flex;
+    flex-direction: row;
+    min-width: 80%;
+    justify-content: space-around;
+
+    >div[id="slideTournament"] {
+        display: flex;
+        margin: auto;
+
+        h3 {
+            font-family: var(--font-luckiestGuy);
+            font-weight: 500;
+            font-size: clamp(0.5em, 0.6em + 1vw, 1.5em) !important;
+            text-wrap: nowrap;
+        }
+
+        p {
+            font-size: clamp(0.6em, 0.5em + 1vw, 1em);
+        }
+
+        button {
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: linear-gradient(90deg, #E03CCF -40.94%, #5D5AE7 168.9%);
+            max-width: 10em;
+            min-height: fit-content !important;
+            padding-inline: 0px !important;
+            padding-block: 0.08em;
+            border-radius: 23px;
+            border: none;
+            line-height: fit-content;
+            text-wrap: nowrap;
+            font-family: var(--font-luckiestGuy);
+            font-size: clamp(0.8em, 0.2em + 1vw, 1.2em);
+        }
+    }
+
+    >div[id="slideAiMode"] {
+        display: flex;
+        margin: auto;
+
+    }
+
+    >div[id="slideFriends"] {
+        display: flex;
+        margin: auto;
+
+
+    }
+
+    >div {
+        border: 2px rgba(255, 255, 255, 0.25) solid;
+    }
+
+    img {
+        max-height: 100%;
+    }
+
+    >div:first-child,
+    >div:last-child {
+        height: 80%;
+        min-width: 25%;
+        display: grid;
+        grid-template-columns: 10fr;
+        grid-template-rows: 1fr;
+        border-radius: 20px;
+        border-width: 4px;
+
+        div[class~="text-button"] {
+            grid-column: 1 / 9;
+            grid-row: 1/2;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 80%;
+            min-width: fit-content;
+            margin-block: auto;
+            margin-left: min(1em, 10%);
+
+            >h3 {
+                font-family: var(--font-luckiestGuy);
+                font-weight: 500;
+                font-size: clamp(0.5em, 0.5em + 2vw, 1.3em);
+                text-wrap: nowrap;
+            }
+
+            >p {
+                font-size: clamp(0.6em, 0.5em + 1vw, 1em);
+            }
+
+            button {
+                position: relative;
+                bottom: -1.5em;
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: linear-gradient(90deg, #E03CCF -40.94%, #5D5AE7 168.9%);
+                max-width: 10em;
+                min-height: fit-content !important;
+                padding-block: 0.08em;
+                border-radius: 23px;
+                border: none;
+                line-height: fit-content;
+                text-wrap: nowrap;
+                font-family: var(--font-luckiestGuy);
+                font-size: clamp(0.8em, 0.2em + 1vw, 1.2em);
+                cursor: no-drop;
+            }
+        }
+
+        div[class~="game-mode-image"] {
+            grid-column: 1 / 10;
+            grid-row: 1 / 4;
+            display: flex;
+            align-items: center;
+            border-radius: inherit;
+            background-image: url("/assets/images/blurEffectBackgroundImage.svg");
+            background-position-x: 200%;
+            background-position-y: center;
+            background-size: 80% 80%;
+            backdrop-filter: blur(10px);
+            background-repeat: no-repeat;
+            background-attachment: local;
+
+            img {
+                height: 100%;
+                margin-left: 50%;
+                width: 50%;
+            }
+        }
+
+        filter: blur(1.3px);
+    }
+
+    /*div in the center of modes*/
+    >div:nth-child(2) {
+        height: 100%;
+        min-width: 40%;
+
+        margin-inline: 1em;
+        display: grid;
+        grid-template-columns: 10fr;
+        grid-template-rows: 1fr;
+        border-radius: 20px;
+
+        div[class~="text-button"] {
+            grid-column: 1 / 8;
+            grid-row: 1/2;
+            z-index: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            height: 80%;
+            margin-block: auto;
+            margin-left: 1em;
+
+            >h3 {
+                font-family: var(--font-luckiestGuy);
+                font-weight: 500;
+                font-size: clamp(0.5em, 0.5em + 2vw, 1.3em);
+                text-wrap: nowrap;
+            }
+
+            >p {
+                font-size: clamp(0.6em, 0.5em + 1vw, 1em);
+            }
+
+            button {
+                position: relative;
+                bottom: -1.5em;
+                color: white;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                background: linear-gradient(90deg, #E03CCF -40.94%, #5D5AE7 168.9%);
+                min-width: fit-content !important;
+                max-width: 10em;
+                min-height: fit-content !important;
+                padding-block: 0.08em;
+                border-radius: 23px;
+                border: none;
+                line-height: fit-content;
+                text-wrap: nowrap;
+                font-family: var(--font-luckiestGuy);
+                font-size: clamp(1em, 0.6em + 1vw, 1.5em);
+            }
+        }
+
+        div[class~="game-mode-image"] {
+            grid-column: 1 / 10;
+            grid-row: 1 / 4;
+            display: flex;
+            align-items: center;
+            border-radius: inherit;
+            background-image: url("/assets/images/blurEffectBackgroundImage.svg");
+            background-position-x: 200%;
+            background-position-y: 30%;
+            background-size: 80%;
+            backdrop-filter: blur(10px);
+            background-repeat: no-repeat;
+            background-attachment: local;
+
+            img {
+                height: 80%;
+                margin-left: 50%;
+                width: 50%;
+            }
+        }
+    }
+}

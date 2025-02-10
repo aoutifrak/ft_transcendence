@@ -1,0 +1,305 @@
+.profileLayout {
+  min-height: 50em !important;
+  height: 100%;
+  color: black;
+  display: grid;
+  grid-template-rows: repeat(11, 8.33%) 1fr;
+  grid-template-columns: repeat(10, 10%);
+  min-height: fit-content;
+  min-width: fit-content;
+}
+
+.profileLayout div[class~="aiStats"] {
+  grid-column: 1 / 5;
+  grid-row: 5 / 9;
+  height: fit-content;
+
+  > div {
+    background-image: url("/assets/images/profileBackgroundImage.svg");
+    background-repeat: no-repeat;
+    background-size: cover;
+    margin-left: auto;
+    margin-top: 3em;
+    padding: 1em;
+    max-width: 80%;
+    min-width: 60%;
+  }
+}
+
+.profileLayout div[class~="profileStatsLayout"] {
+  grid-column: 5 / 10;
+  grid-row: 5 / 9;
+  min-height: fit-content;
+  min-width: fit-content;
+}
+
+.profileLayout div[class~="classicTournamentStats"] {
+  grid-column: 8 / 11;
+  grid-row: 1 / 13;
+  background-image: url("/assets/images/profileBackgroundImage.svg");
+  background-repeat: no-repeat;
+  background-size: cover;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  min-height: fit-content;
+  min-width: fit-content;
+}
+
+.profileLayout div[class~="classicStats"] {
+  min-width: fit-content;
+
+  > div {
+    margin-inline: 5%;
+    margin-top: 1em;
+    padding: 1.2em;
+    min-height: 12em;
+  }
+}
+
+.profileLayout div[class~="tournamentStats"] {
+  min-width: fit-content;
+
+  > div {
+    margin-inline: 5%;
+    margin-bottom: 1em;
+    padding: 1.2em;
+    min-height: 12em;
+  }
+
+  * [class~="title"] {
+    font-size: clamp(0.4em, 0.4em + 1vw, 2em);
+  }
+
+  * [class~="wins"],
+  * [class~="loses"],
+  * [class~="matches"] {
+    font-size: clamp(0.4em, 0.4em + 1vw, 2em);
+  }
+}
+
+.profileLayout div[class~="waletStats"] {
+  grid-column: 2 / 6;
+  grid-row: 1 / 2;
+  min-height: fit-content;
+  min-width: fit-content;
+}
+
+.profileLayout div[class~="profileStatsLayout"] {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  background: rgba(68, 11, 123, 1);
+  border: 1px solid transparent;
+  border-image: linear-gradient(180deg, #ffc7c7 0%, #997878 100%);
+  border-image-slice: 1;
+
+  div[class~="profile-side-bar"] {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    align-items: center;
+    min-width: fit-content;
+    background: rgba(217, 191, 255, 1);
+    border: inherit;
+
+    * {
+      padding-left: 0.8em;
+      padding-right: 0.8em;
+      color: white;
+      writing-mode: vertical-lr;
+      font-family: var(--font-luckiestGuy);
+      text-decoration: none !important;
+    }
+
+    > a {
+      display: flex;
+      justify-content: center;
+      flex-grow: 1;
+      rotate: 180deg;
+    }
+
+    > a[class~="active"] {
+      background-color: rgba(68, 11, 123, 1);
+    }
+  }
+
+  div[class~="user-image-link-content"] {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    margin: 0px !important;
+  }
+
+  div[class~="user-image-link-content"] > div[class~="user-image"] {
+    display: flex;
+    justify-content: right;
+    align-items: center;
+    position: relative;
+    width: 40%;
+    padding: 0px;
+    margin: 0px !important;
+    background-image: url("/assets/images/profileBackgroundCurve.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    > div {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      z-index: 1;
+      height: 50%;
+      margin-right: calc(0.1em + 1vw);
+    }
+
+    img {
+      height: 70%;
+      position: relative;
+      margin-left: 0px;
+      border-radius: 100%;
+      background-color: rgb(228, 176, 176);
+    }
+  }
+
+  div[class~="user-image-link-content"] > div[class~="link-content"] {
+    color: red;
+    width: 60%;
+  }
+}
+
+/**
+* Tablet view
+*/
+@media screen and (max-width: 1100px) {
+  .profileLayout {
+    div[class~="waletStats"] {
+      grid-column: 2 / 8;
+      margin-right: 4em;
+    }
+
+    div[class~="profileStatsLayout"] {
+      grid-column: 4 / 11;
+    }
+
+    div[class~="aiStats"] {
+      grid-column: 1 / 4;
+
+      > div {
+        max-width: 95%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .profileLayout {
+    div[class~="waletStats"] {
+      grid-column: 1 / 11;
+      margin-right: 0em;
+    }
+
+    div[class~="profileStatsLayout"] {
+      grid-column: 1 / 11;
+      grid-row: 2/7;
+      display: flex;
+      flex-direction: column;
+      transition: 1s;
+
+      div[class~="profile-side-bar"] {
+        display: flex;
+        flex-direction: row;
+        transition: inherit;
+        max-height: 10%;
+
+        * {
+          padding: 0em;
+        }
+
+        > a {
+          writing-mode: horizontal-tb;
+          rotate: 0deg;
+          transition: inherit;
+        }
+        > a[class~="active"] {
+          padding: 0.4em;
+          height: 100%;
+        }
+      }
+
+      div[class~="user-image-link-content"] {
+        display: flex;
+        flex-direction: column;
+        height: 90%;
+      }
+
+      div[class~="user-image-link-content"] > div[class~="user-image"] {
+        height: 28%;
+        width: 100%;
+        justify-content: center;
+
+        > div {
+          width: 100%;
+          height: 100%;
+          margin: 0px;
+          padding: 0px;
+        }
+      }
+
+      div[class~="user-image-link-content"] > div[class~="link-content"] {
+        width: 100%;
+        height: 70%;
+      }
+    }
+
+    div[class~="aiStats"] {
+      grid-column: 1 / 11;
+      grid-row: 7/9;
+      width: 100%;
+      height: fit-content;
+      padding-top: 1em;
+
+      > div {
+        margin: 0px;
+        max-width: 100%;
+      }
+    }
+
+    div[class~="classicTournamentStats"] {
+      grid-column: 1 / 11;
+      grid-row: 9/14;
+      margin-top: 1em;
+      margin-bottom: 0px;
+      height: fit-content;
+
+      div[class~="tournamentStats"] {
+        max-height: fit-content;
+
+        > div {
+          margin-inline: 0px;
+          margin-bottom: 0px;
+          padding: auto;
+          min-height: fit-content;
+        }
+
+        * [class~="title"] {
+          margin-block: 0px;
+          font-size: clamp(0.8em, 0.8em + 2vw, 3em);
+        }
+
+        * [class~="wins"],
+        * [class~="loses"],
+        * [class~="matches"] {
+          font-size: clamp(0.3em, 0.5em + 1.3vw, 2em);
+        }
+      }
+
+      div[class~="classicStats"] {
+        > div {
+          margin-inline: 0px;
+          margin-top: 0px;
+          min-height: fit-content;
+          height: fit-content;
+        }
+      }
+    }
+  }
+}

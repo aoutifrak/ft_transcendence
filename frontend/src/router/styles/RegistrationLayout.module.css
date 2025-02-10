@@ -1,0 +1,44 @@
+.registrationLayout {
+    background: linear-gradient(#03062E 0%, #5F0A94 156.71%);
+    height: fit-content;
+    min-height: 100vh;
+}
+
+.registrationLayoutStick {
+    background: linear-gradient(180deg, #C56D34 0%, #EAB091 100%);
+    width: 3em;
+    height: 30em;
+}
+.registrationLayoutStickAnimation {
+    position : relative;
+    /* transform: translate(-50%,-180%); */
+    animation-name: registrationLayoutStickAnimation;
+    animation-duration: 3s;
+    animation-iteration-count: 1;
+}
+
+@keyframes registrationLayoutStickAnimation {
+    0%   { left:0%; top:0px;}
+    25%  { left:25%; top:0px;}
+    50%  { left:50%; top:0px;}
+    75%  { left:75%; top:0px;}
+    100% { left:90%; top:0px;}
+}
+
+.registrationLayoutAnimation{
+    position : relative;
+    /* transform: translate(-50%,-180%); */
+    animation-name: registrationLayoutAnimation;
+    animation-duration: 2.5s;
+    animation-iteration-count: 1;
+}
+
+@keyframes registrationLayoutAnimation {
+
+    0%   {opacity: .8 ;color:red; left:0px; top:0px;}
+    25%  {opacity: .3 ;color:yellow ; left:100%; top:0px;}
+    /* 50%  {opacity: .4 ;color:blue; left:17%; top:0px;}
+    75%  {opacity: .2 ;color:green; left:75%; top:0px;}
+    100% {opacity: .0 ;color:red; left:100%; top:0px;} */
+    
+}

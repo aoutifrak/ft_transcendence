@@ -1,0 +1,136 @@
+.settingProfile {
+  display: flex;
+  flex-direction: row;
+  height: 100%;
+  color: white;
+  /* background-color: aqua; */
+}
+
+.settingProfile form {
+  display: flex;
+  flex-direction: column;
+  min-width: 60%;
+  margin-top: 2em;
+  row-gap: clamp(1.5em, 1em + 2vw, 8em);
+
+  /*here is the parent of the input field  and its label */
+  > div {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    row-gap: 1em;
+    column-gap: 1em;
+    width: 100%;
+  }
+  span[class~="error-message"] {
+    /* background-color: yellow; */
+    margin: 0px !important;
+    padding: 0px !important;
+    font-size: small;
+    color: red;
+    line-height: 0.5em;
+  }
+}
+
+.settingProfile div[class~="first-last-name"] {
+  > div {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    gap: 0.8em;
+  }
+}
+
+.settingProfile div[class~="email-username"] {
+  > div {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    flex-grow: 1;
+    gap: 0.8em;
+
+    input {
+      cursor: no-drop;
+    }
+  }
+}
+
+.settingProfile div[class~="profile-img-update"] {
+  max-width: 100%;
+  label {
+    position: relative;
+    border-radius: 0.3em;
+    border: white 1px solid;
+    padding: 1em;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    row-gap: 1em;
+    cursor: pointer;
+    width: clamp(22em, 10em + 20vw, 30em);
+    min-height: fit-content;
+  }
+  div[class~="file-icon"] {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: white;
+    height: fit-content;
+    width: fit-content;
+    border: 1px white solid;
+    padding: 0.3em;
+    border-radius: 100%;
+  }
+  div[class~="file-text"] {
+    font-family: "DM Sans";
+    font-size: 0.8em;
+    font-weight: 500;
+    line-height: 19px;
+    text-align: center;
+    text-underline-position: from-font;
+    text-decoration-skip-ink: none;
+  }
+  input[type="file"] {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: transparent;
+  }
+  input[type="file"]:focus {
+    color: rgba(255, 255, 255, 0.82);
+    outline-offset: 0px;
+    outline-width: 0px;
+  }
+  input[type="file"]::file-selector-button {
+    display: none;
+  }
+}
+
+.settingProfile {
+  input {
+    border: 0px;
+    border-radius: 9px;
+    padding: 0.3em 1em;
+    background-color: rgba(84, 54, 57, 0.48);
+    color: rgba(255, 255, 255, 0.82);
+    max-width: 25em;
+  }
+  ::placeholder {
+    color: rgba(255, 255, 255, 0.27);
+  }
+
+  :focus-visible {
+    outline: 2px solid #391e44;
+  }
+
+  > label {
+    width: fit-content;
+  }
+}
+
+/**
+
+*/

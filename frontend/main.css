@@ -1,0 +1,26 @@
+:root {
+    --radian-x-background: linear-gradient(90deg, #E03CCF -40.94%, #5D5AE7 168.9%);
+    --radian-y-background: linear-gradient(180deg, #03062E 0%, #5F0A94 156.71%);
+    --font-luckiestGuy: "LuckiestGuy";
+    /*font sizes*/
+    --fs-xl: clamp(3.5rem, 12vw + 1rem, 12rem);
+    --fs-md: clamp(1.5rem, 6vw + 1rem, 6rem);
+    --fs-sm: clamp(0.75rem, 3vw + 1rem, 3rem);
+}
+
+img {
+    max-width: 100%;
+    height: auto;
+}
+
+div {
+    margin: 0px;
+    padding: 0px;
+}
+
+@font-face {
+    font-family: "LuckiestGuy";
+    src: local("LuckiestGuyRegular"),
+        url("./src/fonts/Luckiest_Guy/LuckiestGuy-Regular.ttf") format("truetype");
+    font-weight: normal;
+}

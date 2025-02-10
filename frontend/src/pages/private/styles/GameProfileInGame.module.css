@@ -1,0 +1,146 @@
+.gameProfileInGame {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    margin-inline: auto;
+    /* min-width: fit-content; */
+    min-height: fit-content;
+    width: 95%;
+    height: 90%;
+    border: 1px solid rgba(217, 217, 217, 0.1);
+    border-radius: 35px;
+    background-color: rgba(217, 217, 217, 0.1);
+
+    div[class~="profile-title"] {
+        font-family: "LuckiestGuy";
+        font-weight: 400;
+        text-align: center;
+        line-height: fit-content;
+        font-size: clamp(1em, 0.5em + 1vw, 3em);
+    }
+
+    div[class~="medal-user"] {
+        display: flex;
+        flex-direction: row;
+
+        div[class~="user-image-name-level"] {
+            display: flex;
+            flex-direction: row;
+            justify-content: center;
+            width: 55%;
+
+            div[class~="user-image"] {
+                display: flex;
+                width: 40%;
+                >img {
+                    border-radius: 100%;
+                    background-color: rgb(2, 113, 2);
+                    margin: auto;
+                    width: 95%;
+                }
+            }
+
+            div[class~="user-name-level"] {
+                display: flex;
+                flex-direction: column;
+                margin-block: auto;
+
+                div[class~="user-name"] {
+                    color: #F15F66;
+                    font-family: "Hiragino Maru Gothic ProN";
+                    font-size: clamp(0.3em, 0.4em + 1vw, 2em);
+                    font-weight: 500;
+                    margin-right: auto;
+                    font-weight: medium;
+                }
+
+                p[class~="user-level"] {
+                    margin: 0px;
+                    padding: 0px;
+                    color: white;
+                    font-size: clamp(0.1em, 0.2em + 0.75vw, 1em);
+                    font-weight: 200;
+                }
+            }
+        }
+
+        div[class~="vertical-line"] {
+            border: 2px solid rgba(255, 255, 255, 0.57);
+            margin-block: 2%;
+        }
+
+        div[class~="medal-image"] {
+            display: flex;
+            justify-content: center;
+            width: 45%;
+            background-image: url("/assets/images/blurEffectBackgroundImage.svg");
+            background-position-x: center;
+            background-position-y: 20%;
+            background-size: 15em 15em;
+            background-repeat: no-repeat;
+
+            >img {
+                margin: 0px;
+                padding: 0px;
+                width: 60%;
+            }
+        }
+    }
+
+    hr[class~="horizontal-line"] {
+        margin: 0.1em;
+        margin-inline: 4%;
+        border: 2px solid rgba(255, 255, 255, 0.57);
+    }
+
+    div[class~="last-game-status-last-score"] {
+        display: flex;
+        flex-direction: row;
+        justify-content: space-evenly;
+
+        div[class~="title"] {
+            color: rgba(255, 255, 255, 1);
+            font-family: "Hiragino Maru Gothic ProN";
+            text-align: left;
+            font-size: clamp(0.5em, 0.1em + 1vw, 1.5em);
+            font-weight: 400;
+            line-height: fit-content;
+        }
+
+        div[class~="content"] {
+            color: rgba(255, 255, 255, 1);
+            font-family: "Hiragino Maru Gothic ProN";
+            text-align: left;
+            font-size: clamp(0.5em, 0.1em + 1vw, 1.5em);
+            font-weight: 400;
+            line-height: fit-content;
+
+        }
+
+        div[class~="last-game"] {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        div[class~="status"] {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+        }
+
+        div[class~="last-score"] {
+            text-align: center;
+            display: flex;
+            flex-direction: column;
+
+        }
+
+        div[class~="vertical-line"] {
+            border: 2px solid rgba(255, 255, 255, 0.57);
+            margin-top: auto;
+            min-height: 50%;
+        }
+    }
+}

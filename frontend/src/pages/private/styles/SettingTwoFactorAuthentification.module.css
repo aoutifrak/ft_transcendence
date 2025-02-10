@@ -1,0 +1,58 @@
+.twoFactorAuthentification {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  row-gap: 1em;
+  column-gap: 2em;
+  align-items: center;
+  justify-content: space-between;
+  max-width: 50%;
+
+  > button {
+    height: fit-content;
+    border-radius: 12px;
+    margin-bottom: auto;
+    padding-inline: 1em;
+    padding-block: 0.3em;
+    border: 0px;
+  }
+
+  > button[class~="two-factor-deactivation"] {
+    background-color: rgba(255, 0, 0, 0.7);
+  }
+
+  > button[class~="two-factor-activation"] {
+    background-color: rgb(153, 255, 0, 0.8);
+  }
+}
+div[id*="qrModal"] {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+  border: none !important;
+  background-color: transparent !important;
+  height: fit-content;
+  margin-top: auto !important;
+  margin-bottom: auto !important;
+  div[class~="qr-code"] {
+    width: fit-content;
+    max-width: 100%;
+    div[class~="close-modal"] {
+      position: relative;
+      width: fit-content;
+      font-weight: 700;
+      font-size: larger;
+      border-radius: 100%;
+      color: rgb(168, 0, 0);
+      cursor: pointer;
+    }
+    > img {
+      width: 100%;
+      background-color: aliceblue;
+    }
+  }
+}
+
+div[id*="qrModal"]:focus {
+  outline: none;
+}

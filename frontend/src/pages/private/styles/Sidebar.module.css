@@ -1,0 +1,58 @@
+.sidebar {
+    width: clamp(3em, 2em + 2vw, 5em);
+}
+
+.sidebar>div[class~="sidebar-content"] {
+    display: flex;
+    height: 100%;
+    flex-direction: column;
+    flex-grow: 2;
+    justify-content: space-evenly;
+    text-align: center;
+    border: 2px rgba(255, 255, 255, 0.6) solid;
+    border-top-right-radius: 1.5em;
+    overflow-y: auto;
+    background: linear-gradient(#03062E 0%, #5F0A94 45.71%);
+    div[class~="brand-icon"] {
+        padding: 0.5em;
+        margin-top: 0.6em;
+
+        >img {
+            width: 100%;
+        }
+    }
+
+    >a {
+        margin-block: auto;
+        width: 100%;
+
+        div[class~="link-icon"] {
+            height: fit-content;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+
+            >img {
+                width: 50%;
+            }
+        }
+    }
+
+    a[class~="active"] {
+        >div {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background-image: url("@icons/activeLinkIcon.svg");
+            background-position: center center;
+            background-size: 100% 100%;
+            background-repeat: no-repeat;
+            padding: 0.4em;
+
+            >img {
+                width: 100%;
+            }
+
+        }
+    }
+}

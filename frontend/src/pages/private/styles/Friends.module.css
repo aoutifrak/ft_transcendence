@@ -1,0 +1,196 @@
+.friends {
+  display: flex;
+  justify-content: right;
+  align-items: center;
+  height: 100%;
+  color: rgba(217, 191, 255, 1);
+  p[class~="no-friends"] {
+    width: 100%;
+  }
+}
+
+.friends > div {
+  display: flex;
+  flex-direction: column;
+  height: 85%;
+  width: 90%;
+  overflow-y: auto;
+  margin-right: 1em;
+}
+
+.friends > div::-webkit-scrollbar {
+  width: 0.4em;
+  background-color: black;
+}
+
+.friends > div::-webkit-scrollbar-thumb {
+  background-color: rgba(68, 11, 123, 1);
+  border-radius: 400px;
+  outline: 1px solid slategrey;
+}
+
+.friends > div::-webkit-scrollbar-track {
+  border-radius: 200px;
+  background-color: rgba(217, 191, 255, 1);
+  -webkit-box-shadow: inset 1 5 5px rgba(0, 0, 0, 0.3);
+}
+
+.friends div[class~="friends-card"] {
+  background: rgba(92, 49, 134, 1);
+  display: flex;
+  flex-direction: row;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: fit-content;
+  width: 100%;
+  font-size: 0.8em;
+  border-radius: 9px;
+  padding: 0em 0.4em;
+  margin-block: 0.2em;
+  justify-content: space-between;
+  position: relative;
+  a[class~="user-image-name-level"] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    text-decoration: none;
+
+    div[class~="user-image"] {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      margin-right: 1em;
+      width: 2.5em;
+      img {
+        width: 2.5em;
+        min-width: 2.5em;
+      }
+    }
+
+    div[class~="user-name-level"] {
+      display: flex;
+      flex-direction: column;
+      min-height: fit-content;
+
+      div[class~="user-name"] {
+        color: white;
+        font-size: clamp(0.3em, 0.3em + 1vw, 1em);
+        font-family: "Hiragino Maru Gothic ProN";
+        font-weight: 300 !important;
+        line-height: 1em;
+      }
+
+      div[class~="user-level"] {
+        color: rgba(227, 120, 120, 1);
+        font-size: clamp(0.2em, 0.3em + 1vw, 0.8em);
+        line-height: 1em;
+        font-weight: 200;
+      }
+    }
+  }
+
+  div[class~="invite-remove-button"] {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+
+    div[class~="invite-button"] {
+      color: white;
+      padding-inline: 0.6em;
+      padding-block: 0.3em;
+      border-radius: 1em;
+      background: rgba(69, 12, 124, 1);
+      cursor: pointer;
+      margin-right: 1em;
+      font-size: clamp(0.3em, 0.3em + 1vw, 1em);
+      line-height: 1em;
+    }
+
+    div[class~="remove-button"] {
+      display: flex;
+      align-items: center;
+      padding-inline: 0.5em;
+      padding-block: 0.2em;
+      border-radius: 30px;
+      cursor: pointer;
+      background: rgba(202, 0, 133, 1);
+    }
+  }
+
+  div[class~="collapse-button"] {
+    display: flex;
+    align-items: center;
+    cursor: pointer;
+  }
+
+  div[class~="dropdown-menu"] {
+    padding: 0px;
+    width: fit-content;
+    right: 0px !important;
+    background: rgba(161, 127, 195, 0.95);
+
+    div,
+    a {
+      > span {
+        margin-right: 1em;
+        margin-top: 0px;
+      }
+
+      border-radius: 12px;
+    }
+
+    div[class~="block"] {
+      display: flex;
+      flex-direction: row;
+      color: red;
+      cursor: pointer;
+      border-radius: 12px 12px 0px 0px;
+      margin-bottom: auto;
+    }
+
+    a[class~="view-profile"] {
+      display: flex;
+      flex-direction: row;
+      text-decoration: none;
+      color: white;
+      span {
+        width: 1.1em;
+        min-width: 1.5em;
+        img {
+          border-radius: 2em;
+          width: 1.5em;
+          min-width: 1.5em;
+        }
+      }
+    }
+
+    div:hover,
+    a:hover {
+      font-style: italic;
+    }
+  }
+}
+
+@media screen and (max-width: 800px) {
+  .friends {
+    justify-content: center;
+    padding-inline: 0.5em;
+  }
+  .friends > div {
+    width: 100%;
+    height: 100%;
+  }
+  .friends div[class~="friends-card"] {
+    width: 95%;
+    min-width: 95%;
+  }
+  div[class~="user-name"] {
+    font-size: clamp(0.5em, 1.2em + 1vw, 1.5em);
+    line-height: 1em;
+  }
+
+  div[class~="user-level"] {
+    font-size: clamp(0.2em, 0.8em + 1vw, 0.8em);
+    line-height: 1em;
+  }
+}

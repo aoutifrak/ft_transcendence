@@ -1,0 +1,133 @@
+.signIn {
+  display: flex;
+  flex-direction: row-reverse;
+  width: 100%;
+  
+  input,
+  :focus {
+    color: #ffffff;
+    background: #ffffff7a;
+  }
+  input{
+    ::placeholder {
+      color: white;
+    }
+  }
+
+  div[class~="signin-button"]
+  {
+    display: flex;
+    justify-content: center;
+    button {
+      background: linear-gradient(90deg, #e3a5c7 0%, #694f8e 100%);
+      text-align: center;
+      padding-top : 0.2em;
+      text-wrap: nowrap;
+      background-color: red;
+      border-radius: 12px;
+      padding-inline:1em;
+      color: #ffffff;
+      border: 0px;
+      font-family: "LuckiestGuy";
+      font-weight: normal;
+      font-size: 1.3rem;
+    }
+  }
+}
+div[id~="modalOtp"] {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  position: absolute;
+  top: 0px;
+  left: 0px;
+  width: 100%;
+  border: none !important;
+  background-color: transparent !important;
+  height: fit-content;
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+div[id~="modalOtp"]:focus {
+  outline: none;
+}
+
+.signInBare {
+  border: .4em solid whilte;
+  display: flex;
+  margin-block:auto;
+  margin-inline : 2em;
+  margin-left:3em;
+  padding: 0px;
+  background: linear-gradient(180deg, #03062e -50%, #5f0a94 50.71%);
+  height: 14em;
+  border-radius: 50px;
+  cursor: pointer;
+  color: #ffffff;
+}
+
+.signInBare > p {
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  flex-wrap: nowrap;
+  text-align: center;
+  margin:0.2em;
+  font-family: "LuckiestGuy";
+  font-weight: normal;
+  font-size: 1.2rem;
+  writing-mode: vertical-rl;
+  text-orientation: upright;
+}
+
+.signInStick {
+  background: linear-gradient(180deg, #c56d34 0%, #eab091 100%);
+  width: 3em;
+  height: 30em;
+}
+
+.signInAnimation {
+  position: relative;
+  animation: ease-out;
+  animation-name: signInAnimation;
+  animation-duration: 1s;
+  animation-iteration-count: 1;
+}
+
+@keyframes signInAnimation {
+  0% {
+    opacity: 0.8;
+    transform: translateX(0%);
+  }
+
+  50% {
+    opacity: 0.3;
+    transform: translateX(-100%);
+  }
+
+  100% {
+    opacity: 0.1;
+    transform: translateX(-120%);
+  }
+}
+
+.signInRenderAnimation {
+  position: relative;
+  animation: ease-in;
+  animation-name: signInRenderAnimationFrames;
+  animation-duration: 0.2s;
+  animation-iteration-count: 1;
+}
+
+@keyframes signInRenderAnimationFrames {
+  from {
+    opacity: 0.3;
+    transform: translateX(-150%);
+  }
+
+  to {
+    opacity: 1;
+    transform: translateX(0%);
+  }
+}
