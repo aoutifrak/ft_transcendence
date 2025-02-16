@@ -1,5 +1,6 @@
 from django.db import models
 from profiles.models import User
+from django.utils.timezone import now
 
 class Game(models.Model):
     player1 = models.ForeignKey(
@@ -17,23 +18,16 @@ class Game(models.Model):
         null=True,  # Allow null
         blank=True  # Allow blank in forms
     )
-    score_player1 = models.IntegerField(default=0)
-    bol_player1 = models.BooleanField(default=0)
-    score_player2 = models.IntegerField(default=0)
-    bol_player2 = models.BooleanField(default=0)
-    paddle_player1 = models.IntegerField(default=0)
-    paddle_player2 = models.IntegerField(default=0)
-    ball_x = models.IntegerField(default=0)
-    ball_y = models.IntegerField(default=0)
-    ballSpeedX = models.FloatField(default=0.0)
-    ballSpeedY = models.FloatField(default=0.0)
-    left_paddle_dir = models.IntegerField(default=0)
-    right_paddle_dir = models.IntegerField(default=0)
+    game_state = models.JSONField(default=dict)
     winner = models.CharField(max_length=100, default="Unknown") 
     loser = models.CharField(max_length=100, default="Unknown") 
-    type_game = models.CharField(max_length=25,blank=True)
     room = models.CharField(max_length=25,blank=True)
-    
+    created_at = models.DateTimeField(auto_now_add=True)
+    updated_at = models.DateTimeField(auto_now=True)
 
-    def __str__(self):
-        return f"Game between {self.player1.username} and {self.player2.username}"
+    def set_game_state(self, state):
+        self.game_state = state
+
+    def get_game_state(self):
+        return self.game_state
+    

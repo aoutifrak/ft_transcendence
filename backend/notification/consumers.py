@@ -77,19 +77,31 @@ class NotificationConsumer(AsyncWebsocketConsumer):
      
     async def accept_invite(self, event):
         sender = event['sender']
+        game_id = event['game_id']
         await self.send(text_data=json.dumps({
             'sender': sender,
             'type': 'accept_invite',
-            'message': f'{sender['username']} Accept you a Game request'
+            'message': f'{sender['username']} Accept you a Game request',
+            'game_id': game_id
             })
         )
 
     async def game_invite(self, event):
         sender = event['sender']
+        game_id = event['game_id']
         await self.send(text_data=json.dumps({
             'sender': sender,
             'type': 'game_invite',
-            'message': f'{sender['username']} sent you a Game request'
+            'message': f'{sender['username']} sent you a Game request',
+            'game_id': game_id
+        }))
+
+    async def reject_game(self, event):
+        sender = event['sender']
+        await self.send(text_data=json.dumps({
+            'sender': sender,
+            'type': 'reject_game',
+            'message': f'{sender['username']} reject your Game request'
         }))
 
     async def sent_message(self, event):
@@ -101,3 +113,10 @@ class NotificationConsumer(AsyncWebsocketConsumer):
                 'message': f'{sender['username']} send you a message'
             }
         ))
+    async def invite_tournemet(self, event):
+        sender = event['sender']
+        await self.send(text_data=json.dumps({
+            'sender': sender,
+            'type': 'invite_tournemet',
+            'message': f'{sender['username']} sent your localtournement request'
+        }))

@@ -1,0 +1,20 @@
+.backwardAtHistory {
+    position: fixed;
+    display: flex;
+    flex: row nowrap;
+    justify-content: center;
+    align-items: center;
+    bottom: 1.5em;
+    left: 4.5em;
+    color: rgba(217, 191, 255, 1);
+    font-family: "Hiragino Maru Gothic ProN";
+    font-size: clamp(1em, 1em + 0.5vw, 2em);
+    font-weight: 400;
+    line-height: 34.5px;
+    cursor: pointer;
+}
+.backwardAtHistory{
+    @media screen and (max-width: 575px) {
+        display: none;
+    }
+}

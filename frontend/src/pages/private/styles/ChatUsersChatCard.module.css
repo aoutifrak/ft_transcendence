@@ -1,0 +1,99 @@
+.chatUsersChatCard {
+    /* background-color: rgb(146, 225, 163) !important; */
+    text-decoration: none;
+    background: rgba(57, 30, 68, 1);
+    color: white;
+    display: flex;
+    margin-block: 0.3em;
+    padding-block: 0.2em;
+    padding-inline: 0.5em;
+    border-radius: 10px;
+    min-width: fit-content;
+}
+
+
+.chatUsersChatCard>div[id="userImage"] {
+    margin-block: auto;
+
+    > :first-child {
+        position: relative;
+        display: flex;
+        padding: 0px;
+        margin: 0px;
+        min-height: fit-content;
+        min-width: fit-content;
+
+        >svg:first-child {
+            margin-inline: auto;
+            margin-block: auto;
+            width: 2em;
+            height: 2em;
+
+            image {
+                width: 90%;
+                height: 90%;
+            }
+        }
+
+        >svg:last-child {
+            position: absolute;
+            top: 0px;
+            right: 0px;
+            width: 12px;
+            height: 12px;
+
+            circle {
+                width: 100%;
+                height: 100%;
+            }
+        }
+    }
+
+}
+
+.chatUsersChatCard>div[id="userNameWriting"] {
+
+    display: flex;
+    flex-direction: column;
+    margin-left: .4em;
+
+    >p {
+        margin: 0px;
+        font-size: clamp(0.8em, 0.1vw + 0.8em, 2em);
+        font-weight: 600;
+    }
+
+
+    >small {
+        line-height: 1px;
+        color: #21FF5FED;
+        margin: 0px;
+        padding: 0px;
+        font-size: clamp(0.5em, 0.1vw + 0.6em, 2em);
+        font-weight: 600;
+    }
+}
+
+.chatUsersChatCard>div[id="unreadMsgs"] {
+    color: black;
+    padding: 4px;
+    margin-left: auto;
+    margin-block: auto;
+    svg {
+        fill: black;
+
+        text {
+            font-size: 0.6em;
+            font-family: Inter;
+            font-weight: 600;
+
+        }
+
+        circle {
+            width: 100%;
+            height: 100%;
+            fill: #21FF5FED;
+        }
+    }
+
+}

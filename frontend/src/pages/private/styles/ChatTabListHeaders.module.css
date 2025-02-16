@@ -1,0 +1,52 @@
+.chatTabListHeader {
+    background-color: #321D5B;
+    display: flex;
+    /* flex: row no-wrap; */
+    flex-direction: row;
+    flex-wrap: nowrap;
+    justify-content: space-around;
+    width: 85%;
+    padding-block: 0.2em;
+    border-radius: 100px;
+    border:none;
+
+    * > a {
+        color: white !important;
+        font-size: clamp(0.5em, 0.1vw + 0.5em, 2em);
+        font-weight: 600;
+        text-decoration: none;
+        line-height: fit-content;
+    }
+    li{
+        /* margin-inline:3px; */
+        align-items: center;
+        margin-block:auto;
+    }
+}
+
+.chatTabListHeader [id="unreadChats"] {
+
+    /* min-width: 50%; */
+    /* background-color: aliceblue !important; */
+    
+    min-width: 45%;
+    >a {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 1em;
+        border-radius: 100px;
+    }
+
+}
+
+.chatTabListHeader [id="chats"] {
+    min-width: 45%;
+    >a {
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        padding: 1em;
+        border-radius: 100px;
+    }
+}

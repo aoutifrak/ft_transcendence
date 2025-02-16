@@ -1,3 +1,4 @@
+from matchmaking.models import Match
 from rest_framework.views import APIView
 from rest_framework import status
 from rest_framework.response import Response
@@ -19,11 +20,19 @@ from asgiref.sync import async_to_sync
 import os , requests
 from notification.models import Notification
 from rest_framework.pagination import PageNumberPagination
+from game.models import Game
+from game.serializers import GameSerializer
+from pong.models import Game as PongGame
+from pong.serializers import GameSerializer as PongGameSerializer
+from itertools import chain
 
 class CustomPagination(PageNumberPagination):
     page_size = 10 
 
-class RefreshTokenView(APIView): #check the expired one
+class CustomPage(PageNumberPagination):
+    page_size = 25 
+
+class RefreshTokenView(APIView): 
     permission_classes = [AllowAny]
     def post(self,request):
         try:
@@ -82,7 +91,7 @@ class Sign_upView(APIView):
         try:
             infos = request.data
             
-            valid_keys = ['email','username','password','last_name','first_name']
+            valid_keys = ['email','username','password','first_name','last_name']
             for key in infos.keys():
                 if key not in valid_keys:
                     return Response({"error": f"invalid fileds {key}!"},status=status.HTTP_400_BAD_REQUEST)
@@ -160,17 +169,11 @@ class LogoutView(APIView):
                 token.blacklist()
                 user.is_online = False
                 user.save()
-                chat_group_name = f"chat_{user.id}"
                 notif_group_name = f"notification_{user.id}"
                 logout(request)
+                channel_layer = get_channel_layer()
                 async_to_sync(channel_layer.group_send)(
                     notif_group_name,
-                    {
-                        'type': 'disconnect',
-                    }
-                )
-                async_to_sync(channel_layer.group_send)(
-                chat_group_name,
                     {
                         'type': 'disconnect',
                     }
@@ -240,11 +243,7 @@ class SocialAuth(APIView):
     def post(self,request):
         try:
             platform = request.data['platform']
-            if platform == 'github':
-                client_id = settings.GITHUB_CLIENT_ID
-                redirect_uri = settings.GITHUB_REDIRECT_URI
-                url = f'https://github.com/login/oauth/authorize?client_id={client_id}&redirect_uri={redirect_uri}&scope=user:email'
-            elif platform == "42":
+            if platform == "42":
                 client_id = settings.CLIENT_ID
                 redirect_uri = settings.INTRA_REDIRECT_URI
                 url = f'https://api.intra.42.fr/oauth/authorize?client_id={client_id}&redirect_uri={redirect_uri}&response_type=code'
@@ -258,30 +257,18 @@ class SocialAuthverify(APIView):
     def get(self, request):
         try:
             headers = {'Accept': 'application/json'}
-            platform = request.GET.get('platform')
             code = request.GET.get('code')
-            if not platform and not code:
+            if not code:
                 raise AuthenticationFailed('platform and code are required')
-            if platform:
-                platform = platform.strip().lower()
-                if platform == 'github':
-                    url = 'https://github.com/login/oauth/access_token'
-                    data = {
-                    'client_id': settings.GITHUB_CLIENT_ID,
-                    'client_secret': settings.GITHUB_CLIENT_SECRET,
+            url = 'https://api.intra.42.fr/oauth/token'
+            data = {    
+                    'grant_type': 'authorization_code',
+                    'client_id': settings.CLIENT_ID,
+                    'client_secret': settings.CLIENT_SECRET,
                     'code': code,
-                    'redirect_uri': settings.GITHUB_REDIRECT_URI
-                    }
-            else:
-                url = 'https://api.intra.42.fr/oauth/token'
-                data = {    
-                        'grant_type': 'authorization_code',
-                        'client_id': settings.CLIENT_ID,
-                        'client_secret': settings.CLIENT_SECRET,
-                        'code': code,
-                        'redirect_uri': settings.INTRA_REDIRECT_URI
-                    }
-                platform = '42'
+                    'redirect_uri': settings.INTRA_REDIRECT_URI
+                }
+            platform = '42'
             response = requests.post(url, data=data, headers=headers, timeout=10000)
             response.raise_for_status()
             access_token = response.json()['access_token']
@@ -319,7 +306,7 @@ class SocialAuthverify(APIView):
 
 class FriendsView(APIView):
     permission_classes = [IsAuthenticated]
-    pagination_class = CustomPagination
+    pagination_class = CustomPage
     def get (self,request):
         try:
             paginator = self.pagination_class()
@@ -416,13 +403,12 @@ class FriendRequestView(APIView):
                     Q(sender_notif=user) & Q(receiver_notif=friend)) 
                 notif.delete()
                 channel_layer = get_channel_layer()
-                user_data = UserSerializer(instance=user).data
-                async_to_sync(channel_layer.group_send)
-                (
+                user_data = UserSerializer(user).data
+                async_to_sync(channel_layer.group_send)(
                     f'notification_{friend.id}',
                     {
                         'type': 'accept_request',
-                        'sender': user_data               
+                        'sender': user_data                  
                     }
                 )
                 return Response({'info':'friend request accepted'},status=200)
@@ -560,3 +546,170 @@ class Password_Change(APIView):
             return Response({'success': 'Password changed successfully.'}, status=status.HTTP_200_OK)
         except Exception as e:
             return Response({'error': str(e)}, status=status.HTTP_400_BAD_REQUEST)
+        
+class Leaderboard(APIView):
+    permission_classes = [IsAuthenticated]
+    pagination_class = CustomPagination
+
+    def get(self,request):
+        try:
+            users = User.objects.all().order_by('-score')[:6]
+
+            serializer = UserSerializer(users, many=True)
+
+            return Response(serializer.data)
+        except Exception as e:
+            return Response({'info': str(e)}, status=400)
+        
+class UserRecentGames(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self, request):
+        try:
+            try:
+                username = request.GET['username']
+                if username == request.user.username:
+                    return Response('you can not search for your self',status=400)
+                user = User.objects.get(username=username)
+            except:
+                user = request.user
+                pass
+
+            league_games = Game.objects.filter(
+                (Q(player1=user) | Q(player2=user)) &
+                Q(winner__isnull=False) &
+                Q(player1__isnull=False) &
+                Q(player2__isnull=False)
+            )
+
+            pong_games = PongGame.objects.filter(
+                (Q(player1=user) | Q(player2=user)) &
+                ~Q(winner='Unknown') &
+                Q(player1__isnull=False) &
+                Q(player2__isnull=False)
+            )
+
+            combined_games = sorted(
+                chain(league_games, pong_games),
+                key=lambda game: game.updated_at,
+                reverse=True
+            )
+
+            response_data = []
+            for game in combined_games:
+                if isinstance(game, Game):
+                    serializer = GameSerializer(game)
+                else:
+                    serializer = PongGameSerializer(game)
+                response_data.append(serializer.data)
+
+            return Response(response_data, status=200)
+            return Response(response_data)
+        except Exception as e:
+            print(e)
+            return Response({'info': str(e)}, status=400)
+
+class ResentGames(APIView):
+    permission_classes = [IsAuthenticated]
+
+    def get(self,request):
+        try:
+            leagueGames = Game.objects.filter(winner__isnull=False).order_by('-updated_at')[:10]
+            pongGames = PongGame.objects.filter(~Q(winner='Unknown') & Q(player1__isnull=False) & Q(player2__isnull=False)).order_by('-updated_at')[:10]
+            combined_games = sorted(
+                chain(leagueGames, pongGames),
+                key=lambda game: game.updated_at,
+                reverse=True
+            )
+
+            response_data = []
+            for game in combined_games:
+                if isinstance(game, Game):
+                    serializer = GameSerializer(game)
+                else:
+                    serializer = PongGameSerializer(game)
+                response_data.append(serializer.data)
+            return Response(response_data)
+        except Exception as e:
+            return Response({'info': str(e)}, status=400)
+    
+class MatchMaking(APIView):
+    permission_classes = [IsAuthenticated]
+    def get(self,request):
+        try: 
+            username = request.GET['username']
+            player = request.user
+            user = User.objects.get(username=username)
+            if user == player:
+                return Response({'cannot play with your self'})
+            if user.on_game == True:
+                return Response({'player is bussy'})
+
+            user_data = UserSerializer(player).data
+            matchs = Match.objects.create(
+                player1_username=str(player.username),
+                player1_level=int(player.level),
+                player2_username=str(user_data['username']),
+                player2_level=int(user_data['level'])
+            )
+            channel_layer = get_channel_layer()
+            async_to_sync(channel_layer.group_send)(
+                f"notification_{user.id}",
+                {
+                    'sender':user_data,
+                    'type': 'game_invite',
+                    'game_id': matchs.match_id
+                }
+            )
+            return Response({'game_id':matchs.match_id},status=200)
+        except Exception as e:
+            return Response({'info':str(e)},status=400)
+
+
+class AcceptInvite(APIView):
+    permission_classes = [IsAuthenticated]
+    def put(self,request):
+        try:
+            game_id = request.data['game_id']
+            user = request.user
+            user_data = UserSerializer(user).data
+            matchs = Match.objects.get(match_id=game_id)
+            player1 = User.objects.get(username=matchs.player1_username)
+            if user == player1:
+                return Response({'cannot play with your self'},status=400)
+            channel_layer = get_channel_layer()
+            async_to_sync(channel_layer.group_send)(
+                f"notification_{player1.id}",
+                {
+                    'sender':user_data,
+                    'type': 'accept_invite',
+                    'game_id': matchs.match_id
+                }
+            )
+            return Response({'game_id':matchs.match_id},status=200)
+        except Match.DoesNotExist:
+            return Response({'game_id not exsiste'},status=400)
+        except Exception as e:
+            return Response({'info':str(e)},status=400)
+
+class WaurnTurnement(APIView):
+    permission_classes = [IsAuthenticated]
+    serializer_class = ByUserSerializer
+
+    def post(self, request):
+        try:
+            user = request.user
+            user_data = UserSerializer(user).data
+            channel_layer = get_channel_layer()
+            for friend in user.friends.all():
+                print(friend)
+                async_to_sync(channel_layer.group_send)(
+                    f"notification_{friend.id}",
+                    {
+                        'sender':user_data,
+                        'type': 'invite_tournemet',
+                    }
+                )
+            return Response('Done',status=200)
+        except Exception as e:
+            return Response({'info': str(e)}, status=400)

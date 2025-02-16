@@ -1,0 +1,37 @@
+.notFoundLayout{
+    background-image: linear-gradient(#03062E 0%, #5F0A94 45.71%);
+    display: flex;
+    flex-direction: column;
+    color: red;
+    width: 100%;
+    height: 100%;
+    /* background-color: yellow; */
+    div[class*="icon404"]{
+        /* height: fit-content; */
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 60%;
+
+        /* background-color: rgb(3, 6, 46,0.5); */
+        padding: 0px;
+        margin: 0px;
+        >svg{
+            /* background-color: rebeccapurple; */
+            width: 100%;
+            height: 100%;
+            padding: 0px;
+            margin: 0px;
+        }
+    }
+    div[class*="text404"]{
+        color: white;
+        display: flex;
+        justify-content: center;
+        width: 100%;
+        height: 100%;
+        flex-grow: 1;
+        font-size: clamp(3em, 2em + 2vw, 20em);
+        /* background-color: rgb(255, 255, 0, 0.8); */
+    }
+}

@@ -1,0 +1,115 @@
+.signUp{
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+
+    input, :focus
+    {
+        color: #FFFFFF;
+        background: #FFFFFF7A;
+    };
+    input{
+        ::placeholder {
+          color: white;
+        }
+    }
+    div[class~="signup-button"]
+    {
+      display: flex;
+      justify-content: center;
+      button {
+        background: linear-gradient(90deg, #e3a5c7 0%, #694f8e 100%);
+        text-align: center;
+        padding-top : 0.2em;
+        text-wrap: nowrap;
+        background-color: red;
+        border-radius: 12px;
+        padding-inline:1em;
+        color: #ffffff;
+        border: 0px;
+        font-family: "LuckiestGuy";
+        font-weight: normal;
+        font-size: 1.3rem;
+      }
+    }
+}
+
+.signUp  input {
+    background: #FFFFFF7A;
+    color: #FFFFFF;
+}
+
+.signUpBare {
+    background: linear-gradient(180deg, #03062E -50%, #5F0A94 50.71%);
+    height: 14em;
+    border-radius: 50px;
+    color: #FFFFFF;
+    cursor: pointer;
+}
+
+.signUpBare>p {
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    flex-wrap: nowrap;
+    text-align: center;
+    margin:0.2em;
+    font-family: "LuckiestGuy";
+    font-weight: normal;
+    font-size: 1.3rem;
+    writing-mode: vertical-rl;
+    text-orientation: upright;
+}
+
+.signUpStick {
+    background: linear-gradient(180deg, #C56D34 0%, #EAB091 100%);
+    width: 3em;
+    height: 30em;
+}
+
+.signUpAnimation {
+    position: relative;
+    animation: ease-out;
+    animation-name: signUpAnimationFrames;
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+}
+
+@keyframes signUpAnimationFrames {
+    0% {
+        opacity: 1;
+        transform: translateX(0%);
+    }
+
+    50% {
+        opacity: 0.3;
+        transform: translateX(100%);
+    }
+
+    100% {
+        opacity: 0.1;
+        transform: translateX(120%);
+    }
+}
+
+.signUpRenderAnimation {
+    position: relative;
+    animation: ease-in;
+    animation-name: signUpRenderAnimationFrames;
+    animation-duration: 0.2s;
+    animation-iteration-count: 1;
+}
+
+
+@keyframes signUpRenderAnimationFrames {
+
+    from {
+        opacity: 0.3;
+        transform: translateX(150%);
+    }
+
+    to {
+        opacity: 1.0;
+        transform: translateX(0%)
+    }
+}

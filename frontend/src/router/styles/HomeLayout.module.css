@@ -1,0 +1,11 @@
+.homeLayout {
+    background: linear-gradient(#03062E 0%, #5F0A94 45.71%);
+    color: #FFFF;
+    min-height: 100%;
+    height: fit-content;
+    display: flex;
+    flex-direction: column;
+    >header{
+        z-index: 1;
+    }
+}

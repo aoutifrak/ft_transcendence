@@ -1,0 +1,186 @@
+.searchFriendsInGame {
+  /* background-color: rgb(200, 170, 170) !important; */
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin-left: 5%;
+  position: relative;
+}
+
+.searchFriendsInGame div[class~="input-field"] {
+  display: flex;
+  flex: row nowrap;
+  align-items: center;
+  min-width: fit-content;
+  max-width: 80%;
+  width: calc(15em + 10vw);
+  /* margin-top: clamp(0.5em, 0.1em + 2vw, 4em); */
+  padding-block: 0.2em;
+  border-radius: 20px;
+  border: 1.2px solid gray;
+
+  label {
+    margin-left: 0.2em;
+
+    *[class~="search-add-on"] {
+      width: 2em;
+    }
+  }
+
+  > input {
+    background-color: inherit;
+    color: rgba(255, 255, 255, 0.82);
+    margin: 0px;
+    padding: 0.3em;
+    border: none;
+    border-end-end-radius: inherit;
+    border-top-right-radius: inherit;
+    width: 85%;
+  }
+
+  > input::placeholder {
+    color: rgba(255, 255, 255, 0.6);
+  }
+
+  > input:focus-visible {
+    outline: 0px solid #391e44;
+  }
+}
+
+.searchFriendsInGame div[class~="searched-users-list"] {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: absolute;
+  top: 2.5em;
+  z-index: 2;
+  margin-left: auto;
+  margin-right: auto;
+  min-width: 14em;
+  width: fit-content;
+  max-height: 15em;
+  justify-content: space-between;
+  overflow-y: auto;
+
+  div[class~="searched-users-cards"] {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    margin-block: 0.1em;
+    margin-inline: 0.2em;
+    font-size: 0.8em;
+    border-radius: 9px;
+    padding: 0.3em;
+    background: rgba(92, 49, 134, 1);
+    border: 1px rgba(128, 128, 128, 0.5) solid;
+
+    a[class~="user-image-first-last-name"] {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+      text-decoration: none;
+      color: white;
+
+      div[class~="user-image"] {
+        display: flex;
+        flex-direction: row;
+        align-items: center;
+        margin-right: 0.1em;
+
+        img {
+          width: 2.5em;
+          min-width: 2.5em;
+          max-width: 2.5em;
+        }
+      }
+
+      div[class~="user-first-last-name"] {
+        display: flex;
+        flex-direction: column;
+        min-height: fit-content;
+
+        div[class~="user-name"] {
+          color: rgb(255, 255, 255, 0.5);
+          font-size: clamp(0.3em, 0.3em + 1vw, 1em);
+          font-family: "Hiragino Maru Gothic ProN";
+          font-weight: 300 !important;
+          line-height: 1em;
+        }
+      }
+    }
+
+    div[class~="block-addFriend-buttons"] {
+      display: flex;
+      flex-direction: row;
+      align-items: center;
+
+      div[class~="block-button"] {
+        display: flex;
+        align-items: center;
+        padding-inline: 0.6em;
+        padding-block: 0.3em;
+        border-radius: 30px;
+        cursor: pointer;
+        background-color: rgba(69, 12, 124, 1);
+      }
+      div[class~="remove-block"] {
+        display: flex;
+        align-items: center;
+        padding-inline: 0.6em;
+        padding-block: 0.3em;
+        border-radius: 30px;
+        cursor: pointer;
+        background-color: rgb(1, 255, 170);
+      }
+
+      div[class~="add-button"] {
+        display: flex;
+        align-items: center;
+        padding-inline: 0.6em;
+        padding-block: 0.3em;
+        border-radius: 30px;
+        cursor: pointer;
+        background: rgb(0, 202, 54);
+      }
+
+      div[class~="accept-request"] {
+        background-color: sandybrown;
+      }
+      div[class~="cancel-request"] {
+        background-color: gray;
+      }
+      div[class~="reject-request"] {
+        background-color: brown;
+      }
+
+      div[class~="unfriend-button"] {
+        display: flex;
+        align-items: center;
+        padding-inline: 0.6em;
+        padding-block: 0.3em;
+        border-radius: 30px;
+        cursor: pointer;
+        background: rgb(202, 0, 0);
+      }
+    }
+  }
+}
+
+.searchFriendsInGame {
+  *::-webkit-scrollbar {
+    width: 0.4em;
+    background-color: black;
+  }
+
+  *::-webkit-scrollbar-thumb {
+    background-color: rgba(68, 11, 123, 1);
+    border-radius: 400px;
+    outline: 1px solid slategrey;
+  }
+
+  *::-webkit-scrollbar-track {
+    border-radius: 200px;
+    background-color: rgba(217, 191, 255, 1);
+    -webkit-box-shadow: inset 1 5 5px rgba(0, 0, 0, 0.3);
+  }
+}

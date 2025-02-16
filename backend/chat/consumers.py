@@ -88,34 +88,34 @@ class ChatConsumer(AsyncWebsocketConsumer):
             
             if await check_friendship(user, self.scope['user']) == False:
                 raise Exception("You are not friend with this user")
-            
-            chat_room = await get_chat_room(user1=self.scope['user'], user2=user)
-            if chat_room is None:
-                raise Exception("could not create chat room")
-            
-            messages = await get_messages(chat=chat_room, user=self.scope['user'],receiver=user, message=message)
-            if messages is None:
-                raise Exception("could not create chat Message")
 
             if await check_blocked(self.scope['user'],user) == True:
                 raise Exception("Can't send message to this blocked user")
             
             if await check_blocked(user, self.scope['user']) == True:
                 raise Exception("Can't send message this user blocked you")
+            
+            chat_room = await get_chat_room(user1=self.scope['user'], user2=user)
+            if chat_room is None:
+                raise Exception("could not create chat room")
+            
+            messages = await get_messages(chat=chat_room, user=self.scope['user'],receiver=user, message=message)
 
+            if messages is None:
+                raise Exception("could not create chat Message")
             
             messages = MessageSerializer(messages).data
             
-            # sender = 
+            sender = UserSerializer(self.scope['user']).data
 
-            # await self.channel_layer.group_send(
-            #     f'notification_{user.id}',
-            #     {
-            #         'type': 'sent.message',
-            #         'sender': self.scope['user'],
-            #         'message': messages
-            #     }
-            # )
+            await self.channel_layer.group_send(
+                f'notification_{user.id}',
+                {
+                    'type': 'sent.message',
+                    'sender': sender,
+                    'message': messages
+                }
+            )
 
             await self.channel_layer.group_send(
                 f'chat_{user.id}',

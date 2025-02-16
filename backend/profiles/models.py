@@ -7,9 +7,16 @@ def validate_image(image):
     if not image.name.endswith(('.png', '.jpg')):
         raise ValidationError("Only .png, .jpg, or .jpeg files are allowed.")
 
+import inspect
+def print_stack():
+    stack = inspect.stack()
+    print("Complete call stack:")
+    for frame in stack:
+        print(f"Function: {frame.function}, File: {frame.filename}, Line: {frame.lineno}")
+
 class User(AbstractBaseUser):
-    first_name = models.CharField(max_length=25,blank=True)
-    last_name = models.CharField(max_length=25,blank=True)
+    first_name = models.CharField(max_length=25)
+    last_name = models.CharField(max_length=25)
     username = models.CharField(max_length=20,unique=True)
     email = models.EmailField(max_length=255,unique=True)
     password = models.CharField(max_length=255)
@@ -18,12 +25,18 @@ class User(AbstractBaseUser):
     
     created_at = models.DateTimeField(auto_now_add=True, null=True)
     is2fa = models.BooleanField(default=False)
+    on_game = models.BooleanField(default=False)
     wins = models.IntegerField(default=0)
+    league_wins = models.IntegerField(default=0)
     losses = models.IntegerField(default=0)
+    league_losses = models.IntegerField(default=0)
     level = models.IntegerField(default=0)
+    score = models.IntegerField(default=0)
+    medal = models.CharField(max_length=255, default='selverMedalLevel1Icon')
     matches_played = models.IntegerField(default=0)
     is_online = models.BooleanField(default=False)
     rank = models.IntegerField(default=0)
+    last_game = models.CharField(max_length=25,blank=True, default="none")
     
     friends = models.ManyToManyField('self', blank=True, symmetrical=True)
     
@@ -35,6 +48,14 @@ class User(AbstractBaseUser):
 
     class Meta:
         db_table = "User"
+
+    def save(self, *args, **kwargs):
+        print(f"User.save() is called !! {self.username} -- {self.wins}")
+        # print_stack()
+        # Perform additional custom behavior here if needed
+        
+        # Call the original save method
+        super().save(*args, **kwargs)
 
     def token(self):
         refresh = RefreshToken.for_user(self)

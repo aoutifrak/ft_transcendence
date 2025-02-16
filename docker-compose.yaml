@@ -7,9 +7,21 @@ services:
     env_file:
       - .env
     networks:
-      - backend
+      - transcendence_network
     volumes:
       - ./backend:/backend
+    restart: always
+
+  frontend:
+    build:
+      context: ./frontend
+      args:
+        - SERVER_NAME=${SERVER_NAME}
+    container_name: frontend
+    networks:
+      - transcendence_network
+    depends_on:
+      - django
     restart: always
 
   db:
@@ -23,13 +35,13 @@ services:
     volumes:
       - postgres_data:/var/lib/postgresql/data
     networks:
-      - backend
-  
+      - transcendence_network
+
   nginx:
     container_name: nginx
     build: ./nginx
     networks:
-      - backend
+      - transcendence_network
     ports:
       - "80:80"
       - "443:443"
@@ -38,8 +50,9 @@ services:
     volumes:
       - ./nginx/nginx.conf:/etc/nginx/conf.d/nginx.conf
       - ./backend/media:/media
+      - ./nginx/logs:/var/log/nginx
     depends_on:
-      # - front
+      - frontend
       - django
     restart: always
 
@@ -49,4 +62,5 @@ volumes:
   media:
 
 networks:
-  backend:
+  transcendence_network:
+    driver: bridge

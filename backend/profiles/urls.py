@@ -21,4 +21,10 @@ urlpatterns = [
     path('Verify_token', verifyToken.as_view()),
     path('pass', Password_Change.as_view()), 
     path('update_user',UserUpdate.as_view()),
+    path('leaderboard', Leaderboard.as_view()),
+    path('user_recent_games', UserRecentGames.as_view()),
+    path('recent_games', ResentGames.as_view()),
+    path('matchmaking', MatchMaking.as_view()),
+    path('accept_invite', AcceptInvite.as_view()),
+    path('warn_tr', WaurnTurnement.as_view()),
 ]

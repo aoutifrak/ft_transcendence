@@ -1,0 +1,31 @@
+FROM node:18-bullseye-slim AS build
+
+WORKDIR /frontend
+
+COPY package*.json ./
+
+RUN npm install
+
+ARG SERVER_NAME
+
+ENV VITE_BACKEND_API_URL=https://${SERVER_NAME}
+
+ENV VITE_BACKEND_API_SOCKETS=wss://${SERVER_NAME}
+
+COPY . .
+
+RUN npm run build
+
+FROM nginx:alpine
+
+RUN apk update && apk upgrade
+
+COPY --from=build /frontend/dist /usr/share/nginx/html
+
+RUN rm /etc/nginx/conf.d/*
+
+COPY default.conf /etc/nginx/conf.d/
+
+EXPOSE 443
+
+CMD [ "nginx", "-g", "daemon off;" ]

@@ -7,7 +7,6 @@ from django.core.exceptions import ValidationError
 from django.conf import settings
 from django.db.models import Q
 
-
 def generate_unique_username(email):
     base_username = email.split('@')[0]
     username = base_username
@@ -22,7 +21,7 @@ def generate_unique_username(email):
 
 class User_Register(serializers.ModelSerializer):
     email = serializers.EmailField(max_length=55, min_length=8, allow_blank=False)
-    password = serializers.CharField(max_length=68,min_length=6,write_only=True)
+    password = serializers.CharField(max_length=68,min_length=8,write_only=True)
     username = serializers.CharField(max_length=20, min_length=4, allow_blank=False)
 
     class Meta:
@@ -34,7 +33,7 @@ class User_Register(serializers.ModelSerializer):
         password = validated_data.get('password')
         username = validated_data.get('username')
 
-        if len(password) < 6:
+        if len(password) < 8:
             raise ValidationError("Password must be at least 8 characters long.")
         if len(password) > 68:
             raise ValidationError("Password cannot exceed 50 characters.")
@@ -63,12 +62,17 @@ class UserSerializer(serializers.ModelSerializer):
                   'created_at',
                   'last_login',
                   'wins',
+                  'league_wins',
                   'losses',
+                  'league_losses',
+                  'last_game',
                   'level',
                   'matches_played',
                   'is2fa',
                   'is_online',
                   'rank',
+                  'score',
+                  'medal',
                   ]
     
     def update(self, instance, validated_data):
@@ -104,40 +108,11 @@ class SocialAuthontication(serializers.Serializer):
         access_token = data['access_token']
         platform = data['platform']
         headers = {'Authorization':f'Bearer {access_token}'}
-        if platform == "github":
-            response = requests.get('https://api.github.com/user/emails', headers=headers, timeout=10000)
-            response.raise_for_status()
-            res = response.json()
-            email = None
-            for fileds in res:
-                if fileds['primary'] == True:
-                    email = fileds['email']
-                    break
-            if email is None:
-                raise serializers.ValidationError('email is required')
-            try:
-                user = User.objects.get(email=email)
-                return user.email
-            except:
-                try:
-                    userinfo = requests.get('https://api.github.com/user', headers=headers, timeout=10000)
-                    userinfo.raise_for_status()
-                    userinfo = userinfo.json()
-                    validated_data = {}
-                    validated_data['username'] = userinfo['login']
-                    if User.objects.filter(username=validated_data['username']).exists():
-                        validated_data['username'] = generate_unique_username(email)
-                    validated_data['email'] = email
-                    user = User.objects.create_user(**validated_data)
-                    user.set_password(str(random.randint(10000000,99999999)))
-                    user.save()
-                    return user.email
-                except Exception as e:
-                    raise serializers.ValidationError('Failed to login with given credentials')
-        elif platform == "42":
+        if platform == "42":
             response = requests.get('https://api.intra.42.fr/v2/me',headers=headers, timeout=10000)
             response.raise_for_status()
             res = response.json()
+            print(res)
             email = res['email']
             try:
                 user = User.objects.get(email=email)
@@ -221,6 +196,7 @@ class FriendSerializer(serializers.ModelSerializer):
 
     def get_avatar(self, obj):
         return obj.avatar.url.replace(settings.MEDIA_URL, '/media/')
+        
     def get_is_friend_req(self, obj):
         request_user = self.context['request'].user
         user = obj
@@ -252,8 +228,10 @@ class FriendRequestSerializer(serializers.ModelSerializer):
         representation = super().to_representation(instance)
 
         if representation['type'] == 'sent':
+            representation['user'] = representation.pop('to_user')
             representation.pop('from_user', None)
         else:
-            representation.pop('to_user', None)  
+            representation['user'] = representation.pop('from_user')
+            representation.pop('to_user', None)
 
         return representation

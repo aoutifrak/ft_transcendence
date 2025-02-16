@@ -22,9 +22,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 
 # General settings
 SECRET_KEY = os.environ.get('SECRET_KEY','foo')
-ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS').split(',')
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOSTS','*').split(',')
 
-DEBUG = True
+DEBUG = False
 
 # Application definition
 INSTALLED_APPS = [
@@ -44,6 +44,9 @@ INSTALLED_APPS = [
     'profiles',
     'chat',
     'notification',
+    'matchmaking',
+    'game',
+    'PongMatch',
     'pong',
 ]
 
@@ -76,21 +79,15 @@ ROOT_URLCONF = 'backend.urls'
 WSGI_APPLICATION = 'backend.wsgi.application'
 ASGI_APPLICATION = 'backend.asgi.application'
 
-CORS_ALLOW_ALL_ORIGINS = True
+CORS_ALLOW_ALL_ORIGINS = False
 CORS_ALLOW_CREDENTIALS = True
 
+
 CSRF_TRUSTED_ORIGINS=[
-    "https://localhost:3000",
-    "https://127.0.0.1:3000",
-    HOST_MC
-]
+HOST_MC]
 
 CORS_ALLOWED_ORIGINS = [
-    "https://localhost:3000",
-    "https://127.0.0.1:3000",
-    HOST_MC
-]
-
+HOST_MC]
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
@@ -109,7 +106,6 @@ DATABASES = {
 
 
 AUTH_USER_MODEL = 'profiles.User'
-
 
 # Internationalization
 # https://docs.djangoproject.com/en/4.2/topics/i18n/
@@ -159,13 +155,13 @@ DEFAULT_AUTO_FIELD = 'django.db.models.BigAutoField'
 
 SIMPLE_JWT = {
     'ACCESS_TOKEN_LIFETIME': timedelta(
-        minutes=int(os.environ.get('ACCESS_TOKEN_LIFETIME', 20))  
+        minutes=20  
     ),
     'REFRESH_TOKEN_LIFETIME': timedelta(
-        days=int(os.environ.get('REFRESH_TOKEN_LIFETIME', 7))
+        days=7
     ),
     "AUTH_HEADER_TYPES": ("Bearer",),
-    'SIGNING_KEY': os.environ.get('SECRET_KEY'),
+    'SIGNING_KEY': os.environ.get('SECRET_KEY','foo'),
     'ROTATE_REFRESH_TOKENS': True,
     'BLACKLIST_AFTER_ROTATION':True,
 }
@@ -177,11 +173,5 @@ CHANNEL_LAYERS = {
 }
 
 CLIENT_ID=os.environ.get('CLIENT_ID')
-GITHUB_CLIENT_ID=os.environ.get('GITHUB_CLIENT_ID')
-
-
 CLIENT_SECRET=os.environ.get('CLIENT_SECRET')
-GITHUB_CLIENT_SECRET=os.environ.get('GITHUB_CLIENT_SECRET')
-
 INTRA_REDIRECT_URI=os.environ.get('INTRA_REDIRECT_URI')
-GITHUB_REDIRECT_URI=os.environ.get('GITHUB_REDIRECT_URI')

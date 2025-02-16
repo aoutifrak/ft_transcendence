@@ -21,6 +21,6 @@ class GetNotification(APIView):
             paginator = self.pagination_class()
             notifications = paginator.paginate_queryset(notification, request, view=self)
             serialized_notification = self.serializer_class(notifications,many=True)
-            return paginator.get_paginated_response({'notifications': serialized_notification.data})
+            return paginator.get_paginated_response(serialized_notification.data)
         except Exception as e:
             return Response({'info':str(e)},status=400)
